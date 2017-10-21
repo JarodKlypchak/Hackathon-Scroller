@@ -7,9 +7,12 @@ function main(){
     let arrayPlatforms = [];
     setupGround(canvas, arrayHoles, arrayPlatforms);
     let goomba = new Monster(800, 375);
-    setInterval(game, 1000, goomba, canvas, arrayHoles, arrayPlatforms);
+    setInterval(game, 10, goomba, canvas, arrayHoles, arrayPlatforms);
 }
 
+/*
+ * game function loop that is called in main displays monster and calls everything else
+ */
 function game(goomba, canvas, arrayHoles, arrayPlatforms){
     goomba.update(arrayHoles, arrayPlatforms, canvas);
     setUpCanvas(canvas);
@@ -17,6 +20,9 @@ function game(goomba, canvas, arrayHoles, arrayPlatforms){
     displayGround(canvas, arrayHoles, arrayPlatforms);
 }
 
+/*
+ * setup canvas
+ */
 function setUpCanvas(canvas) {
     canvas.width = 1500;
     canvas.height = 500;
@@ -24,6 +30,9 @@ function setUpCanvas(canvas) {
     canvas.style.border = "1px solid black";
 }
 
+/*
+ * creates holes and platforms and pushes them to arrays
+ */
 function setupGround(canvas, arrayHoles, arrayPlatforms){
     let hole = new Hole(canvas, 50, 50);
     arrayHoles.push(hole);
@@ -33,17 +42,20 @@ function setupGround(canvas, arrayHoles, arrayPlatforms){
     arrayHoles.push(hole3);
     let platform = new Platform(50, 300, 100);
     arrayPlatforms.push(platform);
-    let platform1 = new Platform(150, 300, 100);
+    let platform1 = new Platform(200, 300, 100);
     arrayPlatforms.push(platform1);
 }
 
+/*
+ * displays ground, holes, platforms
+ */
 function displayGround(canvas, arrayHoles, arrayPlatforms){
     let ground = new Ground();
     ground.display(canvas);
     for(let i = 0; i < arrayHoles.length; i++){
         arrayHoles[i].display();
     }
-    for(let i = 0; i < arrayPlatforms; i++){
+    for(let i = 0; i < arrayPlatforms.length; i++){
         arrayPlatforms[i].display();
     }
 }
