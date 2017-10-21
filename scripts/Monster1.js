@@ -12,6 +12,19 @@ class Monster{
     }
 
     update(){
-        this.x -= 10;
+        let flop = ture;
+        if(flop){
+            this.x -= 20;
+        }else{
+            this.x += 20;
+        }
+        if(this.x < 450){
+            flop = flase;   
+        }
+        if(this.x > 900){
+            flop = true;
+        }
+       
+        
     }
 }
