@@ -2,10 +2,6 @@ let canvas = document.getElementById("c");
 let charWidth = 32;
 let baseHeight = 400 - charWidth;
 let person = new Person(0, baseHeight);
-<<<<<<< HEAD
-=======
-let platform = new Platform(300, 300, 100);
->>>>>>> 4c0bab8e43221f510419449447acfdea0411fa24
 main();
 
 let moveDistance = 5;

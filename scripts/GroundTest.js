@@ -1,12 +1,24 @@
+const charWidth = 32;
+const baseHeight = 400 - charWidth;
+let h = baseHeight;
+let jumping = false;
+let person = new Person(0, baseHeight);
+main();
+
+const moveDistance = 5;
+
+let time = 0;
+const jumpDuration = 100;
+const jumpDistance = 8;
 main();
 
 function main(){
     let canvas = document.getElementById("c");
-    setUpCanvas(canvas);
+    let goomba = new Monster(800, 375);
     let arrayHoles = [];
     let arrayPlatforms = [];
     setupGround(canvas, arrayHoles, arrayPlatforms);
-    let goomba = new Monster(800, 375);
+    setUpCanvas(goomba, canvas, arrayHoles, arrayPlatforms);
     setInterval(game, 10, goomba, canvas, arrayHoles, arrayPlatforms);
 }
 
@@ -15,19 +27,57 @@ function main(){
  */
 function game(goomba, canvas, arrayHoles, arrayPlatforms){
     goomba.update(arrayHoles, arrayPlatforms, canvas);
-    setUpCanvas(canvas);
-    goomba.display();
-    displayGround(canvas, arrayHoles, arrayPlatforms);
+    for(let i = 0; i < arrayPlatforms.length; i++){
+        if (person.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && person.x + 32 >= arrayPlatforms[i].x && person.y < arrayPlatforms[i].y) {
+            h = arrayPlatforms[i].y - charWidth;
+        } else {
+            h = baseHeight;
+        }
+        if (jumping) {
+            if (person.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && person.x + 32 >= arrayPlatforms[i].x && person.y > arrayPlatforms[i].y) {
+                if (person.belowObject(arrayPlatforms[i].y)) {
+                    time = jumpDuration;
+                }
+        }
+            time += 5;
+            jump(time);
+
+            if (person.onObject(h)) {
+                time = 0;
+                jumping = false;
+                person.y = h;
+            }
+        }
+    }
+
+
+    //Handles Falling when not jumping
+    if (person.y < h && !jumping) {
+        jumping = true;
+        time = 150;
+    }
+    //Moves Left 5 pixels
+    if (person.movingLeft) {
+        person.moveX(-moveDistance);
+    }
+
+    //Moves Right 5 pixels
+    if (person.movingRight) {
+        person.moveX(moveDistance);
+    }
+    setUpCanvas(goomba, canvas, arrayHoles, arrayPlatforms);
 }
 
 /*
  * setup canvas
  */
-function setUpCanvas(canvas) {
-    canvas.width = 1500;
+function setUpCanvas(goomba, canvas, arrayHoles, arrayPlatforms) {
+    canvas.width = 1000;
     canvas.height = 500;
     canvas.style.backgroundColor = "lightgray";
     canvas.style.border = "1px solid black";
+    displayGround(canvas, arrayHoles, arrayPlatforms);
+    goomba.display(); person.display(canvas);
 }
 
 /*
@@ -57,5 +107,36 @@ function displayGround(canvas, arrayHoles, arrayPlatforms){
     }
     for(let i = 0; i < arrayPlatforms.length; i++){
         arrayPlatforms[i].display();
+    }
+}
+
+
+function jump(time) {
+
+    if (time <= jumpDuration) {
+        person.moveY(-jumpDistance);
+    } else {
+
+        person.moveY(jumpDistance);
+
+    }
+}
+
+document.body.onkeydown = function(e) {
+    if (e.keyCode == "39") {
+        person.movingRight = true;
+    } else if (e.keyCode == "37") {
+        person.movingLeft = true;
+    } else if (e.keyCode == "32") {
+        jump(time);
+        jumping = true;
+    }
+}
+
+document.body.onkeyup = function(e) {
+    if (e.keyCode == "39") {
+        person.movingRight = false;
+    } else if (e.keyCode == "37") {
+        person.movingLeft = false;
     }
 }
