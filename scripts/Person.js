@@ -91,13 +91,18 @@ class Person {
         }
     }
     handleGaps(arrayHoles) {
-        for (let i = 0; i < arrayHoles.length; i++) {
-            if (this.x <= arrayHoles[i].x + arrayHoles[i].width && this.x + 32 >= arrayHoles[i].x && this.y < baseHeight) {
-                this.jumping = true;
-                time = jumpDuration;
-                jump(time);
-                console.log("hi");
+        if (!this.jumping) {
+            for (let i = 0; i < arrayHoles.length; i++) {
+                if (this.x >= arrayHoles[i].x && this.x + 32 <= arrayHoles[i].x + arrayHoles[i].width && this.y <= baseHeight) {
+                    this.jumping = true;
+                    time = 1000;
+                    jump(time);
+
+                }
             }
         }
+    }
+    platformUnder(arrayPlatforms) {
+
     }
 }
