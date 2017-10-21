@@ -1,3 +1,6 @@
+/*
+ * class Ground
+ */
 class Ground{
     display(canvas){
         let grass = c.getContext("2d");
