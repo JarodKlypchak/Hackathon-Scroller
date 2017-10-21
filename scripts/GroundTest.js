@@ -31,11 +31,13 @@ function game(arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
         arrayMonsters[i].update(arrayHoles, arrayPlatforms, arrayMonsters, canvas);
     }
     person.handleJump(arrayPlatforms);
-
-
     person.moveX(moveDistance);
-
     setUpCanvas(arrayMonsters, canvas, arrayHoles, arrayPlatforms);
+    for(let i = 0; i < arrayMonsters.length; i++){
+        killed = arrayMonsters[i].stomped(person);
+        if(killed)
+            arrayMonsters.splice(i, 1);
+    }
 }
 
 /*

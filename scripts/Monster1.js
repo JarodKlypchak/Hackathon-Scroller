@@ -51,4 +51,10 @@ class Monster {
             this.changeX *= -1;
         }
     }
+
+    stomped(person){
+        if(person.x >= this.x && person.x <= this.x + 25 && person.y <= this.y + 25){
+            return true;
+        }
+    }
 }
