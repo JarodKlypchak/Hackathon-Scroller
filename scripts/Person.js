@@ -7,7 +7,6 @@ class Person {
 
 
     moveX(distance) {
-
         this.x += distance;
     }
 
@@ -16,13 +15,14 @@ class Person {
     }
 
     display(canvas) {
-        var ctx = c.getContext("2d");
+        let ctx = canvas.getContext("2d");
         ctx.fillStyle = "#FF0000";
-        ctx.fillRect(this.x - 8, this.y - 8, this.x + 8, this.y + 8);
+        ctx.fillRect(this.x, this.y, 64, 64);
+        console.log(this.x);
     }
 
     remove(canvas) {
-        var ctx = c.getContext("2d");
+        let ctx = canvas.getContext("2d");
         ctx.fillStyle = "lightgray";
         ctx.fillRect(0, 0, 1000, 500);
     }

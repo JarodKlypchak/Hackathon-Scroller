@@ -1,5 +1,5 @@
 let canvas = document.getElementById("c");
-let person = new Person(50, 50);
+let person = new Person(0, 250);
 main();
 
 function main() {
@@ -19,8 +19,8 @@ function setUpCanvas() {
 }
 
 function test() {
-    person.remove();
+    setUpCanvas();
     person.moveX(1);
 
-    person.display();
+    person.display(canvas);
 }
