@@ -90,8 +90,8 @@ class Person {
             time = 150;
         }
     }
-    handleGaps(arrayHoles) {
-        if (!this.jumping) {
+    handleGaps(arrayHoles, arrayPlatforms) {
+        if (!this.jumping && !this.platformUnder(arrayPlatforms)) {
             for (let i = 0; i < arrayHoles.length; i++) {
                 if (this.x >= arrayHoles[i].x && this.x + 32 <= arrayHoles[i].x + arrayHoles[i].width && this.y <= baseHeight) {
                     this.jumping = true;
@@ -103,6 +103,10 @@ class Person {
         }
     }
     platformUnder(arrayPlatforms) {
-
+        for (let i = 0; i < arrayPlatforms.length; i++) {
+            if (this.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && this.x + 32 >= arrayPlatforms[i].x && this.y < arrayPlatforms[i].y) {
+                return true;
+            }
+        }
     }
 }
