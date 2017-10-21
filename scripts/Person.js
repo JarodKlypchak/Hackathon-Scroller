@@ -20,4 +20,10 @@ class Person {
         ctx.fillStyle = "#FF0000";
         ctx.fillRect(this.x - 8, this.y - 8, this.x + 8, this.y + 8);
     }
+
+    remove(canvas) {
+        var ctx = c.getContext("2d");
+        ctx.fillStyle = "lightgray";
+        ctx.fillRect(this.x - 10, this.y - 10, this.x + 10, this.y + 10);
+    }
 }
