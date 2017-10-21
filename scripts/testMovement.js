@@ -6,7 +6,6 @@ function main() {
     setUpCanvas();
 
 
-
     var temp = setInterval(test, 10);
 
 }
@@ -19,8 +18,22 @@ function setUpCanvas() {
 }
 
 function test() {
+    document.body.onkeydown = function(e) {
+        checkKey(e);
+    }
     setUpCanvas();
-    person.moveX(1);
-
     person.display(canvas);
+}
+
+function checkKey(e) {
+
+
+    if (e.keyCode == "39") {
+        person.moveX(5);
+    } else if (e.keyCode == "37") {
+        person.moveX(-5);
+    }
+    if (e.keyCode == "32") {
+        person.moveY(-5);
+    }
 }
