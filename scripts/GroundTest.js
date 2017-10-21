@@ -10,7 +10,7 @@ function main(){
 }
 
 function game(goomba, canvas, arrayHoles){
-    goomba.update(arrayHoles);
+    goomba.update(arrayHoles, canvas);
     setUpCanvas(canvas);
     goomba.display();
     displayGround(canvas, arrayHoles);
