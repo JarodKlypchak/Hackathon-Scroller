@@ -10,11 +10,12 @@ class Person {
     }
 
 
-    moveX(distance) {
-        if (this.movingLeft) {
+    moveX(distance, platforms) {
+
+        if (this.canMoveLeft(platforms) && this.movingLeft) {
             this.x += (-distance);
         }
-        if (this.movingRight) {
+        if (this.canMoveRight(platforms) && this.movingRight) {
             this.x += (distance);
         }
     }
@@ -59,7 +60,7 @@ class Person {
         let changed = false;
         for (let i = 0; i < arrayPlatforms.length; i++) {
             if (this.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && this.x + 32 >= arrayPlatforms[i].x && this.y < arrayPlatforms[i].y) {
-                h = arrayPlatforms[i].y - charWidth;
+                h = arrayPlatforms[i].y - charWidth + arrayPlatforms[i].height;
                 changed = true;
             }
         }
@@ -123,5 +124,30 @@ class Person {
                 return true;
             }
         }
+    }
+
+    canMoveRight(platforms) {
+        for (let i = 0; i < platforms.length; i++) {
+            if (this.y + charWidth >= platforms[i].y + platforms[i].height + 1 && this.y < platforms[i].y) {
+
+                if (this.x + charWidth < platforms[i].x && this.x + charWidth > platforms[i].x - 5) {
+
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    canMoveLeft(platforms) {
+        for (let i = 0; i < platforms.length; i++) {
+            if (this.y + charWidth >= platforms[i].y + platforms[i].height + 1 && this.y < platforms[i].y) {
+
+                if (this.x > platforms[i].x + platforms[i].width && this.x < platforms[i].x + platforms[i].width + 8) {
+
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

@@ -37,7 +37,7 @@ function game(arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
     }
     person.handleJump(arrayPlatforms);
     person.handleGaps(arrayHoles, arrayPlatforms);
-    person.moveX(moveDistance);
+    person.moveX(moveDistance, arrayPlatforms);
     setUpCanvas(arrayMonsters, canvas, arrayHoles, arrayPlatforms);
     showLives(person.lives, canvas);
     for (let i = 0; i < arrayMonsters.length; i++) {
