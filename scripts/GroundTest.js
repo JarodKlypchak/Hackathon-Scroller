@@ -33,20 +33,16 @@ function main(lives) {
 /*
  * game function loop that is called in main displays monster and calls everything else
  */
-<<<<<<< HEAD
-function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, score) {
-=======
-function game(arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
->>>>>>> b08a12693809bf095e32336aa5f70765c6087520
+
+function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, ) {
+
     for (let i = 0; i < arrayMonsters.length; i++) {
         arrayMonsters[i].update(arrayHoles, arrayPlatforms, arrayMonsters, canvas);
     }
     person.handleJump(arrayPlatforms);
     person.handleGaps(arrayHoles, arrayPlatforms);
     person.moveX(moveDistance, arrayPlatforms);
-<<<<<<< HEAD
-    setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
-    showLives(person.lives, canvas, score);
+
     for (let i = 0; i < arrayCoins.length; i++) {
         killed = arrayCoins[i].coinCollected(person);
         if (killed) {
@@ -55,10 +51,8 @@ function game(arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
             score += 50;
         }
     }
-=======
-    setUpCanvas(arrayMonsters, canvas, arrayHoles, arrayPlatforms);
+    setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
     displayStats(person.lives, canvas);
->>>>>>> b08a12693809bf095e32336aa5f70765c6087520
     for (let i = 0; i < arrayMonsters.length; i++) {
         killed = arrayMonsters[i].stomped(person);
         if (killed) {
@@ -74,10 +68,10 @@ function game(arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
 }
 
 /*
-* setup coins
-*/
+ * setup coins
+ */
 function setupCoins(arrayCoins) {
-    let temp=new Coin(200,200);
+    let temp = new Coin(200, 200);
     arrayCoins.push(temp);
 }
 
@@ -93,7 +87,7 @@ function setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatfor
     for (let i = 0; i < arrayMonsters.length; i++) {
         arrayMonsters[i].display();
     }
-    for(let i=0;i<arrayCoins.length;i++){
+    for (let i = 0; i < arrayCoins.length; i++) {
         arrayCoins[i].display();
     }
     person.display(canvas);
