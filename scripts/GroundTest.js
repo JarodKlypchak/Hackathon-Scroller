@@ -140,20 +140,20 @@ function jump(time) {
  * detect user input
  */
 document.body.onkeydown = function(e) {
-    if (e.keyCode == "68") {
+    if (e.keyCode == "68"||e.keyCode == "39") {
         person.movingRight = true;
-    } else if (e.keyCode == "65") {
+    } else if (e.keyCode == "65"||e.keyCode == "37") {
         person.movingLeft = true;
-    } else if (e.keyCode == "87" && !person.jumping) {
+    } else if ((e.keyCode == "87" && !person.jumping)||(e.keyCode == "38" && !person.jumping)) {
         jump(time);
         person.jumping = true;
     }
 }
 
 document.body.onkeyup = function(e) {
-    if (e.keyCode == "68") {
+    if (e.keyCode == "68"||e.keyCode == "39") {
         person.movingRight = false;
-    } else if (e.keyCode == "65") {
+    } else if (e.keyCode == "65"||e.keyCode == "37") {
         person.movingLeft = false;
     }
 }
