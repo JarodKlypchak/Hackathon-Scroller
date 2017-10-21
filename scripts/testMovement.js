@@ -31,16 +31,19 @@ let jumping = false;
 let h = baseHeight;
 
 function test() {
+    if (person.x <= platform.x + platform.width && person.x + 32 >= platform.x && person.y < platform.y) {
+        h = platform.y - 32;
+    } else {
+        h = baseHeight;
+    }
 
     if (jumping) {
+
         time += 5;
         jump(time);
-        if (person.x <= platform.x + platform.width && person.x + 32 >= platform.x && person.y < platform.y) {
-            h = platform.y;
-        } else {
-            h = baseHeight;
-        }
+
         if (person.onObject(h)) {
+            alert("hi");
             time = 0;
             jumping = false;
         }
@@ -59,11 +62,12 @@ function test() {
 }
 
 function jump(time) {
-    if (time <= 150) {
-        person.moveY(-10);
+
+    if (time <= 1200) {
+        person.moveY(-1);
     } else {
 
-        person.moveY(10);
+        person.moveY(1);
 
     }
 }
