@@ -53,7 +53,8 @@ class Monster {
     }
 
     stomped(person){
-        if(person.x >= this.x && person.x <= this.x + 25 && person.y < this.y - 5){
+        if(person.x >= this.x - 25 && person.x <= this.x + 25 && person.y + 32 >= this.y && person.y <= this.y - 25){
+            console.log("hi");
             return true;
         }
     }
