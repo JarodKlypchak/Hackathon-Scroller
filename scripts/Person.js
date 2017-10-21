@@ -1,11 +1,12 @@
 class Person {
 
-    constructor(xPos, yPos) {
+    constructor(xPos, yPos, lives) {
         this.x = xPos;
         this.y = yPos;
         this.movingLeft = false;
         this.movingRight = false;
         this.jumping = false;
+        this.lives = lives;
     }
 
 
@@ -101,6 +102,10 @@ class Person {
                 }
             }
         }
+        if (this.y >= baseHeight + 30) {
+            jumpDistance = 25;
+        }
+
     }
     platformUnder(arrayPlatforms) {
         for (let i = 0; i < arrayPlatforms.length; i++) {
@@ -108,5 +113,19 @@ class Person {
                 return true;
             }
         }
+    }
+
+    shouldDie() {
+        if (this.x < 0 || this.y > 500) {
+            this.dies();
+            return true;
+        }
+        return false;
+
+    }
+    dies() {
+        alert(this.lives);
+        this.lives--;
+
     }
 }
