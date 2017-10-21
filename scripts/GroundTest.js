@@ -38,6 +38,7 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, ) {
 
     for (let i = 0; i < arrayMonsters.length; i++) {
         arrayMonsters[i].update(arrayHoles, arrayPlatforms, arrayMonsters, canvas);
+        arrayMonsters[i].offScreen(person, canvas);
     }
     person.handleJump(arrayPlatforms);
     person.handleGaps(arrayHoles, arrayPlatforms);
