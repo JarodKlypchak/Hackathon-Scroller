@@ -8,10 +8,15 @@ class Monster{
         let monster = c.getContext("2d");
         const monsterColor = "blue";
         monster.fillStyle = monsterColor;
-        monster.fillRect(this.x, this.y, 64, 64);
+        monster.fillRect(this.x, this.y, 25, 25);
     }
 
     update(){
-        this.x -= 10;
+        this.x -= 15;
+    }
+
+    falling(){
+        
+    
     }
 }
