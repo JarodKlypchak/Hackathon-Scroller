@@ -74,4 +74,13 @@ class Monster {
     getY(){
         return this.y;
     }
+
+    /*
+     * monster off screen
+     */
+    offScreen(person, canvas){
+        if(person.x - canvas.width > this.x){
+            this.changeX = 0;
+        }
+    }
 }
