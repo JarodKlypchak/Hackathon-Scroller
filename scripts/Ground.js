@@ -1,21 +1,24 @@
 class Ground{
     display(canvas){
         let grass = c.getContext("2d");
-        grass.fillStyle = "green";
+        const grassColor = "green";
+        grass.fillStyle = grassColor;
         grass.fillRect(0, canvas.height-100, canvas.width, 10);
 
         let dirt = c.getContext("2d");
-        dirt.fillStyle = "#542614";
+        const dirtColor = "#542614";
+        dirt.fillStyle = dirtColor;
         dirt.fillRect(0, canvas.height-90, canvas.width, 55);
 
         let sediment = c.getContext("2d");
-        sediment.fillStyle = "#262728";
+        const sedimentColor = "#262728";
+        sediment.fillStyle = sedimentColor;
         sediment.fillRect(0, canvas.height-40, canvas.width, 45);
     }
 
     hole(canvas, x, width){
         let hole = c.getContext("2d");
-        hole.filStyle = "white";
+        hole.fillStyle = "lightgray";
         hole.fillRect(x, canvas.height-100, width, 100);
     }
 }

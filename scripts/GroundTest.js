@@ -5,7 +5,9 @@ function main(){
     setUpCanvas(canvas);
     let ground = new Ground();
     ground.display(canvas);
-    let hole = ground.hole(canvas, 50, 100);
+    let hole = ground.hole(canvas, 50, 50);
+    let hole2 = ground.hole(canvas, 200, 50);
+    let hole3 = ground.hole(canvas, 350, 50);
 }
 
 function setUpCanvas(canvas) {
