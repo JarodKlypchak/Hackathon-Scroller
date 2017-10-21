@@ -4,12 +4,12 @@
  * displays monster and keeps monster on platform or ground and prevents from
  * them killing themselves
  */
-class Monster{
+class Monster {
 
     /*
      * constructor takes x, and y value
      */
-    constructor(x, y){
+    constructor(x, y) {
         this.x = x;
         this.y = y;
         this.changeX = 1.2;
@@ -18,7 +18,7 @@ class Monster{
     /*
      * displays monster given canvas
      */
-    display(){
+    display() {
         let monster = c.getContext("2d");
         const monsterColor = "blue";
         monster.fillStyle = monsterColor;
@@ -28,13 +28,13 @@ class Monster{
     /*
      * update funtion for monster calls arrayHoles, arrayPlatforms, and canvas
      */
-    update(arrayHoles, arrayPlatforms, arrayMonsters, canvas){
+    update(arrayHoles, arrayPlatforms, arrayMonsters, canvas) {
         this.x -= this.changeX;
         /*
          * checks holes and sees if it's on it so it doesn't fall off
          */
-        for(let i = 0; i < arrayHoles.length; i++){
-            if(this.x <= (arrayHoles[i].getX() + arrayHoles[i].getWidth() + 10) && this.x >= (arrayHoles[i].getX() - 10)){
+        for (let i = 0; i < arrayHoles.length; i++) {
+            if (this.x <= (arrayHoles[i].getX() + arrayHoles[i].getWidth() + 10) && this.x >= (arrayHoles[i].getX() - 10)) {
                 this.changeX *= -1;
             }
         }
@@ -42,14 +42,13 @@ class Monster{
         /*
          * checks platforms and sees if it's on it so it doesn't fall off
          */
-        for(let i = 0; i < arrayPlatforms.length; i++){
-            if(this.x <= (arrayPlatforms[i].getX() + arrayPlatforms[i].getWidth() + 10) && this.x >= (arrayPlatforms[i].getX() - 10)){
-            this.changeX *= -1;
+        for (let i = 0; i < arrayPlatforms.length; i++) {
+            if (this.x <= (arrayPlatforms[i].getX() + arrayPlatforms[i].getWidth() + 10) && this.x >= (arrayPlatforms[i].getX() - 10)) {
+                this.changeX *= -1;
+            }
         }
-    }
-        if(this.x >= canvas.width - 10 || this.x <= 10){
+        if (this.x >= canvas.width - 10 || this.x <= 10) {
             this.changeX *= -1;
         }
     }
 }
-

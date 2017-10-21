@@ -16,7 +16,7 @@ function main() {
     let arrayMonsters = [];
     let arrayHoles = [];
     let arrayPlatforms = [];
-    setupMonsters(arrayMonsters)
+    setupMonsters(arrayMonsters);
     setupGround(canvas, arrayHoles, arrayPlatforms);
     setUpCanvas(arrayMonsters, canvas, arrayHoles, arrayPlatforms);
     setInterval(game, 50, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
@@ -26,61 +26,58 @@ function main() {
  * game function loop that is called in main displays monster and calls everything else
  */
 function game(arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
-<<<<<<< HEAD
-    for(let i = 0; i < arrayMonsters.length; i++){
-        arrayMonsters[i].update(arrayHoles, arrayPlatforms, arrayMonsters, canvas);
-=======
-    for (let i = 0; i < arrayMonsters.length; i++) {
-        arrayMonsters[i].update(arrayHoles, arrayPlatforms, canvas);
->>>>>>> b68a99918194092555c5e14a88171e290fdd18d6
-    }
-    let changed = false;
-    for (let i = 0; i < arrayPlatforms.length; i++) {
-        if (person.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && person.x + 32 >= arrayPlatforms[i].x && person.y < arrayPlatforms[i].y) {
-            h = arrayPlatforms[i].y - charWidth;
-            changed = true;
-        }
-    }
-    if (jumping) {
-        for (let i = 0; i < arrayPlatforms.length; i++) {
-            if (person.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && person.x + 32 >= arrayPlatforms[i].x && person.y > arrayPlatforms[i].y) {
-                if (person.belowObject(arrayPlatforms[i].y)) {
-                    time = jumpDuration;
 
-                }
+    for (let i = 0; i < arrayMonsters.length; i++) {
+        arrayMonsters[i].update(arrayHoles, arrayPlatforms, arrayMonsters, canvas);
+
+
+        let changed = false;
+        for (let i = 0; i < arrayPlatforms.length; i++) {
+            if (person.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && person.x + 32 >= arrayPlatforms[i].x && person.y < arrayPlatforms[i].y) {
+                h = arrayPlatforms[i].y - charWidth;
+                changed = true;
             }
         }
-        time += 5;
-        jump(time);
+        if (jumping) {
+            for (let i = 0; i < arrayPlatforms.length; i++) {
+                if (person.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && person.x + 32 >= arrayPlatforms[i].x && person.y > arrayPlatforms[i].y) {
+                    if (person.belowObject(arrayPlatforms[i].y)) {
+                        time = jumpDuration;
 
-        if (person.onObject(h)) {
-            time = 0;
-            jumping = false;
-            person.y = h;
+                    }
+                }
+            }
+            time += 5;
+            jump(time);
+
+            if (person.onObject(h)) {
+                time = 0;
+                jumping = false;
+                person.y = h;
+            }
         }
-    }
-    if (!changed) {
-        h = baseHeight;
-    }
+        if (!changed) {
+            h = baseHeight;
+        }
 
-    console.log(h);
-    //Handles Falling when not jumping
-    if (person.y < h && !jumping) {
-        jumping = true;
-        time = 150;
-    }
-    //Moves Left 5 pixels
-    if (person.movingLeft) {
-        person.moveX(-moveDistance);
-    }
+        console.log(h);
+        //Handles Falling when not jumping
+        if (person.y < h && !jumping) {
+            jumping = true;
+            time = 150;
+        }
+        //Moves Left 5 pixels
+        if (person.movingLeft) {
+            person.moveX(-moveDistance);
+        }
 
-    //Moves Right 5 pixels
-    if (person.movingRight) {
-        person.moveX(moveDistance);
+        //Moves Right 5 pixels
+        if (person.movingRight) {
+            person.moveX(moveDistance);
+        }
+        setUpCanvas(arrayMonsters, canvas, arrayHoles, arrayPlatforms);
     }
-    setUpCanvas(arrayMonsters, canvas, arrayHoles, arrayPlatforms);
 }
-
 /*
  * setup canvas
  */
