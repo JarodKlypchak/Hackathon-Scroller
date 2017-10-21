@@ -3,7 +3,6 @@ const baseHeight = 400 - charWidth;
 let h = baseHeight;
 let jumping = false;
 let person = new Person(0, baseHeight);
-main();
 
 const moveDistance = 5;
 
@@ -14,19 +13,22 @@ main();
 
 function main(){
     let canvas = document.getElementById("c");
-    let goomba = new Monster(800, 375);
+    let arrayMonsters = [];
     let arrayHoles = [];
     let arrayPlatforms = [];
+    setupMonsters(arrayMonsters)
     setupGround(canvas, arrayHoles, arrayPlatforms);
-    setUpCanvas(goomba, canvas, arrayHoles, arrayPlatforms);
-    setInterval(game, 10, goomba, canvas, arrayHoles, arrayPlatforms);
+    setUpCanvas(arrayMonsters, canvas, arrayHoles, arrayPlatforms);
+    setInterval(game, 50, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
 }
 
 /*
  * game function loop that is called in main displays monster and calls everything else
  */
-function game(goomba, canvas, arrayHoles, arrayPlatforms){
-    goomba.update(arrayHoles, arrayPlatforms, canvas);
+function game(arrayMonsters, canvas, arrayHoles, arrayPlatforms){
+    for(let i = 0; i < arrayMonsters.length; i++){
+        arrayMonsters[i].update(arrayHoles, arrayPlatforms, canvas);
+    }
     for(let i = 0; i < arrayPlatforms.length; i++){
         if (person.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && person.x + 32 >= arrayPlatforms[i].x && person.y < arrayPlatforms[i].y) {
             h = arrayPlatforms[i].y - charWidth;
@@ -65,19 +67,22 @@ function game(goomba, canvas, arrayHoles, arrayPlatforms){
     if (person.movingRight) {
         person.moveX(moveDistance);
     }
-    setUpCanvas(goomba, canvas, arrayHoles, arrayPlatforms);
+    setUpCanvas(arrayMonsters, canvas, arrayHoles, arrayPlatforms);
 }
 
 /*
  * setup canvas
  */
-function setUpCanvas(goomba, canvas, arrayHoles, arrayPlatforms) {
-    canvas.width = 1000;
+function setUpCanvas(arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
+    canvas.width = 900;
     canvas.height = 500;
     canvas.style.backgroundColor = "lightgray";
     canvas.style.border = "1px solid black";
     displayGround(canvas, arrayHoles, arrayPlatforms);
-    goomba.display(); person.display(canvas);
+    for(let i = 0; i < arrayMonsters.length; i++){
+        arrayMonsters[i].display();
+    }
+    person.display(canvas);
 }
 
 /*
@@ -110,6 +115,14 @@ function displayGround(canvas, arrayHoles, arrayPlatforms){
     }
 }
 
+/*
+ * creates monster and appends them to array
+ */
+function setupMonsters(arrayMonsters){
+    let goomba = new Monster(800, 375);
+    arrayMonsters.push(goomba);
+}
+
 
 function jump(time) {
 
@@ -122,6 +135,9 @@ function jump(time) {
     }
 }
 
+/*
+ * detect user input
+ */
 document.body.onkeydown = function(e) {
     if (e.keyCode == "39") {
         person.movingRight = true;
