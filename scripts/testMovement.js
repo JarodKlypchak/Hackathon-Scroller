@@ -1,10 +1,7 @@
 let canvas = document.getElementById("c");
 let charWidth = 32;
-let movingLeft = false;
-let movingRight = false;
 let baseHeight = 400 - charWidth;
 let person = new Person(0, baseHeight);
-let platform = new Platform(300, 200, 100);
 main();
 let time = 0;
 
@@ -81,9 +78,9 @@ function jump(time) {
 
 document.body.onkeydown = function(e) {
     if (e.keyCode == "39") {
-        movingRight = true;
+        person.movingRight = true;
     } else if (e.keyCode == "37") {
-        movingLeft = true;
+        person.movingLeft = true;
     } else if (e.keyCode == "32") {
         jump(time);
         jumping = true;
@@ -92,8 +89,8 @@ document.body.onkeydown = function(e) {
 
 document.body.onkeyup = function(e) {
     if (e.keyCode == "39") {
-        movingRight = false;
+        person.movingRight = false;
     } else if (e.keyCode == "37") {
-        movingLeft = false;
+        person.movingLeft = false;
     }
 }
