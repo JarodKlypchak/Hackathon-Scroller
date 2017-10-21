@@ -20,9 +20,9 @@ class Monster {
      */
     display() {
         let monster = c.getContext("2d");
-        const monsterColor = "blue";
-        monster.fillStyle = monsterColor;
-        monster.fillRect(this.x, this.y, 25, 25);
+        var img=document.createElement("IMG");
+        img.src="images/gumba.png";
+        monster.drawImage(img,this.x, this.y, 25, 25);
     }
 
     /*
