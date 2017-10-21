@@ -8,6 +8,7 @@ function main(){
     let hole = ground.hole(canvas, 50, 50);
     let hole2 = ground.hole(canvas, 200, 50);
     let hole3 = ground.hole(canvas, 350, 50);
+    let platform = ground.platform(50, 300, 100);
 }
 
 function setUpCanvas(canvas) {
