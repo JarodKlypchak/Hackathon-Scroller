@@ -5,6 +5,7 @@ class Person {
         this.y = yPos;
         this.movingLeft = false;
         this.movingRight = false;
+        this.jumping = false;
     }
 
 
@@ -34,7 +35,7 @@ class Person {
 
     onObject(height) {
         let result = false;
-        if (this.y < height + 5 && this.y > height - 5) {
+        if (this.y < height + 10 && this.y > height - 10) {
             result = true;
         }
         return result;
