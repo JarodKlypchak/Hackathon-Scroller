@@ -1,4 +1,5 @@
 class Monster{
+
     constructor(x, y){
         this.x = x;
         this.y = y;
@@ -13,8 +14,10 @@ class Monster{
 
     update(arrayHoles){
         this.x -= 15;
-        for(let i = 0; i < arrayHoles.length(); i++){
-            if(this.x <= (arrayHoles[i].getX() + arrayHoles[i].getWidth()) )
+        for(let i = 0; i < arrayHoles.length; i++){
+            if(this.x <= (arrayHoles[i].getX() + arrayHoles[i].getWidth()) && this.x >= (arrayHoles[i].getX())){
+                console.log("oh no I died");
+            }
         }
     }
 }
