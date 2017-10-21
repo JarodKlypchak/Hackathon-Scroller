@@ -51,8 +51,7 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, ) {
             score += 50;
         }
     }
-    setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
-    displayStats(person.lives, canvas);
+
     for (let i = 0; i < arrayMonsters.length; i++) {
         let killed = arrayMonsters[i].stomped(person);
         if (killed) {
@@ -65,6 +64,23 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, ) {
         clearInterval(reset);
         main(person.lives);
     }
+    if (person.x >= canvas.width) {
+        person.x = 10;
+        updateArray(arrayCoins, 900);
+        updateArray(arrayMonsters, 900);
+        updateArray(arrayHoles, 900);
+        updateArray(arrayPlatforms, 900);
+        console.log(arrayHoles);
+    } else if (person.x + charWidth <= 0) {
+        person.x = canvas.width - 10;
+        updateArray(arrayCoins, -900);
+        updateArray(arrayMonsters, -900);
+        updateArray(arrayHoles, -900)
+        updateArray(arrayPlatforms, -900);
+        console.log(arrayHoles);
+    }
+    setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
+    displayStats(person.lives, canvas);
 }
 
 /*
@@ -181,5 +197,11 @@ document.body.onkeyup = function(e) {
         person.movingRight = false;
     } else if (e.keyCode == "65" || e.keyCode == "37") {
         person.movingLeft = false;
+    }
+}
+
+function updateArray(array, distance) {
+    for (let i = 0; i < array.length; i++) {
+        array[i].x -= distance;
     }
 }
