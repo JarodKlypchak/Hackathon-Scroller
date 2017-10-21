@@ -60,4 +60,18 @@ class Monster {
             return true;
         }
     }
+
+    /*
+     * returns X
+     */
+    getX(){
+        return this.x;
+    }
+
+    /*
+     * returns Y
+     */
+    getY(){
+        return this.y;
+    }
 }

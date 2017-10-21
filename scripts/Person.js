@@ -115,16 +115,13 @@ class Person {
         }
     }
 
-    shouldDie() {
-        if (this.x < 0 || this.y > 500) {
-            this.jumping = false;
-            this.dies();
-            return true;
+    shouldDie(arrayMonsters) {
+        for(let i = 0; i < arrayMonsters.length; i++){
+            if (this.x < 0 || this.y > 500 || this.x + charWidth >= arrayMonsters[i].getX() && this.x <= arrayMonsters[i].getX() + 20 && this.y <= arrayMonsters[i].getY() + 25 && this.y + charWidth >= arrayMonsters[i].getY()) {
+                this.jumping = false;
+                this.lives--;
+                return true;
+            }
         }
-        return false;
-
-    }
-    dies() {
-        this.lives--;
     }
 }

@@ -47,9 +47,8 @@ function game(arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
             arrayMonsters.splice(i, 1);
         }
     }
-    if (person.shouldDie()) {
+    if (person.shouldDie(arrayMonsters)) {
         clearInterval(reset);
-
         main(person.lives);
     }
 }
