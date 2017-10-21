@@ -121,7 +121,7 @@ function setupMonsters(arrayMonsters) {
 function showLives(lives, canvas){
     var context = canvas.getContext("2d");
     context.font = "25px serif";
-    context.fillStyle = "red";
+    context.fillStyle = "black";
     context.fillText("Lives: " + lives, canvas.width - 100, 21);
 }
 
