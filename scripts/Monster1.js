@@ -8,10 +8,11 @@ class Monster{
         let monster = c.getContext("2d");
         const monsterColor = "blue";
         monster.fillStyle = monsterColor;
-        monster.fillRect(this.x, this.y, 64, 64);
+        monster.fillRect(this.x, this.y, 25, 25);
     }
 
     update(){
+<<<<<<< HEAD
         let flop = ture;
         if(flop){
             this.x -= 20;
@@ -26,5 +27,13 @@ class Monster{
         }
        
         
+=======
+        this.x -= 15;
+    }
+
+    falling(){
+        
+    
+>>>>>>> 3de135261c6ca982fc6627a6a4314d01ad3e8234
     }
 }

@@ -11,7 +11,11 @@ class Person {
     }
 
     moveY(distance) {
-        this.y += distance;
+        if (this.y > 0 && distance < 0) {
+            this.y += distance;
+        } else if (distance > 0) {
+            this.y += distance;
+        }
     }
 
     display(canvas) {
@@ -24,5 +28,13 @@ class Person {
         let ctx = canvas.getContext("2d");
         ctx.fillStyle = "lightgray";
         ctx.fillRect(0, 0, 1000, 500);
+    }
+
+    onGround() {
+        let result = false;
+        if (this.y == baseHeight) {
+            result = true;
+        }
+        return result;
     }
 }
