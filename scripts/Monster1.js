@@ -20,8 +20,15 @@ class Monster{
                 this.changeX *= -1;
             }
         }
+
+        for(let i = 0; i < arrayPlatforms.length; i++){
+            if(this.x <= (arrayPlatforms[i].getX() + arrayPlatforms[i].getWidth() + 10) && this.x >= (arrayPlatforms[i].getX() - 10)){
+            this.changeX *= -1;
+        }
+    }
         if(this.x >= canvas.width - 10 || this.x <= 10){
             this.changeX *= -1;
         }
     }
 }
+

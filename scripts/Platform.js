@@ -11,4 +11,16 @@ class Platform{
         platform.fillStyle = this.platformColor;
         platform.fillRect(this.x, this.y, this.width, 10);
     }
+
+    getX(){
+        return this.x;
+    }
+
+    getY(){
+        return this.y;
+    }
+
+    getWidth(){
+        return this.width;
+    }
 }
