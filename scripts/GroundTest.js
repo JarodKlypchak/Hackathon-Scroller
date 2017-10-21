@@ -2,24 +2,27 @@ const charWidth = 32;
 const baseHeight = 400 - charWidth;
 let h = baseHeight;
 let jumping = false;
-let person = new Person(0, baseHeight);
-
+let person = new Person(5, baseHeight, 3);
+let dirtyBreak = false;
 const moveDistance = 5;
 
 let time = 0;
 const jumpDuration = 75;
-const jumpDistance = 8;
-main();
+let jumpDistance = 8;
+main(person.lives);
 
-function main() {
-    let canvas = document.getElementById("c");
-    let arrayMonsters = [];
-    let arrayHoles = [];
-    let arrayPlatforms = [];
-    setupMonsters(arrayMonsters);
-    setupGround(canvas, arrayHoles, arrayPlatforms);
-    setUpCanvas(arrayMonsters, canvas, arrayHoles, arrayPlatforms);
-    setInterval(game, 50, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
+function main(lives) {
+    if (lives > 0) {
+        let canvas = document.getElementById("c");
+        let arrayMonsters = [];
+        let arrayHoles = [];
+        let arrayPlatforms = [];
+        setupMonsters(arrayMonsters);
+        setupGround(canvas, arrayHoles, arrayPlatforms);
+        setUpCanvas(arrayMonsters, canvas, arrayHoles, arrayPlatforms);
+        reset = setInterval(game, 50, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
+
+    }
 }
 
 /*
@@ -38,6 +41,11 @@ function game(arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
         killed = arrayMonsters[i].stomped(person);
         if (killed)
             arrayMonsters.splice(i, 1);
+    }
+    if (person.shouldDie()) {
+        clearInterval(reset);
+        person = new Person(5, baseHeight, person.lives);
+        main(person.lives);
     }
 }
 
