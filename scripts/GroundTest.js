@@ -20,25 +20,36 @@ function main(lives) {
         let arrayMonsters = [];
         let arrayHoles = [];
         let arrayPlatforms = [];
+        let arrayCoins = [];
+        setupCoins(arrayCoins);
+        console.log("hi");
         setupMonsters(arrayMonsters);
         setupGround(canvas, arrayHoles, arrayPlatforms);
-        setUpCanvas(arrayMonsters, canvas, arrayHoles, arrayPlatforms);
-        reset = setInterval(game, 50, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
+        setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
+        reset = setInterval(game, 50, arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
     }
 }
 
 /*
  * game function loop that is called in main displays monster and calls everything else
  */
-function game(arrayMonsters, canvas, arrayHoles, arrayPlatforms, score) {
+function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, score) {
     for (let i = 0; i < arrayMonsters.length; i++) {
         arrayMonsters[i].update(arrayHoles, arrayPlatforms, arrayMonsters, canvas);
     }
     person.handleJump(arrayPlatforms);
     person.handleGaps(arrayHoles, arrayPlatforms);
     person.moveX(moveDistance, arrayPlatforms);
-    setUpCanvas(arrayMonsters, canvas, arrayHoles, arrayPlatforms);
+    setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
     showLives(person.lives, canvas, score);
+    for (let i = 0; i < arrayCoins.length; i++) {
+        killed = arrayCoins[i].coinCollected(person);
+        if (killed) {
+            delete arrayCoins[i];
+            arrayCoins.splice(i, 1);
+            score += 50;
+        }
+    }
     for (let i = 0; i < arrayMonsters.length; i++) {
         killed = arrayMonsters[i].stomped(person);
         if (killed) {
@@ -54,9 +65,17 @@ function game(arrayMonsters, canvas, arrayHoles, arrayPlatforms, score) {
 }
 
 /*
+* setup coins
+*/
+function setupCoins(arrayCoins) {
+    let temp=new Coin(200,200);
+    arrayCoins.push(temp);
+}
+
+/*
  * setup canvas
  */
-function setUpCanvas(arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
+function setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
     canvas.width = 900;
     canvas.height = 500;
     canvas.style.backgroundColor = "lightgray";
@@ -64,6 +83,9 @@ function setUpCanvas(arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
     displayGround(canvas, arrayHoles, arrayPlatforms);
     for (let i = 0; i < arrayMonsters.length; i++) {
         arrayMonsters[i].display();
+    }
+    for(let i=0;i<arrayCoins.length;i++){
+        arrayCoins[i].display();
     }
     person.display(canvas);
 }
