@@ -125,14 +125,8 @@ function showLives(lives, canvas, score) {
     context.font = "25px serif";
     context.fillStyle = "black";
     context.fillText("Lives: " + lives, canvas.width - 100, 21);
-<<<<<<< HEAD
     context.fillText("Score: " + score, 0, 21);
-=======
-    if (score != 0)
-        context.fillText("Score: " + score, 0, 21);
-    else
-        context.fillText("Score: 0", 0, 21);
->>>>>>> ab11c11d5a3b2c86c3a448bb26098476242201fa
+    context.fillText("Score: " + score, 0, 21);
 }
 
 
