@@ -34,7 +34,6 @@ function game(arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
     person.moveX(moveDistance);
     setUpCanvas(arrayMonsters, canvas, arrayHoles, arrayPlatforms);
 
-<<<<<<< HEAD
         let changed = false;
         for (let i = 0; i < arrayPlatforms.length; i++) {
             if (person.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && person.x + 32 >= arrayPlatforms[i].x && person.y < arrayPlatforms[i].y) {
@@ -74,8 +73,6 @@ function game(arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
         person.moveX(moveDistance);
 
         setUpCanvas(arrayMonsters, canvas, arrayHoles, arrayPlatforms);
-=======
->>>>>>> 1ba19323094034199d7ff2ff1289117fdce7ddcc
 }
 
 /*
