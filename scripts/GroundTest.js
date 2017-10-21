@@ -30,7 +30,7 @@ function main(lives) {
 /*
  * game function loop that is called in main displays monster and calls everything else
  */
-function game(arrayMonsters, canvas, arrayHoles, arrayPlatforms, score) {
+function game(arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
     for (let i = 0; i < arrayMonsters.length; i++) {
         arrayMonsters[i].update(arrayHoles, arrayPlatforms, arrayMonsters, canvas);
     }
@@ -38,13 +38,13 @@ function game(arrayMonsters, canvas, arrayHoles, arrayPlatforms, score) {
     person.handleGaps(arrayHoles, arrayPlatforms);
     person.moveX(moveDistance, arrayPlatforms);
     setUpCanvas(arrayMonsters, canvas, arrayHoles, arrayPlatforms);
-    showLives(person.lives, canvas, score);
+    showLives(person.lives, canvas);
     for (let i = 0; i < arrayMonsters.length; i++) {
         killed = arrayMonsters[i].stomped(person);
         if (killed) {
             delete arrayMonsters[i];
             arrayMonsters.splice(i, 1);
-            score++;
+            score += 100;
         }
     }
     if (person.shouldDie(arrayMonsters)) {
@@ -117,15 +117,11 @@ function setupMonsters(arrayMonsters) {
 /*
  * shows lives to user
  */
-
-
-
-function showLives(lives, canvas, score) {
+function showLives(lives, canvas) {
     var context = canvas.getContext("2d");
     context.font = "25px serif";
     context.fillStyle = "black";
     context.fillText("Lives: " + lives, canvas.width - 100, 21);
-    context.fillText("Score: " + score, 0, 21);
     context.fillText("Score: " + score, 0, 21);
 }
 
