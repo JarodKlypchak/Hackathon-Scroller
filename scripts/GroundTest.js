@@ -33,13 +33,18 @@ function main(lives) {
 /*
  * game function loop that is called in main displays monster and calls everything else
  */
+<<<<<<< HEAD
 function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, score) {
+=======
+function game(arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
+>>>>>>> b08a12693809bf095e32336aa5f70765c6087520
     for (let i = 0; i < arrayMonsters.length; i++) {
         arrayMonsters[i].update(arrayHoles, arrayPlatforms, arrayMonsters, canvas);
     }
     person.handleJump(arrayPlatforms);
     person.handleGaps(arrayHoles, arrayPlatforms);
     person.moveX(moveDistance, arrayPlatforms);
+<<<<<<< HEAD
     setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
     showLives(person.lives, canvas, score);
     for (let i = 0; i < arrayCoins.length; i++) {
@@ -50,12 +55,16 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, sco
             score += 50;
         }
     }
+=======
+    setUpCanvas(arrayMonsters, canvas, arrayHoles, arrayPlatforms);
+    displayStats(person.lives, canvas);
+>>>>>>> b08a12693809bf095e32336aa5f70765c6087520
     for (let i = 0; i < arrayMonsters.length; i++) {
         killed = arrayMonsters[i].stomped(person);
         if (killed) {
             delete arrayMonsters[i];
             arrayMonsters.splice(i, 1);
-            score++;
+            score += 100;
         }
     }
     if (person.shouldDie(arrayMonsters)) {
@@ -139,15 +148,11 @@ function setupMonsters(arrayMonsters) {
 /*
  * shows lives to user
  */
-
-
-
-function showLives(lives, canvas, score) {
+function displayStats(lives, canvas) {
     var context = canvas.getContext("2d");
     context.font = "25px serif";
     context.fillStyle = "black";
     context.fillText("Lives: " + lives, canvas.width - 100, 21);
-    context.fillText("Score: " + score, 0, 21);
     context.fillText("Score: " + score, 0, 21);
 }
 
@@ -171,7 +176,7 @@ document.body.onkeydown = function(e) {
         person.movingRight = true;
     } else if (e.keyCode == "65" || e.keyCode == "37") {
         person.movingLeft = true;
-    } else if ((e.keyCode == "87" && !person.jumping) || (e.keyCode == "38" && !person.jumping)) {
+    } else if ((e.keyCode == "87" && !person.jumping) || (e.keyCode == "38" && !person.jumping) || (e.keyCode == "32")) {
         jump(time);
         person.jumping = true;
     }
