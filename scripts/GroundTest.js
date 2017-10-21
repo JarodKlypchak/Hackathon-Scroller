@@ -30,12 +30,55 @@ function game(arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
     for (let i = 0; i < arrayMonsters.length; i++) {
         arrayMonsters[i].update(arrayHoles, arrayPlatforms, arrayMonsters, canvas);
     }
+<<<<<<< HEAD
     person.handleJump(arrayPlatforms);
 
 
     person.moveX(moveDistance);
 
     setUpCanvas(arrayMonsters, canvas, arrayHoles, arrayPlatforms);
+=======
+
+        let changed = false;
+        for (let i = 0; i < arrayPlatforms.length; i++) {
+            if (person.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && person.x + 32 >= arrayPlatforms[i].x && person.y < arrayPlatforms[i].y) {
+                h = arrayPlatforms[i].y - charWidth;
+                changed = true;
+            }
+        }
+        if (jumping) {
+            for (let i = 0; i < arrayPlatforms.length; i++) {
+                if (person.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && person.x + 32 >= arrayPlatforms[i].x && person.y > arrayPlatforms[i].y) {
+                    if (person.belowObject(arrayPlatforms[i].y)) {
+                        time = jumpDuration;
+
+                    }
+                }
+            }
+            time += 5;
+            jump(time);
+
+            if (person.onObject(h)) {
+                time = 0;
+                jumping = false;
+                person.y = h;
+            }
+        }
+        if (!changed) {
+            h = baseHeight;
+        }
+
+        console.log(h);
+        //Handles Falling when not jumping
+        if (person.y < h && !jumping) {
+            jumping = true;
+            time = 150;
+        }
+
+        person.moveX(moveDistance);
+
+        setUpCanvas(arrayMonsters, canvas, arrayHoles, arrayPlatforms);
+>>>>>>> c356d1953fcae5ea7d3ea79282ec5806b80c7f0f
 }
 
 /*
@@ -91,6 +134,8 @@ function setupMonsters(arrayMonsters) {
     arrayMonsters.push(goomba);
     let goomba1 = new Monster(750, 375);
     arrayMonsters.push(goomba1);
+    let goomba2 = new Monster(50, 275);
+    arrayMonsters.push(goomba2);
 }
 
 

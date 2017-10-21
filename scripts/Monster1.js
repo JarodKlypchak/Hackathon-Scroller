@@ -43,7 +43,7 @@ class Monster {
          * checks platforms and sees if it's on it so it doesn't fall off
          */
         for (let i = 0; i < arrayPlatforms.length; i++) {
-            if (this.x <= (arrayPlatforms[i].getX() + arrayPlatforms[i].getWidth() + 10) && this.x >= (arrayPlatforms[i].getX() - 10)) {
+            if (this.x <= (arrayPlatforms[i].getX() + arrayPlatforms[i].getWidth()) && this.x >= (arrayPlatforms[i].getX())) {
                 this.changeX *= -1;
             }
         }
