@@ -17,8 +17,7 @@ function setUpCanvas() {
 }
 
 function test() {
-
+    canvas.clearRec
     person.moveX(5);
     person.display();
-    console.log("hi");
 }

@@ -7,6 +7,7 @@ class Person {
 
 
     moveX(distance) {
+
         this.x += distance;
     }
 
