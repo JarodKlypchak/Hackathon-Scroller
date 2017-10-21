@@ -24,6 +24,6 @@ class Person {
     remove(canvas) {
         var ctx = c.getContext("2d");
         ctx.fillStyle = "lightgray";
-        ctx.fillRect(this.x - 10, this.y - 10, this.x + 10, this.y + 10);
+        ctx.fillRect(0, 0, 1000, 500);
     }
 }

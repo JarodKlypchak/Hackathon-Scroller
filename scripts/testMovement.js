@@ -20,7 +20,7 @@ function setUpCanvas() {
 
 function test() {
     person.remove();
-    person.moveX(5);
+    person.moveX(1);
 
     person.display();
 }
