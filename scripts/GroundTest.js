@@ -41,7 +41,7 @@ function game(arrayMonsters, canvas, arrayHoles, arrayPlatforms, score) {
     showLives(person.lives, canvas, score);
     for (let i = 0; i < arrayMonsters.length; i++) {
         killed = arrayMonsters[i].stomped(person);
-        if (killed){
+        if (killed) {
             delete arrayMonsters[i];
             arrayMonsters.splice(i, 1);
             score++;
@@ -117,12 +117,22 @@ function setupMonsters(arrayMonsters) {
 /*
  * shows lives to user
  */
-function showLives(lives, canvas, score){
+
+
+
+function showLives(lives, canvas, score) {
     var context = canvas.getContext("2d");
     context.font = "25px serif";
     context.fillStyle = "black";
     context.fillText("Lives: " + lives, canvas.width - 100, 21);
+<<<<<<< HEAD
     context.fillText("Score: " + score, 0, 21);
+=======
+    if (score != 0)
+        context.fillText("Score: " + score, 0, 21);
+    else
+        context.fillText("Score: 0", 0, 21);
+>>>>>>> ab11c11d5a3b2c86c3a448bb26098476242201fa
 }
 
 
@@ -141,20 +151,20 @@ function jump(time) {
  * detect user input
  */
 document.body.onkeydown = function(e) {
-    if (e.keyCode == "68"||e.keyCode == "39") {
+    if (e.keyCode == "68" || e.keyCode == "39") {
         person.movingRight = true;
-    } else if (e.keyCode == "65"||e.keyCode == "37") {
+    } else if (e.keyCode == "65" || e.keyCode == "37") {
         person.movingLeft = true;
-    } else if ((e.keyCode == "87" && !person.jumping)||(e.keyCode == "38" && !person.jumping)) {
+    } else if ((e.keyCode == "87" && !person.jumping) || (e.keyCode == "38" && !person.jumping)) {
         jump(time);
         person.jumping = true;
     }
 }
 
 document.body.onkeyup = function(e) {
-    if (e.keyCode == "68"||e.keyCode == "39") {
+    if (e.keyCode == "68" || e.keyCode == "39") {
         person.movingRight = false;
-    } else if (e.keyCode == "65"||e.keyCode == "37") {
+    } else if (e.keyCode == "65" || e.keyCode == "37") {
         person.movingLeft = false;
     }
 }
