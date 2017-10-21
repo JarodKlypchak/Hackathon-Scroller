@@ -4,7 +4,7 @@ class Monster{
         this.y = y;
     }
 
-    display(){
+    display(canvas){
         let monster = c.getContext("2d");
         const monsterColor = "blue";
         monster.fillStyle = monsterColor;
@@ -12,6 +12,6 @@ class Monster{
     }
 
     update(){
-        this.x += -5;
+        this.x -= 10;
     }
 }
