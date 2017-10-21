@@ -21,7 +21,7 @@ class Person {
     display(canvas) {
         let ctx = canvas.getContext("2d");
         ctx.fillStyle = "#FF0000";
-        ctx.fillRect(this.x, this.y, 64, 64);
+        ctx.fillRect(this.x, this.y, charWidth, charWidth);
     }
 
     remove(canvas) {
@@ -30,9 +30,9 @@ class Person {
         ctx.fillRect(0, 0, 1000, 500);
     }
 
-    onGround() {
+    onObject(height) {
         let result = false;
-        if (this.y == baseHeight) {
+        if (this.y == height) {
             result = true;
         }
         return result;

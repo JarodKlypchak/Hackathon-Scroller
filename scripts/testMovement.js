@@ -1,9 +1,10 @@
 let canvas = document.getElementById("c");
-
+let charWidth = 32;
 let movingLeft = false;
 let movingRight = false;
-let baseHeight = 336;
+let baseHeight = 400 - charWidth;
 let person = new Person(0, baseHeight);
+let platform = new Platform(300, 200, 100);
 main();
 let time = 0;
 
@@ -23,37 +24,47 @@ function setUpCanvas() {
     let ctx = canvas.getContext("2d");
     ctx.fillStyle = "blue";
     ctx.fillRect(0, 400, 1000, 100);
+
 }
+
 let jumping = false;
+let h = baseHeight;
 
 function test() {
 
     if (jumping) {
         time += 5;
         jump(time);
-        if (!person.onGround) {
+        if (person.x <= platform.x + platform.width && person.x + 32 >= platform.x && person.y < platform.y) {
+            h = platform.y;
+        } else {
+            h = baseHeight;
+        }
+        if (person.onObject(h)) {
             time = 0;
             jumping = false;
         }
 
     }
+
     if (movingLeft) {
-        person.moveX(-10);
+        person.moveX(-5);
     }
     if (movingRight) {
-        person.moveX(10);
+        person.moveX(5);
     }
     setUpCanvas();
+    platform.display();
     person.display(canvas);
 }
 
 function jump(time) {
-    if (time <= 100) {
+    if (time <= 150) {
         person.moveY(-10);
     } else {
-        if (person.y < baseHeight) {
-            person.moveY(10);
-        }
+
+        person.moveY(10);
+
     }
 }
 
