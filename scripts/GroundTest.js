@@ -80,6 +80,8 @@ function setupGround(canvas, arrayHoles, arrayPlatforms) {
     arrayPlatforms.push(platform1);
     let platform2 = new Platform(400, 300, 100);
     arrayPlatforms.push(platform2);
+    let wall = new Platform(600, 400, 20, -50);
+    arrayPlatforms.push(wall);
 }
 
 /*
