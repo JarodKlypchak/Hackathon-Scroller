@@ -1,21 +1,22 @@
-function Person(xPos, yPos) {
+class Person {
+
+    constructor(xPos, yPos) {
+        this.x = xPos;
+        this.y = yPos;
+    }
 
 
-    this.x = xPos;
-    this.y = yPos;
-
-
-    function moveX(distance) {
+    moveX(distance) {
         this.x += distance;
     }
 
-    function moveY(distance) {
+    moveY(distance) {
         this.y += distance;
     }
 
-    function display(canvas) {
+    display(canvas) {
         var ctx = c.getContext("2d");
         ctx.fillStyle = "#FF0000";
-        ctx.fillRect(this.x - 8, this.x + 8, this.y - 8, this.y + 8);
+        ctx.fillRect(this.x - 8, this.y - 8, this.x + 8, this.y + 8);
     }
 }
