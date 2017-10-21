@@ -117,6 +117,7 @@ class Person {
 
     shouldDie() {
         if (this.x < 0 || this.y > 500) {
+            this.jumping = false;
             this.dies();
             return true;
         }
@@ -124,8 +125,6 @@ class Person {
 
     }
     dies() {
-        alert(this.lives);
         this.lives--;
-
     }
 }

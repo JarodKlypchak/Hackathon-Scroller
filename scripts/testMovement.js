@@ -1,7 +1,7 @@
 let canvas = document.getElementById("c");
 let charWidth = 32;
 let baseHeight = 400 - charWidth;
-let person = new Person(0, baseHeight);
+let person = new Person(0, baseHeight, lives);
 main();
 
 let moveDistance = 5;
@@ -11,6 +11,8 @@ let jumpDuration = 100;
 let jumpDistance = 8;
 
 function main() {
+    alert(this.person)
+    jumpDistance = 8;
     setUpCanvas();
 
 

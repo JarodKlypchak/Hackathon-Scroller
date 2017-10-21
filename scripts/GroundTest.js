@@ -12,7 +12,11 @@ let jumpDistance = 8;
 main(person.lives);
 
 function main(lives) {
+
     if (lives > 0) {
+        person = new Person(5, baseHeight, person.lives);
+        console.log(lives);
+        console.log(person);
         let canvas = document.getElementById("c");
         let arrayMonsters = [];
         let arrayHoles = [];
@@ -44,7 +48,7 @@ function game(arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
     }
     if (person.shouldDie()) {
         clearInterval(reset);
-        person = new Person(5, baseHeight, person.lives);
+
         main(person.lives);
     }
 }
