@@ -4,9 +4,14 @@ let movingLeft = false;
 let movingRight = false;
 let baseHeight = 400 - charWidth;
 let person = new Person(0, baseHeight);
-let platform = new Platform(300, 200, 100);
+let platform = new Platform(300, 300, 100);
 main();
+
+let moveDistance = 5;
+
 let time = 0;
+let jumpDuration = 100;
+let jumpDistance = 8;
 
 function main() {
     setUpCanvas();
@@ -24,6 +29,8 @@ function setUpCanvas() {
     let ctx = canvas.getContext("2d");
     ctx.fillStyle = "blue";
     ctx.fillRect(0, 400, 1000, 100);
+    platform.display();
+    person.display(canvas);
 
 }
 
@@ -32,15 +39,14 @@ let h = baseHeight;
 
 function test() {
     if (person.x <= platform.x + platform.width && person.x + 32 >= platform.x && person.y < platform.y) {
-        h = platform.y - 32;
+        h = platform.y - charWidth;
     } else {
         h = baseHeight;
     }
     if (jumping) {
         if (person.x <= platform.x + platform.width && person.x + 32 >= platform.x && person.y > platform.y) {
             if (person.belowObject(platform.y)) {
-
-                time = 150;
+                time = jumpDuration;
             }
         }
         time += 5;
@@ -49,32 +55,38 @@ function test() {
         if (person.onObject(h)) {
             time = 0;
             jumping = false;
+            person.y = h;
         }
 
     }
 
+    //Handles Falling when not jumping
     if (person.y < h && !jumping) {
         jumping = true;
         time = 150;
     }
+    //Moves Left 5 pixels
     if (movingLeft) {
-        person.moveX(-5);
+        person.moveX(-moveDistance);
     }
+
+    //Moves Right 5 pixels
     if (movingRight) {
-        person.moveX(5);
+        person.moveX(moveDistance);
     }
+
+    //Handles Display
     setUpCanvas();
-    platform.display();
-    person.display(canvas);
+
 }
 
 function jump(time) {
 
-    if (time <= 150) {
-        person.moveY(-10);
+    if (time <= jumpDuration) {
+        person.moveY(-jumpDistance);
     } else {
 
-        person.moveY(10);
+        person.moveY(jumpDistance);
 
     }
 }

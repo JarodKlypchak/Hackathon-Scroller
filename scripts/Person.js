@@ -32,7 +32,7 @@ class Person {
 
     onObject(height) {
         let result = false;
-        if (this.y == height) {
+        if (this.y < height + 5 && this.y > height - 5) {
             result = true;
         }
         return result;
