@@ -36,20 +36,27 @@ function test() {
     } else {
         h = baseHeight;
     }
-
     if (jumping) {
+        if (person.x <= platform.x + platform.width && person.x + 32 >= platform.x && person.y > platform.y) {
+            if (person.belowObject(platform.y)) {
 
+                time = 150;
+            }
+        }
         time += 5;
         jump(time);
 
         if (person.onObject(h)) {
-            alert("hi");
             time = 0;
             jumping = false;
         }
 
     }
 
+    if (person.y < h && !jumping) {
+        jumping = true;
+        time = 150;
+    }
     if (movingLeft) {
         person.moveX(-5);
     }
@@ -63,11 +70,11 @@ function test() {
 
 function jump(time) {
 
-    if (time <= 1200) {
-        person.moveY(-1);
+    if (time <= 150) {
+        person.moveY(-10);
     } else {
 
-        person.moveY(1);
+        person.moveY(10);
 
     }
 }
