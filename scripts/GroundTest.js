@@ -44,8 +44,8 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, ) {
     person.moveX(moveDistance, arrayPlatforms);
 
     for (let i = 0; i < arrayCoins.length; i++) {
-        killed = arrayCoins[i].coinCollected(person);
-        if (killed) {
+        let collected = arrayCoins[i].coinCollected(person);
+        if (collected) {
             delete arrayCoins[i];
             arrayCoins.splice(i, 1);
             score += 50;
@@ -54,7 +54,7 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, ) {
     setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
     displayStats(person.lives, canvas);
     for (let i = 0; i < arrayMonsters.length; i++) {
-        killed = arrayMonsters[i].stomped(person);
+        let killed = arrayMonsters[i].stomped(person);
         if (killed) {
             delete arrayMonsters[i];
             arrayMonsters.splice(i, 1);
