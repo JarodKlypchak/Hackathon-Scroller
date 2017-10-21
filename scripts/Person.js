@@ -3,6 +3,8 @@ class Person {
     constructor(xPos, yPos) {
         this.x = xPos;
         this.y = yPos;
+        this.movingLeft = false;
+        this.movingRight = false;
     }
 
 
@@ -32,7 +34,7 @@ class Person {
 
     onObject(height) {
         let result = false;
-        if (this.y == height) {
+        if (this.y < height + 5 && this.y > height - 5) {
             result = true;
         }
         return result;
