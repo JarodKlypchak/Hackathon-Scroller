@@ -7,7 +7,7 @@ let person = new Person(0, baseHeight);
 const moveDistance = 5;
 
 let time = 0;
-const jumpDuration = 100;
+const jumpDuration = 75;
 const jumpDistance = 8;
 main();
 
@@ -26,7 +26,7 @@ function main() {
  * game function loop that is called in main displays monster and calls everything else
  */
 function game(arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
-    for(let i = 0; i < arrayMonsters.length; i++){
+    for (let i = 0; i < arrayMonsters.length; i++) {
         arrayMonsters[i].update(arrayHoles, arrayPlatforms, canvas);
     }
     let changed = false;
@@ -47,18 +47,18 @@ function game(arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
         }
         time += 5;
         jump(time);
-        if (!changed) {
-            h = baseHeight;
-        }
+
         if (person.onObject(h)) {
             time = 0;
             jumping = false;
             person.y = h;
         }
     }
+    if (!changed) {
+        h = baseHeight;
+    }
 
-
-
+    console.log(h);
     //Handles Falling when not jumping
     if (person.y < h && !jumping) {
         jumping = true;
@@ -85,7 +85,7 @@ function setUpCanvas(arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
     canvas.style.backgroundColor = "lightgray";
     canvas.style.border = "1px solid black";
     displayGround(canvas, arrayHoles, arrayPlatforms);
-    for(let i = 0; i < arrayMonsters.length; i++){
+    for (let i = 0; i < arrayMonsters.length; i++) {
         arrayMonsters[i].display();
     }
     person.display(canvas);
@@ -124,7 +124,7 @@ function displayGround(canvas, arrayHoles, arrayPlatforms) {
 /*
  * creates monster and appends them to array
  */
-function setupMonsters(arrayMonsters){
+function setupMonsters(arrayMonsters) {
     let goomba = new Monster(800, 375);
     arrayMonsters.push(goomba);
 }
@@ -149,7 +149,7 @@ document.body.onkeydown = function(e) {
         person.movingRight = true;
     } else if (e.keyCode == "37") {
         person.movingLeft = true;
-    } else if (e.keyCode == "32") {
+    } else if (e.keyCode == "32" && !jumping) {
         jump(time);
         jumping = true;
     }
