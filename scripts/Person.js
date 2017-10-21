@@ -18,7 +18,6 @@ class Person {
         let ctx = canvas.getContext("2d");
         ctx.fillStyle = "#FF0000";
         ctx.fillRect(this.x, this.y, 64, 64);
-        console.log(this.x);
     }
 
     remove(canvas) {
