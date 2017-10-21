@@ -170,7 +170,7 @@ document.body.onkeydown = function(e) {
         person.movingRight = true;
     } else if (e.keyCode == "65" || e.keyCode == "37") {
         person.movingLeft = true;
-    } else if ((e.keyCode == "87" && !person.jumping) || (e.keyCode == "38" && !person.jumping) || (e.keyCode == "32")) {
+    } else if ((e.keyCode == "87" && !person.jumping) || (e.keyCode == "38" && !person.jumping) || (e.keyCode == "32" && !person.jumping)) {
         jump(time);
         person.jumping = true;
     }
