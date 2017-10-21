@@ -15,17 +15,4 @@ class Ground{
         sediment.fillStyle = sedimentColor;
         sediment.fillRect(0, canvas.height-40, canvas.width, 45);
     }
-
-    hole(canvas, x, width){
-        let hole = c.getContext("2d");
-        hole.fillStyle = "lightgray";
-        hole.fillRect(x, canvas.height-100, width, 100);
-    }
-
-    platform(x, y, width){
-        let platform = c.getContext("2d");
-        const platformColor = "#edcc10";
-        platform.fillStyle = platformColor;
-        platform.fillRect(x, y, width, 10);
-    }
 }

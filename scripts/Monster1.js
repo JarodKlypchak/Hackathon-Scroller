@@ -13,7 +13,7 @@ class Monster{
         monster.fillRect(this.x, this.y, 25, 25);
     }
 
-    update(arrayHoles, canvas){
+    update(arrayHoles, arrayPlatforms, canvas){
         this.x -= this.changeX;
         for(let i = 0; i < arrayHoles.length; i++){
             if(this.x <= (arrayHoles[i].getX() + arrayHoles[i].getWidth() + 10) && this.x >= (arrayHoles[i].getX() - 10)){
