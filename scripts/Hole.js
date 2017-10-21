@@ -10,4 +10,12 @@
         hole.fillStyle = "lightgray";
         hole.fillRect(this.x, this.canvas.height-100, this.width, 100);
     }
+
+    getX(){
+        return this.x;
+    }
+
+    getWidth(){
+        return this.width;
+    }
 }
