@@ -4,12 +4,12 @@ main();
 
 function main() {
     setUpCanvas();
-<<<<<<< HEAD
+    //<<<<<<< HEAD
     var person = Person(50, 50);
     person.display();
     let ground = Ground(50);
     ground.display();
-=======
+    //=======
 
 
     var temp = setInterval(test, 10);

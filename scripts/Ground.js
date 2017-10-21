@@ -1,4 +1,4 @@
-function Ground{
+class Ground(){
     constructor(y){
         this.y = 50;
     }
