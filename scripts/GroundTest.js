@@ -27,7 +27,7 @@ function main() {
  */
 function game(arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
     for(let i = 0; i < arrayMonsters.length; i++){
-        arrayMonsters[i].update(arrayHoles, arrayPlatforms, canvas);
+        arrayMonsters[i].update(arrayHoles, arrayPlatforms, arrayMonsters, canvas);
     }
     let changed = false;
     for (let i = 0; i < arrayPlatforms.length; i++) {
@@ -127,6 +127,8 @@ function displayGround(canvas, arrayHoles, arrayPlatforms) {
 function setupMonsters(arrayMonsters){
     let goomba = new Monster(800, 375);
     arrayMonsters.push(goomba);
+    let goomba1 = new Monster(750, 375);
+    arrayMonsters.push(goomba1);
 }
 
 

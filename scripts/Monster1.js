@@ -28,7 +28,7 @@ class Monster{
     /*
      * update funtion for monster calls arrayHoles, arrayPlatforms, and canvas
      */
-    update(arrayHoles, arrayPlatforms, canvas){
+    update(arrayHoles, arrayPlatforms, arrayMonsters, canvas){
         this.x -= this.changeX;
         /*
          * checks holes and sees if it's on it so it doesn't fall off
