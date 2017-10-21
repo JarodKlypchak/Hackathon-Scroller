@@ -17,9 +17,9 @@ class Coin {
      */
     display() {
         let coin = c.getContext("2d");
-        let coinColor = "yellow";
-        coin.fillStyle = coinColor;
-        coin.fillRect(this.x, this.y, 20, 20);
+        var img=document.createElement("IMG");
+        img.src="images/coin.jpg";
+        coin.drawImage(img,this.x, this.y, 20, 20);
     }
 
     /*
