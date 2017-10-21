@@ -38,7 +38,7 @@ function game(arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
     person.handleGaps(arrayHoles, arrayPlatforms);
     person.moveX(moveDistance, arrayPlatforms);
     setUpCanvas(arrayMonsters, canvas, arrayHoles, arrayPlatforms);
-    showLives(person.lives, canvas);
+    displayStats(person.lives, canvas);
     for (let i = 0; i < arrayMonsters.length; i++) {
         killed = arrayMonsters[i].stomped(person);
         if (killed) {
@@ -117,7 +117,7 @@ function setupMonsters(arrayMonsters) {
 /*
  * shows lives to user
  */
-function showLives(lives, canvas) {
+function displayStats(lives, canvas) {
     var context = canvas.getContext("2d");
     context.font = "25px serif";
     context.fillStyle = "black";
