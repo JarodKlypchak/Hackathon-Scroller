@@ -90,4 +90,14 @@ class Person {
             time = 150;
         }
     }
+    handleGaps(arrayHoles) {
+        for (let i = 0; i < arrayHoles.length; i++) {
+            if (this.x <= arrayHoles[i].x + arrayHoles[i].width && this.x + 32 >= arrayHoles[i].x && this.y < baseHeight) {
+                this.jumping = true;
+                time = jumpDuration;
+                jump(time);
+                console.log("hi");
+            }
+        }
+    }
 }

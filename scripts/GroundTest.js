@@ -31,6 +31,11 @@ function game(arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
         arrayMonsters[i].update(arrayHoles, arrayPlatforms, arrayMonsters, canvas);
     }
     person.handleJump(arrayPlatforms);
+<<<<<<< HEAD
+=======
+
+    person.handleGaps(arrayHoles);
+>>>>>>> c7322502df166a16cbe578d3c265dddfaf2c5c90
     person.moveX(moveDistance);
     setUpCanvas(arrayMonsters, canvas, arrayHoles, arrayPlatforms);
     for(let i = 0; i < arrayMonsters.length; i++){
