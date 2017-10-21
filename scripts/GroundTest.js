@@ -66,15 +66,9 @@ function game(arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
             jumping = true;
             time = 150;
         }
-        //Moves Left 5 pixels
-        if (person.movingLeft) {
-            person.moveX(-moveDistance);
-        }
 
-        //Moves Right 5 pixels
-        if (person.movingRight) {
-            person.moveX(moveDistance);
-        }
+        person.moveX(moveDistance);
+
         setUpCanvas(arrayMonsters, canvas, arrayHoles, arrayPlatforms);
     }
 }

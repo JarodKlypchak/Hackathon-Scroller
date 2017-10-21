@@ -10,7 +10,12 @@ class Person {
 
 
     moveX(distance) {
-        this.x += distance;
+        if (this.movingLeft) {
+            this.x += (-distance);
+        }
+        if (this.movingRight) {
+            this.x += (distance);
+        }
     }
 
     moveY(distance) {
