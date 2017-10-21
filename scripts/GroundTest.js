@@ -42,7 +42,7 @@ function game(arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
     showLives(person.lives, canvas);
     for (let i = 0; i < arrayMonsters.length; i++) {
         killed = arrayMonsters[i].stomped(person);
-        if (killed){
+        if (killed) {
             delete arrayMonsters[i];
             arrayMonsters.splice(i, 1);
         }
@@ -117,7 +117,7 @@ function setupMonsters(arrayMonsters) {
 /*
  * shows lives to user
  */
-function showLives(lives, canvas){
+function showLives(lives, canvas) {
     var context = canvas.getContext("2d");
     context.font = "25px serif";
     context.fillStyle = "black";
