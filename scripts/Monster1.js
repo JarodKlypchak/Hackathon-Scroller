@@ -52,9 +52,11 @@ class Monster {
         }
     }
 
+    /*
+     * if person stomps monster return true
+     */
     stomped(person){
         if(person.x >= this.x - 25 && person.x <= this.x + 25 && person.y + 32 >= this.y && person.y <= this.y - 25){
-            console.log("hi");
             return true;
         }
     }
