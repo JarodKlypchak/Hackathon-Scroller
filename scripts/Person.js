@@ -3,6 +3,8 @@ class Person {
     constructor(xPos, yPos) {
         this.x = xPos;
         this.y = yPos;
+        this.movingLeft = false;
+        this.movingRight = false;
     }
 
 
