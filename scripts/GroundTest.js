@@ -140,20 +140,20 @@ function jump(time) {
  * detect user input
  */
 document.body.onkeydown = function(e) {
-    if (e.keyCode == "39") {
+    if (e.keyCode == "68") {
         person.movingRight = true;
-    } else if (e.keyCode == "37") {
+    } else if (e.keyCode == "65") {
         person.movingLeft = true;
-    } else if (e.keyCode == "32" && !person.jumping) {
+    } else if (e.keyCode == "87" && !person.jumping) {
         jump(time);
         person.jumping = true;
     }
 }
 
 document.body.onkeyup = function(e) {
-    if (e.keyCode == "39") {
+    if (e.keyCode == "68") {
         person.movingRight = false;
-    } else if (e.keyCode == "37") {
+    } else if (e.keyCode == "65") {
         person.movingLeft = false;
     }
 }
