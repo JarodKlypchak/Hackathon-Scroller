@@ -1,12 +1,12 @@
 class Platform{
-    constructor(x, y, width, height){
+    /*
+     * constructor
+     */
+    constructor(x, y, width, height = 0){
         this.x = x;
         this.y = y;
         this.width = width;
-        if(height === undefined)
-            this.height = 0;
-        else
-            this.height = height;
+        this.height = height;
     }
 
     /*
@@ -18,7 +18,7 @@ class Platform{
             this.platformColor = "#edcc10";
             platform.fillStyle = this.platformColor;
             platform.fillRect(this.x, this.y, this.width, 10);
-        } else{
+        }else{
             let platform = c.getContext("2d");
             this.platformColor = "#edcc10";
             platform.fillStyle = this.platformColor;
