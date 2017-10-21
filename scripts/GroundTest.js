@@ -18,30 +18,19 @@ function main() {
     let arrayPlatforms = [];
     setupMonsters(arrayMonsters)
     setupGround(canvas, arrayHoles, arrayPlatforms);
-<<<<<<< HEAD
     setUpCanvas(arrayMonsters, canvas, arrayHoles, arrayPlatforms);
     setInterval(game, 50, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
-=======
-    setUpCanvas(goomba, canvas, arrayHoles, arrayPlatforms);
-    setInterval(game, 100, goomba, canvas, arrayHoles, arrayPlatforms);
->>>>>>> f5a798d6fa3eff736a5ad2d14f35819dc3c3e008
 }
 
 /*
  * game function loop that is called in main displays monster and calls everything else
  */
-<<<<<<< HEAD
-function game(arrayMonsters, canvas, arrayHoles, arrayPlatforms){
+function game(arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
     for(let i = 0; i < arrayMonsters.length; i++){
         arrayMonsters[i].update(arrayHoles, arrayPlatforms, canvas);
     }
-    for(let i = 0; i < arrayPlatforms.length; i++){
-=======
-function game(goomba, canvas, arrayHoles, arrayPlatforms) {
-    goomba.update(arrayHoles, arrayPlatforms, canvas);
     let changed = false;
     for (let i = 0; i < arrayPlatforms.length; i++) {
->>>>>>> f5a798d6fa3eff736a5ad2d14f35819dc3c3e008
         if (person.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && person.x + 32 >= arrayPlatforms[i].x && person.y < arrayPlatforms[i].y) {
             h = arrayPlatforms[i].y - charWidth;
             changed = true;
@@ -96,13 +85,9 @@ function setUpCanvas(arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
     canvas.style.backgroundColor = "lightgray";
     canvas.style.border = "1px solid black";
     displayGround(canvas, arrayHoles, arrayPlatforms);
-<<<<<<< HEAD
     for(let i = 0; i < arrayMonsters.length; i++){
         arrayMonsters[i].display();
     }
-=======
-    goomba.display();
->>>>>>> f5a798d6fa3eff736a5ad2d14f35819dc3c3e008
     person.display(canvas);
 }
 
