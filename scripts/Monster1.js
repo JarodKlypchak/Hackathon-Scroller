@@ -11,12 +11,7 @@ class Monster{
         monster.fillRect(this.x, this.y, 25, 25);
     }
 
-    update(){
+    update(arrayHoles){
         this.x -= 15;
-    }
-
-    falling(){
-        
-    
     }
 }

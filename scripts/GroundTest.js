@@ -3,16 +3,17 @@ main();
 function main(){
     let canvas = document.getElementById("c");
     setUpCanvas(canvas);
-    setupGround(canvas);
-    let goomba = new Monster(800, 375);
-    setInterval(game, 1000, goomba, canvas);
+    let arrayHoles = [];
+    setupGround(canvas, arrayHoles);
+    let goomba = new Monster(800, 375, arrayHoles);
+    setInterval(game, 1000, goomba, canvas, arrayHoles);
 }
 
-function game(goomba, canvas){
+function game(goomba, canvas, arrayHoles){
     goomba.update();
     setUpCanvas(canvas);
     goomba.display();
-    setupGround(canvas);
+    displayGround(canvas, arrayHoles);
 }
 
 function setUpCanvas(canvas) {
@@ -22,14 +23,21 @@ function setUpCanvas(canvas) {
     canvas.style.border = "1px solid black";
 }
 
-function setupGround(canvas){
+function setupGround(canvas, arrayHoles){
+    let hole = new Hole(canvas, 50, 50);
+    arrayHoles.push(hole);
+    let hole2 = new Hole(canvas, 200, 50);
+    arrayHoles.push(hole2);
+    let hole3 = new Hole(canvas, 350, 50);
+    arrayHoles.push(hole3);
+}
+
+function displayGround(canvas, arrayHoles){
     let ground = new Ground();
     ground.display(canvas);
-    let hole = new Hole(canvas, 50, 50);
-    hole.display();
-    let hole2 = new Hole(canvas, 200, 50);
-    hole2.display();
-    let hole3 = new Hole(canvas, 350, 50);
-    hole3.display();
+    for(let i = 0; i < arrayHoles.length; i++){
+        arrayHoles[i].display();
+    }
     let platform = new Platform(50, 300, 100);
+    platform.display();
 }
