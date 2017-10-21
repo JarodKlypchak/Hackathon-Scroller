@@ -117,16 +117,15 @@ function setupMonsters(arrayMonsters) {
 /*
  * shows lives to user
  */
-<<<<<<< HEAD
-function showLives(lives, canvas) {
-=======
-function showLives(lives, canvas, score){
->>>>>>> 0d04bc9da38f812da8300d32c4631513000a543e
+
+
+
+function showLives(lives, canvas, score) {
     var context = canvas.getContext("2d");
     context.font = "25px serif";
     context.fillStyle = "black";
     context.fillText("Lives: " + lives, canvas.width - 100, 21);
-    if(score != 0)
+    if (score != 0)
         context.fillText("Score: " + score, 0, 21);
     else
         context.fillText("Score: 0", 0, 21);
@@ -148,20 +147,20 @@ function jump(time) {
  * detect user input
  */
 document.body.onkeydown = function(e) {
-    if (e.keyCode == "68"||e.keyCode == "39") {
+    if (e.keyCode == "68" || e.keyCode == "39") {
         person.movingRight = true;
-    } else if (e.keyCode == "65"||e.keyCode == "37") {
+    } else if (e.keyCode == "65" || e.keyCode == "37") {
         person.movingLeft = true;
-    } else if ((e.keyCode == "87" && !person.jumping)||(e.keyCode == "38" && !person.jumping)) {
+    } else if ((e.keyCode == "87" && !person.jumping) || (e.keyCode == "38" && !person.jumping)) {
         jump(time);
         person.jumping = true;
     }
 }
 
 document.body.onkeyup = function(e) {
-    if (e.keyCode == "68"||e.keyCode == "39") {
+    if (e.keyCode == "68" || e.keyCode == "39") {
         person.movingRight = false;
-    } else if (e.keyCode == "65"||e.keyCode == "37") {
+    } else if (e.keyCode == "65" || e.keyCode == "37") {
         person.movingLeft = false;
     }
 }
