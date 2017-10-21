@@ -32,7 +32,7 @@ function game(arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
     }
     person.handleJump(arrayPlatforms);
 
-
+    person.handleGaps(arrayHoles);
     person.moveX(moveDistance);
 
     setUpCanvas(arrayMonsters, canvas, arrayHoles, arrayPlatforms);
