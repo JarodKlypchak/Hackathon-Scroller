@@ -54,4 +54,40 @@ class Person {
         }
         return result;
     }
+    handleJump(arrayPlatforms) {
+        let changed = false;
+        for (let i = 0; i < arrayPlatforms.length; i++) {
+            if (this.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && this.x + 32 >= arrayPlatforms[i].x && this.y < arrayPlatforms[i].y) {
+                h = arrayPlatforms[i].y - charWidth;
+                changed = true;
+            }
+        }
+        if (jumping) {
+            for (let i = 0; i < arrayPlatforms.length; i++) {
+                if (this.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && this.x + 32 >= arrayPlatforms[i].x && this.y > arrayPlatforms[i].y) {
+                    if (this.belowObject(arrayPlatforms[i].y)) {
+                        time = jumpDuration;
+
+                    }
+                }
+            }
+            time += 5;
+            jump(time);
+
+            if (this.onObject(h)) {
+                time = 0;
+                this.jumping = false;
+                this.y = h;
+            }
+        }
+        if (!changed) {
+            h = baseHeight;
+        }
+
+        //Handles Falling when not jumping
+        if (this.y < h && !this.jumping) {
+            this.jumping = true;
+            time = 150;
+        }
+    }
 }

@@ -29,49 +29,15 @@ function game(arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
 
     for (let i = 0; i < arrayMonsters.length; i++) {
         arrayMonsters[i].update(arrayHoles, arrayPlatforms, arrayMonsters, canvas);
-
-
-        let changed = false;
-        for (let i = 0; i < arrayPlatforms.length; i++) {
-            if (person.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && person.x + 32 >= arrayPlatforms[i].x && person.y < arrayPlatforms[i].y) {
-                h = arrayPlatforms[i].y - charWidth;
-                changed = true;
-            }
-        }
-        if (jumping) {
-            for (let i = 0; i < arrayPlatforms.length; i++) {
-                if (person.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && person.x + 32 >= arrayPlatforms[i].x && person.y > arrayPlatforms[i].y) {
-                    if (person.belowObject(arrayPlatforms[i].y)) {
-                        time = jumpDuration;
-
-                    }
-                }
-            }
-            time += 5;
-            jump(time);
-
-            if (person.onObject(h)) {
-                time = 0;
-                jumping = false;
-                person.y = h;
-            }
-        }
-        if (!changed) {
-            h = baseHeight;
-        }
-
-        console.log(h);
-        //Handles Falling when not jumping
-        if (person.y < h && !jumping) {
-            jumping = true;
-            time = 150;
-        }
-
-        person.moveX(moveDistance);
-
-        setUpCanvas(arrayMonsters, canvas, arrayHoles, arrayPlatforms);
     }
+    person.handleJump(arrayPlatforms);
+
+
+    person.moveX(moveDistance);
+
+    setUpCanvas(arrayMonsters, canvas, arrayHoles, arrayPlatforms);
 }
+
 /*
  * setup canvas
  */
@@ -147,9 +113,9 @@ document.body.onkeydown = function(e) {
         person.movingRight = true;
     } else if (e.keyCode == "37") {
         person.movingLeft = true;
-    } else if (e.keyCode == "32" && !jumping) {
+    } else if (e.keyCode == "32" && !person.jumping) {
         jump(time);
-        jumping = true;
+        person.jumping = true;
     }
 }
 
