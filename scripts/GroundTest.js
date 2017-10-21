@@ -11,46 +11,63 @@ const jumpDuration = 100;
 const jumpDistance = 8;
 main();
 
-function main(){
+function main() {
     let canvas = document.getElementById("c");
     let arrayMonsters = [];
     let arrayHoles = [];
     let arrayPlatforms = [];
     setupMonsters(arrayMonsters)
     setupGround(canvas, arrayHoles, arrayPlatforms);
+<<<<<<< HEAD
     setUpCanvas(arrayMonsters, canvas, arrayHoles, arrayPlatforms);
     setInterval(game, 50, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
+=======
+    setUpCanvas(goomba, canvas, arrayHoles, arrayPlatforms);
+    setInterval(game, 100, goomba, canvas, arrayHoles, arrayPlatforms);
+>>>>>>> f5a798d6fa3eff736a5ad2d14f35819dc3c3e008
 }
 
 /*
  * game function loop that is called in main displays monster and calls everything else
  */
+<<<<<<< HEAD
 function game(arrayMonsters, canvas, arrayHoles, arrayPlatforms){
     for(let i = 0; i < arrayMonsters.length; i++){
         arrayMonsters[i].update(arrayHoles, arrayPlatforms, canvas);
     }
     for(let i = 0; i < arrayPlatforms.length; i++){
+=======
+function game(goomba, canvas, arrayHoles, arrayPlatforms) {
+    goomba.update(arrayHoles, arrayPlatforms, canvas);
+    let changed = false;
+    for (let i = 0; i < arrayPlatforms.length; i++) {
+>>>>>>> f5a798d6fa3eff736a5ad2d14f35819dc3c3e008
         if (person.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && person.x + 32 >= arrayPlatforms[i].x && person.y < arrayPlatforms[i].y) {
             h = arrayPlatforms[i].y - charWidth;
-        } else {
-            h = baseHeight;
+            changed = true;
         }
-        if (jumping) {
+    }
+    if (jumping) {
+        for (let i = 0; i < arrayPlatforms.length; i++) {
             if (person.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && person.x + 32 >= arrayPlatforms[i].x && person.y > arrayPlatforms[i].y) {
                 if (person.belowObject(arrayPlatforms[i].y)) {
                     time = jumpDuration;
-                }
-        }
-            time += 5;
-            jump(time);
 
-            if (person.onObject(h)) {
-                time = 0;
-                jumping = false;
-                person.y = h;
+                }
             }
         }
+        time += 5;
+        jump(time);
+        if (!changed) {
+            h = baseHeight;
+        }
+        if (person.onObject(h)) {
+            time = 0;
+            jumping = false;
+            person.y = h;
+        }
     }
+
 
 
     //Handles Falling when not jumping
@@ -79,16 +96,20 @@ function setUpCanvas(arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
     canvas.style.backgroundColor = "lightgray";
     canvas.style.border = "1px solid black";
     displayGround(canvas, arrayHoles, arrayPlatforms);
+<<<<<<< HEAD
     for(let i = 0; i < arrayMonsters.length; i++){
         arrayMonsters[i].display();
     }
+=======
+    goomba.display();
+>>>>>>> f5a798d6fa3eff736a5ad2d14f35819dc3c3e008
     person.display(canvas);
 }
 
 /*
  * creates holes and platforms and pushes them to arrays
  */
-function setupGround(canvas, arrayHoles, arrayPlatforms){
+function setupGround(canvas, arrayHoles, arrayPlatforms) {
     let hole = new Hole(canvas, 50, 50);
     arrayHoles.push(hole);
     let hole2 = new Hole(canvas, 200, 50);
@@ -104,13 +125,13 @@ function setupGround(canvas, arrayHoles, arrayPlatforms){
 /*
  * displays ground, holes, platforms
  */
-function displayGround(canvas, arrayHoles, arrayPlatforms){
+function displayGround(canvas, arrayHoles, arrayPlatforms) {
     let ground = new Ground();
     ground.display(canvas);
-    for(let i = 0; i < arrayHoles.length; i++){
+    for (let i = 0; i < arrayHoles.length; i++) {
         arrayHoles[i].display();
     }
-    for(let i = 0; i < arrayPlatforms.length; i++){
+    for (let i = 0; i < arrayPlatforms.length; i++) {
         arrayPlatforms[i].display();
     }
 }
