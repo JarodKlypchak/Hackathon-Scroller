@@ -11,7 +11,7 @@ function main(){
 }
 
 function setUpCanvas(canvas) {
-    canvas.width = 500;
+    canvas.width = 900;
     canvas.height = 500;
     canvas.style.backgroundColor = "lightgray";
     canvas.style.border = "1px solid black";
