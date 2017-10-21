@@ -1,9 +1,9 @@
-class Ground(){
+class Ground{
     constructor(y){
-        this.y = 50;
+        this.y = y;
     }
 
-    function display(canvas){
+    display(canvas){
         let c = c.getContext("2d");
         c.fillStyle = "green";
         c.fillRect(0, 1000, 0, this.y);
