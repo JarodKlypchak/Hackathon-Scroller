@@ -1,10 +1,10 @@
 let canvas = document.getElementById("c");
-
+let person = new Person(50, 50);
 main();
 
 function main() {
     setUpCanvas();
-    var person = new Person(50, 50);
+
 
     var temp = setInterval(test, 10);
 }
@@ -17,6 +17,7 @@ function setUpCanvas() {
 }
 
 function test() {
+
     person.moveX(5);
     person.display();
     console.log("hi");
