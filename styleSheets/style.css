@@ -1,3 +1,110 @@
+body{
+    width: 100%;
+    height: 100%;
+    background-color: #171c23;
+    margin: 0px;
+    padding 0px;
+}
+
+.navbar{
+    height: 50px;
+    background-color: #EEEEEE;
+    width: 100%;
+    top: 0%;
+    position: fixed;
+    border-bottom: 2px solid #b5b5b5;
+}
+
+/*
+ * hamburger menu centered
+ */
+.hamburgermenu{
+    position: absolute;
+    right: 1%;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #EEEEEE;
+    width: 45px;
+    height: 45px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+/*
+ * hamburger menu rounded
+ */
+.hamburgermenu div{
+    position: relative;
+    left: 50%;
+    top: 15%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 4px;
+    background-color: black;
+    margin: 5px 0;
+    transition: 0.3s;
+    border-radius: 30px;
+}
+
+/*
+ * on hover change background color to light grey
+ */
+.hamburgermenu:hover{
+    background-color: #cecccc;
+}
+
+/*
+ * animated version of hamburger menu
+ */
+.animate .hamburgermenu{
+    position: absolute;
+    right: 1%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 45px;
+    height: 45px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+/*
+ * animated version on hover make background color red
+ */
+.animate .hamburgermenu:hover{
+    background-color: #B71C1C;
+}
+
+/*
+ * animation for hamburger menu rotates bar 1
+ */
+.animate .bar1{
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px) ;
+    transform: rotate(-45deg) translate(-9px, 6px) ;
+    left: 9px;
+    top: 5px;
+}
+
+/*
+ * animation for hamburger menu makes bar 2 invisible
+ */
+.animate .bar2{
+    opacity: 0;
+}
+
+/*
+ * animation for hamburger menu rotates bar 3
+ */
+.animate .bar3{
+    -webkit-transform: rotate(45deg) translate(-6px, -4px) ;
+    transform: rotate(45deg) translate(-6px, -4px) ;
+    left: 9px;
+    top: 5px;
+}
+
 .canvas {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
     text-align: center;
 }
