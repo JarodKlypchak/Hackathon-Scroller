@@ -266,6 +266,7 @@ body {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 /*
  * don't display canvas
@@ -302,6 +303,12 @@ body {
 }
 
 >>>>>>> parent of 3cf7a46... pushhh
+=======
+.canvas canvas{
+    display: none;
+}
+
+>>>>>>> parent of 3cf7a46... pushhh
 .canvas button{
   padding: 15px 25px;
   font-size: 24px;
@@ -319,6 +326,7 @@ body {
 >>>>>>> parent of 37aed50... FIxed button
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 /*
@@ -340,6 +348,12 @@ body {
     background-color: #D50000;
 }
 
+=======
+.canvas button:hover{
+    background-color: #D50000;
+}
+
+>>>>>>> parent of 3cf7a46... pushhh
 .canvas button:active{
     background-color: #D50000;
 >>>>>>> parent of 3cf7a46... pushhh

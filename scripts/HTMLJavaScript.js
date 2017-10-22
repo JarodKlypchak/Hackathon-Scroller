@@ -21,8 +21,11 @@ document.getElementById("play").addEventListener("click", function() {
     document.getElementById("play").style.display = "none";
     document.getElementById("movingToLevel").innerHTML = "";
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> parent of 3cf7a46... pushhh
     document.getElementById("pause").style.display = "block";
 >>>>>>> parent of 3cf7a46... pushhh
 });
