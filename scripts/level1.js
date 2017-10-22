@@ -28,10 +28,10 @@ function addHoles(level, canvas) {
 function addPlatforms(level, canvas) {
     level[1].push(new Platform(50, 300, 100));
     level[1].push(new Platform(200, 300, 100));
-    level[1].push( new Platform(400, 300, 100));
+    level[1].push(new Platform(400, 300, 100));
     level[1].push(new Platform(600, 400, 20, -50));
     level[1].push(new Platform(canvas.width + 200, 350, 200));
-    level[1].push(new Platform(canvas.width + 300, 350, 200));
+    level[1].push(new Platform(canvas.width + 500, 350, 200));
     level[1].push(new Platform(canvas.width + 425, 250, 50));
     level[1].push(new Platform(canvas.width + 425, 150, 50));
     level[1].push(new Platform(canvas.width + 425, 50, 50));
