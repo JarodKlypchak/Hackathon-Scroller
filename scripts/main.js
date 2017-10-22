@@ -15,12 +15,6 @@ function main(lives) {
 
     if (person.lives > 0) {
         let level;
-<<<<<<< HEAD
-=======
-        console.log(person.lives);
-        person = new Person(5, baseHeight, lives, person.score);
->>>>>>> parent of 3cf7a46... pushhh
-        console.log(person.lives);
         person = new Person(5, baseHeight, lives, person.score);
         jumpDistance = 8;
         person.jump(0.5);
