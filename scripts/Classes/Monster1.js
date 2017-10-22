@@ -21,7 +21,7 @@ class Monster {
     display() {
         let monster = c.getContext("2d");
         var img=document.createElement("IMG");
-        img.src="images/gumba.png";
+        img.src="images/Slime.png";
         monster.drawImage(img,this.x, this.y, 25, 25);
     }
 
