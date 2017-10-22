@@ -12,14 +12,13 @@ function animate() {
     else
         dropdown.style.top = "52px";
 }
-
+/*
 /*
  * event listener for play button
  */
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-/*document.getElementById("play").addEventListener("click", function() {
+
+/**document.getElementById("play").addEventListener("click", function() {
 =======
 document.getElementById("play").addEventListener("click", function() {
 >>>>>>> parent of ed55f38... god damn
@@ -33,3 +32,4 @@ document.getElementById("play").addEventListener("click", function() {
     document.getElementById("movingToLevel").innerHTML = "";
 
 });
+*/
