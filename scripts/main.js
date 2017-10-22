@@ -104,12 +104,16 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
         main(person.lives, person.score);
     }
 
-    /**
-     * Handles when user goes off the right of the screen
+    /*
+     * checks closest platform in proximinity to each monster
      */
     for(let i = 0; i < arrayMonsters.length; i++){
         arrayMonsters[i].closestPlatform(arrayPlatforms);
     }
+
+    /**
+     * Handles when user goes off the right of the screen
+     */
     if (person.x >= canvas.width) {
         person.x = 10;
         person.screen++;
