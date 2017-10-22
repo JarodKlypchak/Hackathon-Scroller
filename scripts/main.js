@@ -8,7 +8,7 @@ const moveDistance = 4;
 let levelNum = 1;
 let time = 0;
 const jumpDuration = 45;
-let jumpDistance = 10;
+let jumpDistance = 15;
 main(person.lives, person.score);
 
 
