@@ -1,7 +1,7 @@
 class Person {
 
     /**
-     * 
+     *
      * Constructor
      */
     constructor(xPos, yPos, lives, score) {
@@ -61,8 +61,11 @@ class Person {
      */
     display(canvas) {
         let ctx = canvas.getContext("2d");
-        ctx.fillStyle = "#FF0000";
-        ctx.fillRect(this.x, this.y, charWidth, charWidth);
+        let img = document.createElement("IMG");
+        img.src = "images/portalCube.png";
+        ctx.drawImage(img, this.x, this.y, charWidth, charWidth);
+        //ctx.fillStyle = "#FF0000";
+        //ctx.fillRect(this.x, this.y, charWidth, charWidth);
     }
 
     /**
