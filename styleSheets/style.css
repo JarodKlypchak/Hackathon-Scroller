@@ -112,6 +112,7 @@ body{
 }
 
 .dropdown{
+    text-align: center;
     position: fixed;
     width: 100%;
     top: -100%;
@@ -125,13 +126,31 @@ body{
     z-index: 1;
 }
 
-.dropdown img{
+.dropdown .GitHub img{
     top: 50%;
     transform: translateY(-50%);
     position: absolute;
     width: 50px;
     height: 50px;
     left: 20px;
+}
+
+.dropdown h1{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+
+}
+
+.dropdown .HackOhio img{
+    position: absolute;
+    left: 530px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 50px;
+    width: 100px;
 }
 
 /*
@@ -143,34 +162,4 @@ body{
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
-}
-
-.bottombar{
-    background-color: #EEEEEE;
-    bottom: 0%;
-    height: 50px;
-    width: 100%;
-    position: fixed;
-    z-index: 1;
-    border-bottom: 2px solid #b5b5b5;
-}
-
-.centerBottombar{
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    display: block;
-}
-
-.bottombar > .centerBottombar h1{
-    font-size: 20px;
-}
-
-.bottombar img{
-    position: absolute;
-    height: 40px;
-    width: 40px;
-    top: 50%;
-    left: 135px;
-    transform: translate(-100%, -50%);
 }
