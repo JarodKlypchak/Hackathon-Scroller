@@ -4,11 +4,11 @@ let h = baseHeight;
 let jumping = false;
 let score = 0;
 let person = new Person(5, baseHeight, 5, score);
-const moveDistance = 5;
+const moveDistance = 4;
 let levelNum = 1;
 let time = 0;
-const jumpDuration = 75;
-let jumpDistance = 8;
+const jumpDuration = 45;
+let jumpDistance = 10;
 main(person.lives, person.score);
 
 
@@ -17,7 +17,7 @@ function main(lives) {
     if (person.lives > 0) {
         let level;
         person = new Person(5, baseHeight, lives, person.score);
-        jumpDistance = 8;
+        jumpDistance = 5;
         person.jump(0.5);
         let canvas = document.getElementById("c");
         canvas.width = 900;
@@ -39,7 +39,7 @@ function main(lives) {
         }
 
         setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
-        reset = setInterval(game, 50, arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, levelNum);
+        reset = setInterval(game, 1, arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, levelNum);
     }
 }
 

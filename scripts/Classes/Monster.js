@@ -12,7 +12,7 @@ class Monster {
     constructor(x, y) {
         this.x = x;
         this.y = y;
-        this.changeX = 1.2;
+        this.changeX = .8;
     }
 
     /*

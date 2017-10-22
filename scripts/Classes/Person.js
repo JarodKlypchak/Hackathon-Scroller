@@ -128,7 +128,7 @@ class Person {
             /**
              * Calls Jump to move this.
              */
-            time += 5;
+            time += 2;
             this.jump(time);
 
             /**

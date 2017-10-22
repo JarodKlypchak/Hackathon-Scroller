@@ -165,7 +165,7 @@ body {
  */
 .dropdown .HackOhio img {
     position: absolute;
-    left: 530px;
+    left: 1000px;
     top: 50%;
     transform: translateY(-50%);
     height: 50px;
@@ -239,7 +239,6 @@ body {
     background-color: #C62828;
     border: none;
     border-radius: 15px;
-    box-shadow: 0 9px #999;
     position: relative;
     top: 80%;
     transform: translateY(-80%);
@@ -249,25 +248,6 @@ body {
    display: none;
 }
 
-.canvas button {
-    padding: 15px 25px;
-    font-size: 24px;
-    cursor: pointer;
-    text-decoration: none;
-    outline: none;
-    color: white;
-    background-color: #C62828;
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 9px #999;
-    position: relative;
-    top: 70%;
-    transform: translateY(-50%, -60%);
-}
-
-.canvas canvas {
-    display: none;
-}
 /*
  * Hover button chagnes color
  */
