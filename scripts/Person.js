@@ -30,6 +30,18 @@ class Person {
         }
     }
 
+
+    jump(time) {
+
+        if (time <= jumpDuration) {
+            person.moveY(-jumpDistance);
+        } else {
+
+            person.moveY(jumpDistance);
+
+        }
+    }
+
     display(canvas) {
         let ctx = canvas.getContext("2d");
         ctx.fillStyle = "#FF0000";
@@ -76,7 +88,7 @@ class Person {
                 }
             }
             time += 5;
-            jump(time);
+            this.jump(time);
 
             if (this.onObject(h)) {
                 time = 0;
@@ -100,7 +112,7 @@ class Person {
                 if (this.x >= arrayHoles[i].x && this.x + 32 <= arrayHoles[i].x + arrayHoles[i].width && this.y <= baseHeight) {
                     this.jumping = true;
                     time = 1000;
-                    jump(time);
+                    this.jump(time);
 
                 }
             }

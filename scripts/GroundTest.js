@@ -19,7 +19,7 @@ function main(lives) {
         person = new Person(5, baseHeight, person.lives, person.score);
 
         jumpDistance = 8;
-        jump(0.5);
+        person.jump(0.5);
         let canvas = document.getElementById("c");
         canvas.width = 900;
         if (levelNum == 1) {
@@ -68,11 +68,14 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, ) {
         }
     }
 
+    /*
+     *
+     */
     for (let i = 0; i < arrayMonsters.length; i++) {
         let killed = arrayMonsters[i].stomped(person);
         if (killed) {
             delete arrayMonsters[i];
-            jump(10);
+            person.jump(10);
             arrayMonsters.splice(i, 1);
             person.score += 100;
             if (person.score % 550 == 0) {
@@ -157,20 +160,8 @@ function displayStats(lives, canvas) {
     context.fillText("Score: " + person.score, 0, 21);
 }
 
-
-function jump(time) {
-
-    if (time <= jumpDuration) {
-        person.moveY(-jumpDistance);
-    } else {
-
-        person.moveY(jumpDistance);
-
-    }
-}
-
 /*
- * detect user input
+ * detect user input in the event of the spacebar, left arrow, and right arrow are pressed down.
  */
 document.body.onkeydown = function(e) {
     if (e.keyCode == "68" || e.keyCode == "39") {
@@ -178,11 +169,14 @@ document.body.onkeydown = function(e) {
     } else if (e.keyCode == "65" || e.keyCode == "37") {
         person.movingLeft = true;
     } else if ((e.keyCode == "87" && !person.jumping) || (e.keyCode == "38" && !person.jumping) || (e.keyCode == "32" && !person.jumping)) {
-        jump(time);
+        person.jump(time);
         person.jumping = true;
     }
 }
 
+/**
+ * Detects when keys for finishing moving left and right.
+ */
 document.body.onkeyup = function(e) {
     if (e.keyCode == "68" || e.keyCode == "39") {
         person.movingRight = false;
@@ -191,6 +185,10 @@ document.body.onkeyup = function(e) {
     }
 }
 
+/* 
+ * Updates array, in the event of moving off of a screen.
+ * Moves Each Element Backwards by distance. 
+ */
 function updateArray(array, distance) {
     for (let i = 0; i < array.length; i++) {
         array[i].x -= distance;
@@ -199,6 +197,9 @@ function updateArray(array, distance) {
 
 }
 
+/*
+ * Displays loading screen for 5 seconds.
+ */
 function displayLoadingScreen(canvas, level) {
     canvas.width = 900;
     canvas.height = 500;
