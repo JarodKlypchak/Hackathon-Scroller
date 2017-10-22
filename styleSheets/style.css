@@ -15,6 +15,15 @@ body{
     border-bottom: 2px solid #b5b5b5;
 }
 
+.navbar h1{
+    font-size: 20px;
+    position: absolute;
+    top: 26%;
+    left: 10px;
+    transform: translateY(-50%);
+
+}
+
 /*
  * hamburger menu centered
  */
