@@ -18,7 +18,7 @@ class Person {
     }
 
     /**
-     * 
+     *
      * Moves in the X direction for Distance, if there isn't a platform in the way
      */
     moveX(distance, platforms) {
@@ -43,7 +43,7 @@ class Person {
     }
 
     /**
-     * 
+     *
      * If time of jump is below the jump duration, moves up. otherwise down.
      */
     jump(time) {
@@ -58,7 +58,7 @@ class Person {
     }
 
     /**
-     * 
+     *
      * Displays this.
      */
     display(canvas) {
@@ -71,7 +71,7 @@ class Person {
     }
 
     /**
-     * 
+     *
      * Returns true if this is at the set height.
      */
     onObject(height) {
@@ -83,7 +83,7 @@ class Person {
     }
 
     /**
-     * 
+     *
      * Returns true if this is directly under the set height.
      */
     belowObject(height) {
@@ -96,7 +96,7 @@ class Person {
     }
 
     /**
-     * 
+     *
      * Jumps
      */
     handleJump(arrayPlatforms) {
@@ -149,7 +149,7 @@ class Person {
 
         /**
          * Handles Falling when not jumping
-         * 
+         *
          */
         if (this.y < h && !this.jumping) {
             this.jumping = true;
@@ -178,7 +178,7 @@ class Person {
     }
 
     /**
-     * 
+     *
      * Checks if a platform is under this
      */
     platformUnder(arrayPlatforms) {
@@ -190,8 +190,8 @@ class Person {
     }
 
     /**
-     * 
-     * Checks if this collided with monster, or fell through the bottom of the screen. 
+     *
+     * Checks if this collided with monster, or fell through the bottom of the screen.
      */
     shouldDie(arrayMonsters) {
         if (this.y > 500) {
@@ -209,7 +209,7 @@ class Person {
     }
 
     /**
-     * 
+     *
      * Checks this can move  to the right, without hitting a platform.
      */
     canMoveRight(platforms) {
