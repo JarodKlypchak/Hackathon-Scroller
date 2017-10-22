@@ -27,10 +27,13 @@ function addHoles(level, canvas) {
     level[0].push(hole2);
     let hole3 = new Hole(canvas, 400, 107);
     level[0].push(hole3);
+    let hole4 = new Hole(canvas, (canvas.width + 50), 107);
+    level[0].push(hole4);
 }
 function addPlatforms(level, canvas) {
     let platform = new Platform(50,300,100);
     level[1].push(platform);
+    
 
 }
 function addMonsters(level, canvas) {
