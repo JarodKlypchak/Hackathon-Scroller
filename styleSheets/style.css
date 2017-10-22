@@ -265,6 +265,7 @@ body {
     }
 }
 
+<<<<<<< HEAD
 .canvas canvas {
     display: none;
 }
@@ -290,6 +291,45 @@ body {
 }
 
 .canvas button:active {
+=======
+/*
+ * don't display canvas
+ */
+.canvas canvas{
+    display: none;
+}
+
+/*
+ * button "Play"
+ */
+.canvas button{
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-decoration: none;
+  outline: none;
+  color: white;
+  background-color: #C62828;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  position: relative;
+  top: 80%;
+  transform: translateY(-80%);
+}
+
+/*
+ * Hover button chagnes color
+ */
+.canvas button:hover{
+    background-color: #D50000;
+}
+
+/*
+ * clickable button
+ */
+.canvas button:active{
+>>>>>>> 3cf7a46b70937324d961a75efc1f5e8dbcba48a2
     background-color: #D50000;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
