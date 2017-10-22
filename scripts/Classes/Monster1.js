@@ -15,6 +15,17 @@ class Monster {
         this.changeX = 1.2;
     }
 
+    closestPlatform(arrayPlatforms){
+        if(this.y != 375){
+            this.closest = this.x - arrayPlatforms[0].x;
+            for(let i = 0; i < arrayPlatforms.length; i++){
+                if(Math.abs(this.x - arrayPlatforms[i].x) <= this.closest){
+                    this.closestPlat = arrayPlatforms[i];
+                    this.closest = this.x - this.closestPlat.x;
+                }
+            }
+        }
+    }
     /*
      * displays monster given canvas
      */
@@ -33,21 +44,21 @@ class Monster {
         /*
          * checks holes and sees if it's on it so it doesn't fall off
          */
-        for (let i = 0; i < arrayHoles.length; i++) {
-            if (this.x <= (arrayHoles[i].getX() + arrayHoles[i].getWidth() + 10) && this.x >= (arrayHoles[i].getX() - 10)) {
-                this.changeX *= -1;
+        if(this.y == 375){
+            for (let i = 0; i < arrayHoles.length; i++) {
+                if (this.x <= (arrayHoles[i].getX() + arrayHoles[i].getWidth()) && this.x >= (arrayHoles[i].getX() - 25)) {
+                    this.changeX *= -1;
+                }
             }
-        }
-
         /*
          * checks platforms and sees if it's on it so it doesn't fall off
          */
-        for (let i = 0; i < arrayPlatforms.length; i++) {
-            if (this.x <= (arrayPlatforms[i].getX() + arrayPlatforms[i].getWidth()) && this.x >= (arrayPlatforms[i].getX())) {
-                this.changeX *= -1;
+        }else{
+                if (this.x >= (this.closestPlat.getX() + this.closestPlat.getWidth() - 25) || this.x <= (this.closestPlat.getX())) {
+                    this.changeX *= -1;
+                }
             }
-        }
-        if (this.x >= canvas.width - 10 || this.x <= 10) {
+        if (this.x >= canvas.width - 25 || this.x <= 25) {
             this.changeX *= -1;
         }
     }

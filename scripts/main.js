@@ -16,7 +16,7 @@ function main(lives) {
 
     if (person.lives > 0) {
         let level;
-        person = new Person(5, baseHeight, person.lives, person.score);
+        person = new Person(895, baseHeight, person.lives, person.score);
 
         jumpDistance = 8;
         person.jump(0.5);
@@ -34,6 +34,9 @@ function main(lives) {
         let arrayMonsters = level[2];
         let arrayCoins = level[3];
 
+        for(let i = 0; i < arrayMonsters.length; i++){
+            arrayMonsters[i].closestPlatform(arrayPlatforms);
+        }
 
         setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
         reset = setInterval(game, 50, arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
@@ -44,7 +47,7 @@ function main(lives) {
  * game function loop that is called in main displays monster and calls everything else
  */
 
-function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, ) {
+function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
 
     /*
      *Updates Goombas
@@ -129,6 +132,9 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, ) {
         updateArray(arrayMonsters, -900);
         updateArray(arrayHoles, -900)
         updateArray(arrayPlatforms, -900);
+        for(let i = 0; i < arrayMonsters.length; i++){
+            arrayMonsters[i].closestPlatform(arrayPlatforms);
+        }
     }
 
     //Update Canvas
