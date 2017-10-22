@@ -193,10 +193,11 @@ body{
  */
 .canvas h1{
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 25;
+    font-size: 40px;
+    white-space: nowrap;
     color: white;
 }
 
@@ -222,4 +223,34 @@ body{
 @keyframes spin{
     0%{ transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+.canvas canvas{
+    display: none;
+}
+
+.canvas button{
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-decoration: none;
+  outline: none;
+  color: white;
+  background-color: #C62828;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  position: relative;
+  top: 70%;
+  transform: translateY(-50%, -60%);
+}
+
+.canvas button:hover{
+    background-color: #D50000;
+}
+
+.canvas button:active{
+    background-color: #D50000;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
 }
