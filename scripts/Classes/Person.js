@@ -10,9 +10,11 @@ class Person {
         this.movingLeft = false;
         this.movingRight = false;
         this.jumping = false;
+
         this.lives = lives;
         this.score = score;
         this.screen = 0;
+        this.calcScore = this.score % 500;
     }
 
     /**

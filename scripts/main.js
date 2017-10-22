@@ -5,7 +5,7 @@ let jumping = false;
 let score = 0;
 let person = new Person(5, baseHeight, 5, score);
 const moveDistance = 5;
-let levelNum = 1;
+let levelNum = 2;
 let time = 0;
 const jumpDuration = 75;
 let jumpDistance = 8;
@@ -15,8 +15,9 @@ function main(lives) {
 
     if (person.lives > 0) {
         let level;
-        person = new Person(5, baseHeight, person.lives, person.score);
-
+        console.log(person.lives);
+        person = new Person(5, baseHeight, lives, person.score);
+        console.log(person.lives);
         jumpDistance = 8;
         person.jump(0.5);
         let canvas = document.getElementById("c");
@@ -24,6 +25,7 @@ function main(lives) {
         if (levelNum == 1) {
             level = createLevel1(canvas);
         } else if (levelNum == 2) {
+            lives += 2;
             level = createLevel2(canvas);
         } else if (levelNum == 3) {
             level = createLevel3(canvas);
@@ -33,7 +35,7 @@ function main(lives) {
         let arrayMonsters = level[2];
         let arrayCoins = level[3];
 
-        for(let i = 0; i < arrayMonsters.length; i++){
+        for (let i = 0; i < arrayMonsters.length; i++) {
             arrayMonsters[i].closestPlatform(arrayPlatforms);
         }
 
@@ -68,14 +70,16 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
     for (let i = 0; i < arrayCoins.length; i++) {
         let collected = arrayCoins[i].coinCollected(person);
         if (collected) {
+
             delete arrayCoins[i];
             arrayCoins.splice(i, 1);
             person.score += 50;
-            if (person.score % 550 == 0) {
+            person.calcScore += 50;
+            if (person.calcScore >= 500) {
                 person.lives++;
-            } else if (person.score % 500 == 0) {
-                person.lives++;
+                person.calcScore -= 500;
             }
+            i--;
         }
     }
 
@@ -85,15 +89,17 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
     for (let i = 0; i < arrayMonsters.length; i++) {
         let killed = arrayMonsters[i].stomped(person);
         if (killed) {
+
             delete arrayMonsters[i];
             person.jump(10);
             arrayMonsters.splice(i, 1);
             person.score += 100;
-            if (person.score % 550 == 0) {
+            person.calcScore += 100;
+            if (person.calcScore >= 500) {
                 person.lives++;
-            } else if (person.score % 500 == 0) {
-                person.lives++;
+                person.calcScore -= 500;
             }
+            i--;
         }
     }
     /**
@@ -107,7 +113,7 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
     /*
      * checks closest platform in proximinity to each monster
      */
-    for(let i = 0; i < arrayMonsters.length; i++){
+    for (let i = 0; i < arrayMonsters.length; i++) {
         arrayMonsters[i].closestPlatform(arrayPlatforms);
     }
 
@@ -115,20 +121,21 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
      * Handles when user goes off the right of the screen
      */
     if (person.x >= canvas.width) {
-        person.x = 10;
+        person.x = 5;
         person.screen++;
         if (person.screen < 4) {
             updateArray(arrayCoins, 900);
             updateArray(arrayMonsters, 900);
             updateArray(arrayHoles, 900);
             updateArray(arrayPlatforms, 900);
-        } else if(person.screen == 4 && level == 3){
+        } else if (person.screen == 4 && level == 3) {
             youWin(canvas, person.score);
         } else {
             clearInterval(reset);
             levelNum++;
             displayLoadingScreen(canvas, levelNum);
             person.screen = 0;
+
             main(person.lives);
         }
         /**
@@ -243,7 +250,7 @@ function displayLoadingScreen(canvas, level) {
     }, 5000);
 }
 
-function youWin(canvas, score){
+function youWin(canvas, score) {
     canvas.style.display = "none";
     let displayScore = document.getElementById("movingToLevel");
     movingToLevel.innerHTML = "Score: " + score;
