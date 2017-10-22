@@ -15,12 +15,9 @@ function main(lives) {
 
 
     if (person.lives > 0) {
-<<<<<<< HEAD
         let level;
-        person = new Person(5, baseHeight, person.lives);
-=======
         person = new Person(5, baseHeight, person.lives, person.score);
->>>>>>> 9b3cc49c94bb41e633b47b3e58e16be43065e9e3
+
         jumpDistance = 8;
         jump(0.5);
         let canvas = document.getElementById("c");
@@ -149,10 +146,6 @@ function displayGround(canvas, arrayHoles, arrayPlatforms) {
     }
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> bf64990d5009e2e557c1dec985461312f2a1cdeb
 /*
  * shows lives to user
  */
