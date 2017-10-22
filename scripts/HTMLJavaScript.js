@@ -12,24 +12,12 @@ function animate() {
     else
         dropdown.style.top = "52px";
 }
-/*
+
 /*
  * event listener for play button
  */
-
-
-/**document.getElementById("play").addEventListener("click", function() {
-=======
 document.getElementById("play").addEventListener("click", function() {
->>>>>>> parent of ed55f38... god damn
-=======
-document.getElementById("play").addEventListener("click", function() {
->>>>>>> parent of ed55f38... god damn
-    console.log("display");
-
     document.getElementById("c").style.display = "block";
     document.getElementById("play").style.display = "none";
     document.getElementById("movingToLevel").innerHTML = "";
-
 });
-*/

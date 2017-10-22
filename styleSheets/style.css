@@ -283,31 +283,10 @@
                         top: 70%;
                         transform: translateY(-50%, -60%);
                     }
-                    /*
-=======
 
 .canvas canvas {
     display: none;
 }
-
-<<<<<<< HEAD
-=======
-.canvas button{
-  padding: 15px 25px;
-  font-size: 24px;
-  cursor: pointer;
-  text-decoration: none;
-  outline: none;
-  color: white;
-  background-color: #C62828;
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 9px #999;
-  position: relative;
-  top: 70%;
-  transform: translateY(-50%, -60%);
-}
->>>>>>> parent of 37aed50... FIxed button
 
 /*
  * button "Play"
@@ -329,7 +308,6 @@
                         transform: translateY(-80%);
                     }
                     /*
->>>>>>> parent of be78874... Revert "FIxed button"
  * Hover button chagnes color
  */
                     
@@ -352,8 +330,3 @@
                         background-color: #D50000;
                     }
                     
-                    .canvas button:active {
-                        background-color: #D50000;
-                        box-shadow: 0 5px #666;
-                        transform: translateY(4px);
-                    }
