@@ -225,10 +225,16 @@ body{
     100% { transform: rotate(360deg); }
 }
 
+/*
+ * don't display canvas
+ */
 .canvas canvas{
     display: none;
 }
 
+/*
+ * button "Play"
+ */
 .canvas button{
   padding: 15px 25px;
   font-size: 24px;
@@ -245,10 +251,16 @@ body{
   transform: translateY(-80%);
 }
 
+/*
+ * Hover button chagnes color
+ */
 .canvas button:hover{
     background-color: #D50000;
 }
 
+/*
+ * clickable button
+ */
 .canvas button:active{
     background-color: #D50000;
     box-shadow: 0 5px #666;
