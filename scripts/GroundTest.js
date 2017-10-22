@@ -17,10 +17,11 @@ function main(lives) {
         jumpDistance = 8;
         jump(0.5);
         let canvas = document.getElementById("c");
-        let arrayMonsters = [];
-        let arrayHoles = [];
-        let arrayPlatforms = [];
-        let arrayCoins = [];
+        let level = createLevel1();
+        let arrayHoles = level[0];
+        let arrayPlatforms = level[1];
+        let arrayMonsters = level[2];
+        let arrayCoins = level[3];
         setupCoins(arrayCoins);
         console.log("hi");
         setupMonsters(arrayMonsters);
