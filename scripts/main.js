@@ -210,9 +210,9 @@ document.body.onkeyup = function(e) {
     }
 }
 
-/* 
+/*
  * Updates array, in the event of moving off of a screen.
- * Moves Each Element Backwards by distance. 
+ * Moves Each Element Backwards by distance.
  */
 function updateArray(array, distance) {
     for (let i = 0; i < array.length; i++) {
@@ -226,15 +226,14 @@ function updateArray(array, distance) {
  * Displays loading screen for 5 seconds.
  */
 function displayLoadingScreen(canvas, level) {
-    canvas.width = 900;
-    canvas.height = 500;
-    canvas.style.backgroundColor = "black";
-    canvas.style.border = "1px solid black";
-    var context = canvas.getContext("2d");
-    context.font = "25px serif";
-    context.fillStyle = "white";
-    context.fillText("Moving to Level " + level, 300, 250);
-
-
-
+    canvas.style.display = "none";
+    let movingToLevel = document.getElementById("movingToLevel");
+    movingToLevel.innerHTML = "Moving to Level " + level;
+    let loader = document.getElementById("loader");
+    loader.style.display = "block";
+    setTimeout(function() {
+        loader.style.display = "none";
+        movingToLevel.innerHTML = "";
+        canvas.style.display = "block";
+    }, 5000);
 }

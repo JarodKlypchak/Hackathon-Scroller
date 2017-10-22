@@ -162,4 +162,33 @@ body{
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
+    width: 900px;
+    height: 500px;
+}
+
+.canvas h1{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 25;
+    color: white;
+}
+
+.canvas > .loader{
+    display: none;
+    border: 8px solid white;
+    border-top: 8px solid grey;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    position: relative;
+    top: 80%;
+    left: 46%;
+}
+
+@keyframes spin{
+    0%{ transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
