@@ -241,8 +241,8 @@ body{
   border-radius: 15px;
   box-shadow: 0 9px #999;
   position: relative;
-  top: 70%;
-  transform: translateY(-50%, -60%);
+  top: 80%;
+  transform: translateY(-80%);
 }
 
 .canvas button:hover{
