@@ -43,7 +43,7 @@ function addPlatforms3(level, canvas) {
     level[1].push(platform);
     let platform2 = new Platform(canvas.width + 150, 300, 300);
     level[1].push(platform2);
-    platform2 = new Platform(canvas.width + 100, 100, 300);
+    platform2 = new Platform(canvas.width + 200, 100, 300);
     level[1].push(platform2);
     platform2 = new Platform(canvas.width + 75, 200, 100);
     level[1].push(platform2);
