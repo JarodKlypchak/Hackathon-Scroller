@@ -16,7 +16,7 @@ function main(lives) {
         jumpDistance = 8;
         jump(0.5);
         let canvas = document.getElementById("c");
-        let level=createLevel2(canvas);
+        let level=createLevel3(canvas);
         let arrayMonsters = level[2];
         let arrayHoles = level[0];
         let arrayPlatforms = level[1];
