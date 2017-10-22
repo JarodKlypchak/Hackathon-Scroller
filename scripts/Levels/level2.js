@@ -60,8 +60,8 @@ function addMonsters2(level, canvas) {
     level[2].push(monster);
     let monster2 = new Monster(175, 375);
     level[2].push(monster2);
-    let monster3 = new Monster(750, 375);
-    level[2].push(monster3);
+    //let monster3 = new Monster(750, 375);
+    //level[2].push(monster3);
     let monster4 = new Monster(canvas.width + 200, 375);
     level[2].push(monster4);
     let monster5 = new Monster(canvas.width + 600, 275);
