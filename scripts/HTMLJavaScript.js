@@ -16,12 +16,16 @@ function animate() {
 /*
  * event listener for play button
  */
+<<<<<<< HEAD
 
 /*document.getElementById("play").addEventListener("click", function() {
+=======
+document.getElementById("play").addEventListener("click", function() {
+>>>>>>> parent of ed55f38... god damn
     console.log("display");
 
     document.getElementById("c").style.display = "block";
     document.getElementById("play").style.display = "none";
     document.getElementById("movingToLevel").innerHTML = "";
 
-}); */
+});

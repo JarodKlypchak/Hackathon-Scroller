@@ -260,10 +260,13 @@
                         transform: translateY(-80%);
                     }
                     
-                    /*.canvas canvas {
+                    .canvas canvas {
                         display: none;
-                    } */
+                    }
                     
+                    .canvas canvas {
+                        display: none;
+                    }
                     
                     .canvas button {
                         padding: 15px 25px;
