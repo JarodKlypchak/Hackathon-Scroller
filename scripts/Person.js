@@ -8,6 +8,7 @@ class Person {
         this.jumping = false;
         this.lives = lives;
         this.score = 0;
+        this.screen = 0;
     }
 
 

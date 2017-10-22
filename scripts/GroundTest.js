@@ -11,6 +11,8 @@ let jumpDistance = 8;
 main(person.lives);
 
 function main(lives) {
+
+
     if (person.lives > 0) {
         person = new Person(895, baseHeight, person.lives);
         jumpDistance = 8;
@@ -22,6 +24,7 @@ function main(lives) {
         let arrayPlatforms = level[1];
         let arrayMonsters = level[2];
         let arrayCoins = level[3];
+
 
         setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
         reset = setInterval(game, 50, arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
@@ -55,6 +58,12 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, ) {
         let killed = arrayMonsters[i].stomped(person);
         if (killed) {
             delete arrayMonsters[i];
+<<<<<<< HEAD
+=======
+
+            jump(10);
+
+>>>>>>> 40d293f14e8e780812742fb978be13279da8af21
             arrayMonsters.splice(i, 1);
             person.score += 100;
         }
