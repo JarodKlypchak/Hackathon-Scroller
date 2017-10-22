@@ -53,6 +53,13 @@ class Monster {
                     this.changeX *= -1;
                 }
             }
+            for(let i = 0; i < arrayPlatforms.length; i++){
+                if(arrayPlatforms[i].height != 0){
+                    if(this.y <= arrayPlatforms[i].y && this.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && this.x >= arrayPlatforms[i].x - 26){
+                        this.changeX *= -1;
+                    }
+                }
+            }
         /*
          * checks platforms and sees if it's on it so it doesn't fall off
          */
@@ -70,7 +77,7 @@ class Monster {
      * if person stomps monster return true
      */
     stomped(person){
-        if(person.x >= this.x - 26 && person.x <= this.x + 26 && person.y + 32 >= this.y && person.y <= this.y + 32){
+        if(person.x >= this.x - 27 && person.x <= this.x + 27 && person.y + 34 >= this.y && person.y <= this.y + 34){
             return true;
         }
     }

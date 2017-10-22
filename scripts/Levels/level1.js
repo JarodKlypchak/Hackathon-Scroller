@@ -45,17 +45,23 @@ function addHoles1(level, canvas) {
  */
 function addPlatforms1(level, canvas) {
     //section 1
+    level[1].push(new Platform(450, 400, 10, -50));
+
+    //section 2
     level[1].push(new Platform(canvas.width + 50, 300, 100));
     level[1].push(new Platform(canvas.width + 200, 300, 100));
     level[1].push(new Platform(canvas.width + 400, 300, 100));
     level[1].push(new Platform(canvas.width + 600, 400, 20, -50));
 
-    //section 2
+    //section 3
     level[1].push(new Platform(canvas.width * 2 + 200, 350, 200));
     level[1].push(new Platform(canvas.width * 2 + 500, 350, 200));
     level[1].push(new Platform(canvas.width * 2 + 425, 250, 50));
     level[1].push(new Platform(canvas.width * 2 + 425, 150, 50));
     level[1].push(new Platform(canvas.width * 2 + 425, 50, 50));
+
+    //section 4
+    level[1].push(new Platform(canvas.width * 3 + 425, 400, 10, -50));
 }
 
 /*
@@ -63,6 +69,8 @@ function addPlatforms1(level, canvas) {
  */
 function addMonsters1(level, canvas) {
     //section 1
+    level[2].push(new Monster(600, 375));
+
     //section 2
     level[2].push(new Monster(canvas.width + 800, 375));
     level[2].push(new Monster(canvas.width + 750, 375));
@@ -77,6 +85,13 @@ function addMonsters1(level, canvas) {
     level[2].push(new Monster(canvas.width * 2 + 505, 324));
     level[2].push(new Monster(canvas.width * 2 + 560, 324));
     level[2].push(new Monster(canvas.width * 2 + 600, 324));
+
+    //section 4
+    level[2].push(new Monster(canvas.width * 3 + 90, 375));
+    level[2].push(new Monster(canvas.width * 3 + 110, 375));
+    level[2].push(new Monster(canvas.width * 3 + 120, 375));
+    level[2].push(new Monster(canvas.width * 3 + 170, 375));
+    level[2].push(new Monster(canvas.width * 3 + 360, 375));
 }
 
 /*
@@ -92,4 +107,10 @@ function addCoins1(level, canvas) {
     //section 2
     level[3].push(new Coin(canvas.width + 200, 200));
     level[3].push(new Coin(canvas.width + 350, 240));
+
+    //section 3
+    level[3].push(new Coin(canvas.width * 2 + 435, 90));
+    level[3].push(new Coin(canvas.width * 2 + 435, 20));
+    level[3].push(new Coin(canvas.width * 2 + 270, 20));
+    level[3].push(new Coin(canvas.width * 2 + 600, 20));
 }
