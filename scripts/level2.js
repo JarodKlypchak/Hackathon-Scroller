@@ -83,6 +83,6 @@ function addCoins2(level, canvas) {
         let coin5 = new Coin(canvas.width * 3 + (i * 100) + 50, 325);
         level[3].push(coin5);
     }
-    let coin6 = new Coin(canvas.width * 2 + 450, 175);
+    let coin6 = new Coin(canvas.width * 2 + 425, 150);
     level[3].push(coin6);
 }
