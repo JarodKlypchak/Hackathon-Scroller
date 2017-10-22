@@ -118,4 +118,6 @@ function addCoins1(level, canvas) {
     level[3].push(new Coin(canvas.width * 2 + 435, 20));
     level[3].push(new Coin(canvas.width * 2 + 270, 20));
     level[3].push(new Coin(canvas.width * 2 + 600, 20));
+
+    //section 4
 }

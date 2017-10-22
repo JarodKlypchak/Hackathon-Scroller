@@ -5,7 +5,7 @@ let jumping = false;
 let score = 0;
 let person = new Person(5, baseHeight, 5, score);
 const moveDistance = 5;
-let levelNum = 1;
+let levelNum = 3;
 let time = 0;
 const jumpDuration = 75;
 let jumpDistance = 8;
@@ -38,7 +38,7 @@ function main(lives) {
         }
 
         setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
-        reset = setInterval(game, 50, arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
+        reset = setInterval(game, 50, arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, levelNum);
     }
 }
 
@@ -46,7 +46,7 @@ function main(lives) {
  * game function loop that is called in main displays monster and calls everything else
  */
 
-function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
+function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, level) {
 
     /*
      *Updates monsters
@@ -113,11 +113,13 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
     if (person.x >= canvas.width) {
         person.x = 10;
         person.screen++;
-        if (person.screen < 5) {
+        if (person.screen < 4) {
             updateArray(arrayCoins, 900);
             updateArray(arrayMonsters, 900);
             updateArray(arrayHoles, 900);
             updateArray(arrayPlatforms, 900);
+        } else if(person.screen == 4 && level == 3){
+            youWin(canvas, person.score);
         } else {
             clearInterval(reset);
             levelNum++;
@@ -235,4 +237,10 @@ function displayLoadingScreen(canvas, level) {
         movingToLevel.innerHTML = "";
         canvas.style.display = "block";
     }, 5000);
+}
+
+function youWin(canvas, score){
+    canvas.style.display = "none";
+    let displayScore = document.getElementById("movingToLevel");
+    movingToLevel.innerHTML = "Score: " + score;
 }
