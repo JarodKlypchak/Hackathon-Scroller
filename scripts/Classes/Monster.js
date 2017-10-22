@@ -15,6 +15,9 @@ class Monster {
         this.changeX = 1.2;
     }
 
+    /*
+     * registers which platform is closest to the monster if they're not on the ground
+     */
     closestPlatform(arrayPlatforms){
         if(this.y != 375){
             this.closest = this.x - arrayPlatforms[0].x;
@@ -67,7 +70,7 @@ class Monster {
      * if person stomps monster return true
      */
     stomped(person){
-        if(person.x >= this.x - 25 && person.x <= this.x + 25 && person.y + 32 >= this.y && person.y <= this.y - 25){
+        if(person.x >= this.x - 26 && person.x <= this.x + 26 && person.y + 32 >= this.y && person.y <= this.y + 32){
             return true;
         }
     }
