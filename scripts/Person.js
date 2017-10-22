@@ -7,6 +7,7 @@ class Person {
         this.movingRight = false;
         this.jumping = false;
         this.lives = lives;
+        this.score = 0;
     }
 
 
