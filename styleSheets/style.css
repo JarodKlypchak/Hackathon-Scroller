@@ -177,7 +177,11 @@ body {
 
 
 /*
+<<<<<<< HEAD
  * Made at header1 in dropdown
+=======
+ * "Made at" header1 in dropdown
+>>>>>>> parent of b37dfdf... f
  */
 
 .dropdown h1 {
@@ -265,6 +269,11 @@ body {
     }
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of b37dfdf... f
 
 /*
  * don't display canvas
@@ -274,9 +283,16 @@ body {
     display: none;
 }
 
+<<<<<<< HEAD
 
 /*
  * button Play
+=======
+<<<<<<< HEAD
+
+/*
+ * button "Play"
+>>>>>>> parent of b37dfdf... f
  */
 
 .canvas button {
@@ -293,8 +309,43 @@ body {
     position: relative;
     top: 80%;
     transform: translateY(-80%);
+<<<<<<< HEAD
 }
 
+=======
+=======
+=======
+.canvas canvas{
+    display: none;
+}
+
+>>>>>>> parent of 3cf7a46... pushhh
+=======
+.canvas canvas{
+    display: none;
+}
+
+>>>>>>> parent of 3cf7a46... pushhh
+.canvas button{
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-decoration: none;
+  outline: none;
+  color: white;
+  background-color: #C62828;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  position: relative;
+  top: 70%;
+  transform: translateY(-50%, -60%);
+>>>>>>> parent of 37aed50... FIxed button
+}
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of b37dfdf... f
 
 /*
  * Hover button chagnes color
@@ -310,7 +361,24 @@ body {
  */
 
 .canvas button:active {
+<<<<<<< HEAD
     background-color: #D50000;
+=======
+=======
+.canvas button:hover{
+    background-color: #D50000;
+}
+
+=======
+.canvas button:hover{
+    background-color: #D50000;
+}
+
+>>>>>>> parent of 3cf7a46... pushhh
+.canvas button:active{
+    background-color: #D50000;
+>>>>>>> parent of 3cf7a46... pushhh
+>>>>>>> parent of b37dfdf... f
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
