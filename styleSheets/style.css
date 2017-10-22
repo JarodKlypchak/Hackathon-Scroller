@@ -265,6 +265,7 @@ body {
     }
 }
 
+<<<<<<< HEAD
 
 /*
  * don't display canvas
@@ -295,6 +296,12 @@ body {
     top: 80%;
     transform: translateY(-80%);
 =======
+=======
+.canvas canvas{
+    display: none;
+}
+
+>>>>>>> parent of 3cf7a46... pushhh
 .canvas button{
   padding: 15px 25px;
   font-size: 24px;
@@ -312,6 +319,7 @@ body {
 >>>>>>> parent of 37aed50... FIxed button
 }
 
+<<<<<<< HEAD
 
 /*
  * Hover button chagnes color
@@ -327,6 +335,14 @@ body {
  */
 
 .canvas button:active {
+=======
+.canvas button:hover{
+    background-color: #D50000;
+}
+
+.canvas button:active{
+    background-color: #D50000;
+>>>>>>> parent of 3cf7a46... pushhh
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
