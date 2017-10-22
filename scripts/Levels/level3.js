@@ -66,8 +66,6 @@ function addMonsters3(level, canvas) {
 function addCoins3(level) {
     let coin = new Coin(600, 300);
     level[3].push(coin);
-    let coin2 = new Coin(900 + 150, 200);
-    level[3].push(coin2);
     let coin3 = new Coin(900 + 200, 200);
     level[3].push(coin3);
     let coin4 = new Coin(900 + 250, 200);
