@@ -15,9 +15,7 @@ function main(lives) {
 
     if (person.lives > 0) {
         let level;
-        console.log(person.lives);
         person = new Person(5, baseHeight, lives, person.score);
-        console.log(person.lives);
         jumpDistance = 8;
         person.jump(0.5);
         let canvas = document.getElementById("c");
