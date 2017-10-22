@@ -84,7 +84,7 @@ class Monster {
      * if person stomps monster return true
      */
     stomped(person) {
-        if (person.x >= this.x - 27 && person.x <= this.x + 27 && person.y + 34 >= this.y && person.y <= this.y + 34) {
+        if (person.x >= this.x - 27 && person.x <= this.x + 27 && person.y + 34 >= this.y && person.y <= this.y + 25) {
             return true;
         }
     }
