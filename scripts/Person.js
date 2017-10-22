@@ -1,13 +1,13 @@
 class Person {
 
-    constructor(xPos, yPos, lives) {
+    constructor(xPos, yPos, lives, score) {
         this.x = xPos;
         this.y = yPos;
         this.movingLeft = false;
         this.movingRight = false;
         this.jumping = false;
         this.lives = lives;
-        this.score = 0;
+        this.score = score;
         this.screen = 0;
     }
 

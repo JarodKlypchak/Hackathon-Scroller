@@ -59,6 +59,11 @@ function addMonsters1(level, canvas) {
     level[2].push(new Monster(canvas.width * 2 + 600, 324));
 }
 function addCoins1(level, canvas) {
+    level[3].push(new Coin(120, 325));
+    level[3].push(new Coin(260, 325));
+    level[3].push(new Coin(360, 325));
+    level[3].push(new Coin(666, 325));
+
     level[3].push(new Coin(canvas.width + 200, 200));
     level[3].push(new Coin(canvas.width + 350, 240));
 }

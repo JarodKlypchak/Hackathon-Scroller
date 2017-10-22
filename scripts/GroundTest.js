@@ -2,20 +2,25 @@ const charWidth = 32;
 const baseHeight = 400 - charWidth;
 let h = baseHeight;
 let jumping = false;
-let person = new Person(895, baseHeight, 5);
+let score = 0;
+let person = new Person(895, baseHeight, 5, score);
 const moveDistance = 5;
 let levelNum = 1;
 let time = 0;
 const jumpDuration = 75;
 let jumpDistance = 8;
-main(person.lives);
+main(person.lives, person.score);
 
 function main(lives) {
 
 
     if (person.lives > 0) {
+<<<<<<< HEAD
         let level;
         person = new Person(5, baseHeight, person.lives);
+=======
+        person = new Person(5, baseHeight, person.lives, person.score);
+>>>>>>> 9b3cc49c94bb41e633b47b3e58e16be43065e9e3
         jumpDistance = 8;
         jump(0.5);
         let canvas = document.getElementById("c");
@@ -82,7 +87,7 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, ) {
     }
     if (person.shouldDie(arrayMonsters)) {
         clearInterval(reset);
-        main(person.lives);
+        main(person.lives, person.score);
     }
     if (person.x >= canvas.width) {
         person.x = 10;
@@ -110,14 +115,6 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, ) {
     }
     setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
     displayStats(person.lives, canvas);
-}
-
-/*
- * setup coins
- */
-function setupCoins(arrayCoins) {
-    let temp = new Coin(200, 200);
-    arrayCoins.push(temp);
 }
 
 /*
@@ -152,7 +149,10 @@ function displayGround(canvas, arrayHoles, arrayPlatforms) {
     }
 }
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> bf64990d5009e2e557c1dec985461312f2a1cdeb
 /*
  * shows lives to user
  */
