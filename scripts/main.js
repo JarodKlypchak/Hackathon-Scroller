@@ -13,7 +13,6 @@ main(person.lives, person.score);
 
 function main(lives) {
 
-
     if (person.lives > 0) {
         let level;
         person = new Person(5, baseHeight, person.lives, person.score);
