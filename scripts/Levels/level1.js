@@ -92,6 +92,11 @@ function addMonsters1(level, canvas) {
     level[2].push(new Monster(canvas.width * 3 + 120, 375));
     level[2].push(new Monster(canvas.width * 3 + 170, 375));
     level[2].push(new Monster(canvas.width * 3 + 360, 375));
+    level[2].push(new Monster(canvas.width * 3 + 490, 375));
+    level[2].push(new Monster(canvas.width * 3 + 510, 375));
+    level[2].push(new Monster(canvas.width * 3 + 520, 375));
+    level[2].push(new Monster(canvas.width * 3 + 570, 375));
+    level[2].push(new Monster(canvas.width * 3 + 660, 375));
 }
 
 /*
