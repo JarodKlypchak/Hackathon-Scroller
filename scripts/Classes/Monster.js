@@ -53,6 +53,10 @@ class Monster {
                     this.changeX *= -1;
                 }
             }
+
+            /*
+             * check to see if monsters run into pillars
+             */
             for(let i = 0; i < arrayPlatforms.length; i++){
                 if(arrayPlatforms[i].height != 0){
                     if(this.y <= arrayPlatforms[i].y && this.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && this.x >= arrayPlatforms[i].x - 26){
@@ -68,6 +72,9 @@ class Monster {
                 this.changeX *= -1;
             }
         }
+        /*
+         * check to see if they're about to leave the canvas
+         */
         if (this.x >= canvas.width - 25 || this.x <= 25) {
             this.changeX *= -1;
         }
