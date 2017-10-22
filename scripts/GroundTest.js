@@ -21,9 +21,7 @@ function main(lives) {
         let arrayPlatforms = level[1];
         let arrayMonsters = level[2];
         let arrayCoins = level[3];
-        setupCoins(arrayCoins);
-        setupMonsters(arrayMonsters);
-        setupGround(canvas, arrayHoles, arrayPlatforms);
+
         setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
         reset = setInterval(game, 50, arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
     }
