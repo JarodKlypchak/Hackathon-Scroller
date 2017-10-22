@@ -5,16 +5,16 @@ function createLevel1(canvas){
         level[i]=new Array();
     }
     //Holes
-    addHoles(level, canvas);
+    addHoles1(level, canvas);
 
     //Platform
-    addPlatforms(level, canvas);
+    addPlatforms1(level, canvas);
 
     //Monster
-    addMonsters(level, canvas);
+    addMonsters1(level, canvas);
 
     //Coins
-    addCoins(level,canvas);
+    addCoins1(level,canvas);
 
     //Return level
     return level;
