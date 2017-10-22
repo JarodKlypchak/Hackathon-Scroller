@@ -16,7 +16,7 @@ function main(lives) {
 
     if (person.lives > 0) {
         let level;
-        person = new Person(895, baseHeight, person.lives, person.score);
+        person = new Person(5, baseHeight, person.lives, person.score);
 
         jumpDistance = 8;
         person.jump(0.5);
@@ -50,10 +50,10 @@ function main(lives) {
 function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
 
     /*
-     *Updates Goombas
+     *Updates monsters
      */
     for (let i = 0; i < arrayMonsters.length; i++) {
-        arrayMonsters[i].update(arrayHoles, arrayPlatforms, arrayMonsters, canvas);
+        arrayMonsters[i].update(arrayHoles, arrayPlatforms, canvas);
         arrayMonsters[i].offScreen(person, canvas);
     }
     /**
@@ -108,6 +108,9 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
     /**
      * Handles when user goes off the right of the screen
      */
+    for(let i = 0; i < arrayMonsters.length; i++){
+        arrayMonsters[i].closestPlatform(arrayPlatforms);
+    }
     if (person.x >= canvas.width) {
         person.x = 10;
         person.screen++;
@@ -132,9 +135,6 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
         updateArray(arrayMonsters, -900);
         updateArray(arrayHoles, -900)
         updateArray(arrayPlatforms, -900);
-        for(let i = 0; i < arrayMonsters.length; i++){
-            arrayMonsters[i].closestPlatform(arrayPlatforms);
-        }
     }
 
     //Update Canvas

@@ -39,7 +39,7 @@ class Monster {
     /*
      * update funtion for monster calls arrayHoles, arrayPlatforms, and canvas
      */
-    update(arrayHoles, arrayPlatforms, arrayMonsters, canvas) {
+    update(arrayHoles, arrayPlatforms, canvas) {
         this.x -= this.changeX;
         /*
          * checks holes and sees if it's on it so it doesn't fall off
@@ -54,10 +54,10 @@ class Monster {
          * checks platforms and sees if it's on it so it doesn't fall off
          */
         }else{
-                if (this.x >= (this.closestPlat.getX() + this.closestPlat.getWidth() - 25) || this.x <= (this.closestPlat.getX())) {
-                    this.changeX *= -1;
-                }
+            if (this.x >= (this.closestPlat.getX() + this.closestPlat.getWidth() - 26) || this.x <= this.closestPlat.getX()) {
+                this.changeX *= -1;
             }
+        }
         if (this.x >= canvas.width - 25 || this.x <= 25) {
             this.changeX *= -1;
         }
