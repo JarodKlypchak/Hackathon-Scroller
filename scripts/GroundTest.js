@@ -46,14 +46,23 @@ function main(lives) {
 
 function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, ) {
 
+    /*
+     *Updates Goombas
+     */
     for (let i = 0; i < arrayMonsters.length; i++) {
         arrayMonsters[i].update(arrayHoles, arrayPlatforms, arrayMonsters, canvas);
         arrayMonsters[i].offScreen(person, canvas);
     }
+    /**
+     * Handles User Movement
+     */
     person.handleJump(arrayPlatforms);
     person.handleGaps(arrayHoles, arrayPlatforms);
     person.moveX(moveDistance, arrayPlatforms);
 
+    /**
+     * Checks if Coins are collected.
+     */
     for (let i = 0; i < arrayCoins.length; i++) {
         let collected = arrayCoins[i].coinCollected(person);
         if (collected) {
@@ -68,8 +77,8 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, ) {
         }
     }
 
-    /*
-     *
+    /**
+     * Checks if a each monster has been killed.
      */
     for (let i = 0; i < arrayMonsters.length; i++) {
         let killed = arrayMonsters[i].stomped(person);
@@ -85,10 +94,17 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, ) {
             }
         }
     }
+    /**
+     * Checks if the Character is above the screen, or intersecting a monster.
+     */
     if (person.shouldDie(arrayMonsters)) {
         clearInterval(reset);
         main(person.lives, person.score);
     }
+
+    /**
+     * Handles when user goes off the right of the screen
+     */
     if (person.x >= canvas.width) {
         person.x = 10;
         person.screen++;
@@ -104,8 +120,9 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, ) {
             person.screen = 0;
             main(person.lives);
         }
-
-
+        /**
+         * Handles when user goes off the left of the screen
+         */
     } else if (person.x + charWidth <= 0) {
         person.x = canvas.width - 10;
         updateArray(arrayCoins, -900);
@@ -113,6 +130,8 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, ) {
         updateArray(arrayHoles, -900)
         updateArray(arrayPlatforms, -900);
     }
+
+    //Update Canvas
     setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
     displayStats(person.lives, canvas);
 }
