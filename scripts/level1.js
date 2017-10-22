@@ -20,14 +20,14 @@ function createLevel1(canvas) {
     return level;
 }
 
-function addHoles(level, canvas) {
+function addHoles1(level, canvas) {
     level[0].push(new Hole(canvas, 50, 50));
     level[0].push(new Hole(canvas, 200, 50));
     level[0].push(new Hole(canvas, 350, 50));
     level[0].push(new Hole(canvas, 1000, 700));
 }
 
-function addPlatforms(level, canvas) {
+function addPlatforms1(level, canvas) {
     level[1].push(new Platform(50, 300, 100));
     level[1].push(new Platform(200, 300, 100));
     level[1].push(new Platform(400, 300, 100));
@@ -39,7 +39,7 @@ function addPlatforms(level, canvas) {
     level[1].push(new Platform(canvas.width + 425, 50, 50));
 }
 
-function addMonsters(level, canvas) {
+function addMonsters1(level, canvas) {
     level[2].push(new Monster(800, 375));
     level[2].push(new Monster(750, 375));
     level[2].push(new Monster(50, 275));
@@ -51,6 +51,6 @@ function addMonsters(level, canvas) {
     level[2].push(new Monster(1500, 324));
 }
 
-function addCoins() {
+function addCoins1() {
 
 }
