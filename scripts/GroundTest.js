@@ -2,19 +2,20 @@ const charWidth = 32;
 const baseHeight = 400 - charWidth;
 let h = baseHeight;
 let jumping = false;
-let person = new Person(895, baseHeight, 5);
+let score = 0;
+let person = new Person(895, baseHeight, 5, score);
 const moveDistance = 5;
 
 let time = 0;
 const jumpDuration = 75;
 let jumpDistance = 8;
-main(person.lives);
+main(person.lives, person.score);
 
 function main(lives) {
 
 
     if (person.lives > 0) {
-        person = new Person(5, baseHeight, person.lives);
+        person = new Person(5, baseHeight, person.lives, person.score);
         jumpDistance = 8;
         jump(0.5);
         let canvas = document.getElementById("c");
@@ -65,7 +66,7 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, ) {
     }
     if (person.shouldDie(arrayMonsters)) {
         clearInterval(reset);
-        main(person.lives);
+        main(person.lives, person.score);
     }
     if (person.x >= canvas.width) {
         person.x = 10;
@@ -82,14 +83,6 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, ) {
     }
     setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
     displayStats(person.lives, canvas);
-}
-
-/*
- * setup coins
- */
-function setupCoins(arrayCoins) {
-    let temp = new Coin(200, 200);
-    arrayCoins.push(temp);
 }
 
 /*
@@ -111,39 +104,6 @@ function setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatfor
 }
 
 /*
- * creates holes and platforms and pushes them to arrays
- */
-function setupGround(canvas, arrayHoles, arrayPlatforms) {
-    let holeScreen11 = new Hole(canvas, 50, 50);
-    arrayHoles.push(holeScreen11);
-    let holeScreen12 = new Hole(canvas, 200, 50);
-    arrayHoles.push(holeScreen12);
-    let holeScreen13 = new Hole(canvas, 350, 50);
-    arrayHoles.push(holeScreen13);
-    let platformScreen11 = new Platform(50, 300, 100);
-    arrayPlatforms.push(platformScreen11);
-    let platformScreen12 = new Platform(200, 300, 100);
-    arrayPlatforms.push(platformScreen12);
-    let platformScreen13 = new Platform(400, 300, 100);
-    arrayPlatforms.push(platformScreen13);
-    let wallScreen11 = new Platform(600, 400, 20, -50);
-    arrayPlatforms.push(wallScreen11);
-
-    let platformScreen21 = new Platform(1100, 350, 200);
-    arrayPlatforms.push(platformScreen21);
-    let platformScreen22 = new Platform(1400, 350, 200);
-    arrayPlatforms.push(platformScreen22);
-    let platformScreen23 = new Platform(1325, 250, 50);
-    arrayPlatforms.push(platformScreen23);
-    let platformScreen24 = new Platform(1325, 150, 50);
-    arrayPlatforms.push(platformScreen24);
-    let platformScreen25 = new Platform(1325, 50, 50);
-    arrayPlatforms.push(platformScreen25);
-    let holeScreen21 = new Hole(canvas, 1000, 700);
-    arrayHoles.push(holeScreen21);
-}
-
-/*
  * displays ground, holes, platforms
  */
 function displayGround(canvas, arrayHoles, arrayPlatforms) {
@@ -155,31 +115,6 @@ function displayGround(canvas, arrayHoles, arrayPlatforms) {
     for (let i = 0; i < arrayPlatforms.length; i++) {
         arrayPlatforms[i].display();
     }
-}
-
-/*
- * creates monster and appends them to array
- */
-function setupMonsters(arrayMonsters) {
-    let goombaScreen11 = new Monster(800, 375);
-    arrayMonsters.push(goombaScreen11);
-    let goombaScreen12 = new Monster(750, 375);
-    arrayMonsters.push(goombaScreen12);
-    let goombaScreen13 = new Monster(50, 275);
-    arrayMonsters.push(goombaScreen13);
-
-    let goombaScreen21 = new Monster(1105, 324);
-    arrayMonsters.push(goombaScreen21);
-    let goombaScreen22 = new Monster(1160, 324);
-    arrayMonsters.push(goombaScreen22);
-    let goombaScreen23 = new Monster(1200, 324);
-    arrayMonsters.push(goombaScreen23);
-    let goombaScreen24 = new Monster(1405, 324);
-    arrayMonsters.push(goombaScreen24);
-    let goombaScreen25 = new Monster(1460, 324);
-    arrayMonsters.push(goombaScreen25);
-    let goombaScreen26 = new Monster(1500, 324);
-    arrayMonsters.push(goombaScreen26);
 }
 
 /*
