@@ -5,21 +5,21 @@ function createLevel2(canvas){
         level[i]=new Array();
     }
     //Holes
-    addHoles(level, canvas);
+    addHoles2(level, canvas);
 
     //Platform
-    addPlatforms(level, canvas);
+    addPlatforms2(level, canvas);
 
     //Monster
-    addMonsters(level, canvas);
+    addMonsters2(level, canvas);
 
     //Coins
-    addCoins(level,canvas);
+    addCoins2(level,canvas);
 
     //Return level
     return level;
 }
-function addHoles(level, canvas) {
+function addHoles2(level, canvas) {
     let hole = new Hole(canvas, 100, 50);
     level[0].push(hole);
     let hole2 = new Hole(canvas, 200, 200);
@@ -28,24 +28,42 @@ function addHoles(level, canvas) {
     level[0].push(hole3);
     let hole4 = new Hole(canvas, canvas.width, 50);
     level[0].push(hole4);
+    let hole5 = new Hole(canvas, canvas.width + 500, 300);
+    level[0].push(hole5);
+    let hole6 = new Hole(canvas, canvas.width * 2 + 50, 800);
+    level[0].push(hole6);
 }
-function addPlatforms(level) {
+function addPlatforms2(level,canvas) {
     let platform = new Platform(250, 300, 100);
     level[1].push(platform);
+    let platform2 = new Platform(canvas.width + 150, 400, 10, -50);
+    level[1].push(platform2);
+    let platform3 = new Platform(canvas.width + 550, 300, 100);
+    level[1].push(platform3);
+    let platform4 = new Platform(canvas.width * 2 + 150,300,50);
+    level[1].push(platform4);
+    let platform5 = new Platform(canvas.width * 2 + 300,200, 50);
+    level[1].push(platform5);
 }
-function addMonsters(level) {
+function addMonsters2(level,canvas) {
     let monster = new Monster(500,375);
     level[2].push(monster);
     let monster2 = new Monster(175, 375);
     level[2].push(monster2);
     let monster3 = new Monster(75,375);
     level[2].push(monster3);
-    //let monster4 = new Monster(canvas.width+200, 375);
-    //level[2].push(monster4);
+    let monster4 = new Monster(canvas.width+200, 375);
+    level[2].push(monster4);
+    let monster5 = new Monster(canvas.width + 600, 275);
+    level[2].push(monster5);
 }
-function addCoins(level) {
+function addCoins2(level, canvas) {
     let coin = new Coin(650,250);
     level[3].push(coin);
     let coin2 = new Coin(300,150);
     level[3].push(coin2);
+    let coin3 = new Coin(canvas.width + 300, 300);
+    level[3].push(coin3);
+    let coin4 = new Coin(canvas.width + 750, 300);
+    level[3].push(coin4);
 }

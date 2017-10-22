@@ -12,15 +12,17 @@ main(person.lives);
 let score = 0;
 function main(lives) {
     if (person.lives > 0) {
-        person = new Person(5, baseHeight, person.lives);
+        person = new Person(10, baseHeight, person.lives);
         jumpDistance = 8;
         jump(0.5);
         let canvas = document.getElementById("c");
-        let level=createLevel2(canvas);
-        let arrayMonsters = level[2];
+        canvas.width = 900;
+        let level = createLevel2(canvas);
         let arrayHoles = level[0];
         let arrayPlatforms = level[1];
+        let arrayMonsters = level[2];
         let arrayCoins = level[3];
+
         setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
         reset = setInterval(game, 50, arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
     }
