@@ -64,6 +64,11 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, ) {
             delete arrayCoins[i];
             arrayCoins.splice(i, 1);
             person.score += 50;
+            if (person.score % 550 == 0) {
+                person.lives++;
+            } else if (person.score % 500 == 0) {
+                person.lives++;
+            }
         }
     }
 
@@ -74,6 +79,11 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, ) {
             jump(10);
             arrayMonsters.splice(i, 1);
             person.score += 100;
+            if (person.score % 550 == 0) {
+                person.lives++;
+            } else if (person.score % 500 == 0) {
+                person.lives++;
+            }
         }
     }
     if (person.shouldDie(arrayMonsters)) {
@@ -91,7 +101,7 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, ) {
         } else {
             clearInterval(reset);
             levelNum++;
-
+            displayLoadingScreen(canvas, levelNum);
             person.screen = 0;
             main(person.lives);
         }
@@ -135,39 +145,6 @@ function setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatfor
 }
 
 /*
- * creates holes and platforms and pushes them to arrays
- */
-function setupGround(canvas, arrayHoles, arrayPlatforms) {
-    let holeScreen11 = new Hole(canvas, 50, 50);
-    arrayHoles.push(holeScreen11);
-    let holeScreen12 = new Hole(canvas, 200, 50);
-    arrayHoles.push(holeScreen12);
-    let holeScreen13 = new Hole(canvas, 350, 50);
-    arrayHoles.push(holeScreen13);
-    let platformScreen11 = new Platform(50, 300, 100);
-    arrayPlatforms.push(platformScreen11);
-    let platformScreen12 = new Platform(200, 300, 100);
-    arrayPlatforms.push(platformScreen12);
-    let platformScreen13 = new Platform(400, 300, 100);
-    arrayPlatforms.push(platformScreen13);
-    let wallScreen11 = new Platform(600, 400, 20, -50);
-    arrayPlatforms.push(wallScreen11);
-
-    let platformScreen21 = new Platform(1100, 350, 200);
-    arrayPlatforms.push(platformScreen21);
-    let platformScreen22 = new Platform(1400, 350, 200);
-    arrayPlatforms.push(platformScreen22);
-    let platformScreen23 = new Platform(1325, 250, 50);
-    arrayPlatforms.push(platformScreen23);
-    let platformScreen24 = new Platform(1325, 150, 50);
-    arrayPlatforms.push(platformScreen24);
-    let platformScreen25 = new Platform(1325, 50, 50);
-    arrayPlatforms.push(platformScreen25);
-    let holeScreen21 = new Hole(canvas, 1000, 700);
-    arrayHoles.push(holeScreen21);
-}
-
-/*
  * displays ground, holes, platforms
  */
 function displayGround(canvas, arrayHoles, arrayPlatforms) {
@@ -181,30 +158,6 @@ function displayGround(canvas, arrayHoles, arrayPlatforms) {
     }
 }
 
-/*
- * creates monster and appends them to array
- */
-function setupMonsters(arrayMonsters) {
-    let goombaScreen11 = new Monster(800, 375);
-    arrayMonsters.push(goombaScreen11);
-    let goombaScreen12 = new Monster(750, 375);
-    arrayMonsters.push(goombaScreen12);
-    let goombaScreen13 = new Monster(50, 275);
-    arrayMonsters.push(goombaScreen13);
-
-    let goombaScreen21 = new Monster(1105, 324);
-    arrayMonsters.push(goombaScreen21);
-    let goombaScreen22 = new Monster(1160, 324);
-    arrayMonsters.push(goombaScreen22);
-    let goombaScreen23 = new Monster(1200, 324);
-    arrayMonsters.push(goombaScreen23);
-    let goombaScreen24 = new Monster(1405, 324);
-    arrayMonsters.push(goombaScreen24);
-    let goombaScreen25 = new Monster(1460, 324);
-    arrayMonsters.push(goombaScreen25);
-    let goombaScreen26 = new Monster(1500, 324);
-    arrayMonsters.push(goombaScreen26);
-}
 
 /*
  * shows lives to user
@@ -256,4 +209,17 @@ function updateArray(array, distance) {
         array[i].x -= distance;
     }
 
+}
+
+function displayLoadingScreen(canvas, level) {
+    canvas.width = 900;
+    canvas.height = 500;
+    canvas.style.backgroundColor = "black";
+    canvas.style.border = "1px solid black";
+    var context = canvas.getContext("2d");
+    context.font = "25px serif";
+    context.fillStyle = "white";
+    context.fillText("Moving to Level " + level, 300, 250);
+
+    let timer = setInterval(wait, 1000, 5);
 }
