@@ -2,18 +2,17 @@ const charWidth = 32;
 const baseHeight = 400 - charWidth;
 let h = baseHeight;
 let jumping = false;
-let person = new Person(5, baseHeight, 5);
+let person = new Person(895, baseHeight, 5);
 const moveDistance = 5;
 
 let time = 0;
 const jumpDuration = 75;
 let jumpDistance = 8;
 main(person.lives);
-let score = 0;
 
 function main(lives) {
     if (person.lives > 0) {
-        person = new Person(5, baseHeight, person.lives);
+        person = new Person(895, baseHeight, person.lives);
         jumpDistance = 8;
         jump(0.5);
         let canvas = document.getElementById("c");
@@ -23,7 +22,6 @@ function main(lives) {
         let arrayMonsters = level[2];
         let arrayCoins = level[3];
         setupCoins(arrayCoins);
-        console.log("hi");
         setupMonsters(arrayMonsters);
         setupGround(canvas, arrayHoles, arrayPlatforms);
         setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
@@ -50,7 +48,7 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, ) {
         if (collected) {
             delete arrayCoins[i];
             arrayCoins.splice(i, 1);
-            score += 50;
+            person.score += 50;
         }
     }
 
@@ -59,7 +57,7 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, ) {
         if (killed) {
             delete arrayMonsters[i];
             arrayMonsters.splice(i, 1);
-            score += 100;
+            person.score += 100;
         }
     }
     if (person.shouldDie(arrayMonsters)) {
@@ -72,14 +70,12 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, ) {
         updateArray(arrayMonsters, 900);
         updateArray(arrayHoles, 900);
         updateArray(arrayPlatforms, 900);
-        console.log(arrayHoles);
     } else if (person.x + charWidth <= 0) {
         person.x = canvas.width - 10;
         updateArray(arrayCoins, -900);
         updateArray(arrayMonsters, -900);
         updateArray(arrayHoles, -900)
         updateArray(arrayPlatforms, -900);
-        console.log(arrayHoles);
     }
     setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
     displayStats(person.lives, canvas);
@@ -115,20 +111,33 @@ function setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatfor
  * creates holes and platforms and pushes them to arrays
  */
 function setupGround(canvas, arrayHoles, arrayPlatforms) {
-    let hole = new Hole(canvas, 50, 50);
-    arrayHoles.push(hole);
-    let hole2 = new Hole(canvas, 200, 50);
-    arrayHoles.push(hole2);
-    let hole3 = new Hole(canvas, 350, 50);
-    arrayHoles.push(hole3);
-    let platform = new Platform(50, 300, 100);
-    arrayPlatforms.push(platform);
-    let platform1 = new Platform(200, 300, 100);
-    arrayPlatforms.push(platform1);
-    let platform2 = new Platform(400, 300, 100);
-    arrayPlatforms.push(platform2);
-    let wall = new Platform(600, 400, 20, -50);
-    arrayPlatforms.push(wall);
+    let holeScreen11 = new Hole(canvas, 50, 50);
+    arrayHoles.push(holeScreen11);
+    let holeScreen12 = new Hole(canvas, 200, 50);
+    arrayHoles.push(holeScreen12);
+    let holeScreen13 = new Hole(canvas, 350, 50);
+    arrayHoles.push(holeScreen13);
+    let platformScreen11 = new Platform(50, 300, 100);
+    arrayPlatforms.push(platformScreen11);
+    let platformScreen12 = new Platform(200, 300, 100);
+    arrayPlatforms.push(platformScreen12);
+    let platformScreen13 = new Platform(400, 300, 100);
+    arrayPlatforms.push(platformScreen13);
+    let wallScreen11 = new Platform(600, 400, 20, -50);
+    arrayPlatforms.push(wallScreen11);
+
+    let platformScreen21 = new Platform(1100, 350, 200);
+    arrayPlatforms.push(platformScreen21);
+    let platformScreen22 = new Platform(1400, 350, 200);
+    arrayPlatforms.push(platformScreen22);
+    let platformScreen23 = new Platform(1325, 250, 50);
+    arrayPlatforms.push(platformScreen23);
+    let platformScreen24 = new Platform(1325, 150, 50);
+    arrayPlatforms.push(platformScreen24);
+    let platformScreen25 = new Platform(1325, 50, 50);
+    arrayPlatforms.push(platformScreen25);
+    let holeScreen21 = new Hole(canvas, 1000, 700);
+    arrayHoles.push(holeScreen21);
 }
 
 /*
@@ -149,12 +158,25 @@ function displayGround(canvas, arrayHoles, arrayPlatforms) {
  * creates monster and appends them to array
  */
 function setupMonsters(arrayMonsters) {
-    let goomba = new Monster(800, 375);
-    arrayMonsters.push(goomba);
-    let goomba1 = new Monster(750, 375);
-    arrayMonsters.push(goomba1);
-    let goomba2 = new Monster(50, 275);
-    arrayMonsters.push(goomba2);
+    let goombaScreen11 = new Monster(800, 375);
+    arrayMonsters.push(goombaScreen11);
+    let goombaScreen12 = new Monster(750, 375);
+    arrayMonsters.push(goombaScreen12);
+    let goombaScreen13 = new Monster(50, 275);
+    arrayMonsters.push(goombaScreen13);
+
+    let goombaScreen21 = new Monster(1105, 324);
+    arrayMonsters.push(goombaScreen21);
+    let goombaScreen22 = new Monster(1160, 324);
+    arrayMonsters.push(goombaScreen22);
+    let goombaScreen23 = new Monster(1200, 324);
+    arrayMonsters.push(goombaScreen23);
+    let goombaScreen24 = new Monster(1405, 324);
+    arrayMonsters.push(goombaScreen24);
+    let goombaScreen25 = new Monster(1460, 324);
+    arrayMonsters.push(goombaScreen25);
+    let goombaScreen26 = new Monster(1500, 324);
+    arrayMonsters.push(goombaScreen26);
 }
 
 /*
@@ -164,8 +186,8 @@ function displayStats(lives, canvas) {
     var context = canvas.getContext("2d");
     context.font = "25px serif";
     context.fillStyle = "black";
-    context.fillText("Lives: " + lives, canvas.width - 100, 21);
-    context.fillText("Score: " + score, 0, 21);
+    context.fillText("Lives: " + person.lives, canvas.width - 100, 21);
+    context.fillText("Score: " + person.score, 0, 21);
 }
 
 
