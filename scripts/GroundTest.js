@@ -4,7 +4,7 @@ let h = baseHeight;
 let jumping = false;
 let person = new Person(895, baseHeight, 5);
 const moveDistance = 5;
-
+let levelNum = 1;
 let time = 0;
 const jumpDuration = 75;
 let jumpDistance = 8;
@@ -14,12 +14,19 @@ function main(lives) {
 
 
     if (person.lives > 0) {
+        let level;
         person = new Person(5, baseHeight, person.lives);
         jumpDistance = 8;
         jump(0.5);
         let canvas = document.getElementById("c");
         canvas.width = 900;
-        let level = createLevel1(canvas);
+        if (levelNum == 1) {
+            level = createLevel1(canvas);
+        } else if (levelNum == 2) {
+            level = createLevel2(canvas);
+        } else if (levelNum == 3) {
+            level = createLevel3(canvas);
+        }
         let arrayHoles = level[0];
         let arrayPlatforms = level[1];
         let arrayMonsters = level[2];
@@ -79,7 +86,6 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, ) {
     }
     if (person.x >= canvas.width) {
         person.x = 10;
-<<<<<<< HEAD
         person.screen++;
         if (person.screen < 5) {
             updateArray(arrayCoins, 900);
@@ -93,12 +99,8 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, ) {
             person.screen = 0;
             main(person.lives);
         }
-=======
-        updateArray(arrayCoins, 900);
-        updateArray(arrayMonsters, 900);
-        updateArray(arrayHoles, 900);
-        updateArray(arrayPlatforms, 900);
->>>>>>> f1fc9195df205a0e0a0d2ca3ea8838b8870fbbcc
+
+
     } else if (person.x + charWidth <= 0) {
         person.x = canvas.width - 10;
         updateArray(arrayCoins, -900);
@@ -200,7 +202,7 @@ function updateArray(array, distance) {
     for (let i = 0; i < array.length; i++) {
         array[i].x -= distance;
     }
-<<<<<<< HEAD
+
 
 }
 
@@ -214,7 +216,6 @@ function displayLoadingScreen(canvas, level) {
     context.fillStyle = "white";
     context.fillText("Moving to Level " + level, 300, 250);
 
-    let timer = setInterval(wait, 1000, 5);
-=======
->>>>>>> f1fc9195df205a0e0a0d2ca3ea8838b8870fbbcc
+
+
 }

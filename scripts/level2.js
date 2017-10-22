@@ -42,21 +42,16 @@ function addPlatforms2(level, canvas) {
     level[1].push(platform2);
     let platform3 = new Platform(canvas.width + 550, 300, 100);
     level[1].push(platform3);
-<<<<<<< HEAD
-    let platform4 = new Platform(canvas.width * 2 + 150, 300, 50);
+    let platform4 = new Platform(canvas.width * 2 + 100, 300, 50);
     level[1].push(platform4);
-    let platform5 = new Platform(canvas.width * 2 + 300, 200, 50);
-=======
-    let platform4 = new Platform(canvas.width * 2 + 100,300,50);
-    level[1].push(platform4);
-    let platform5 = new Platform(canvas.width * 2 + 200,200, 50);
->>>>>>> f1fc9195df205a0e0a0d2ca3ea8838b8870fbbcc
+    let platform5 = new Platform(canvas.width * 2 + 200, 200, 50);
+
     level[1].push(platform5);
-    let platform6 = new Platform(canvas.width * 2 + 300,100, 50);
+    let platform6 = new Platform(canvas.width * 2 + 300, 100, 50);
     level[1].push(platform6);
-    let platform7 = new Platform(canvas.width * 2 + 400,200, 50);
+    let platform7 = new Platform(canvas.width * 2 + 400, 200, 50);
     level[1].push(platform7);
-    let platform8 = new Platform(canvas.width * 2 + 500,100, 100);
+    let platform8 = new Platform(canvas.width * 2 + 500, 100, 100);
     level[1].push(platform8);
 }
 
@@ -85,7 +80,7 @@ function addCoins2(level, canvas) {
     let coin4 = new Coin(canvas.width + 750, 300);
     level[3].push(coin4);
     for (let i = 0; i < 9; i++) {
-        let coin5 = new Coin(canvas.width * 3 + (i*100) + 50, 325);
+        let coin5 = new Coin(canvas.width * 3 + (i * 100) + 50, 325);
         level[3].push(coin5);
     }
 }
