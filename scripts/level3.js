@@ -23,25 +23,30 @@ function createLevel3(canvas){
 function addHoles(level, canvas) {
     let hole = new Hole(canvas, 100, 50);
     level[0].push(hole);
-    let hole2 = new Hole(canvas, 200, 180);
+    let hole2 = new Hole(canvas, 450, 160);
     level[0].push(hole2);
-    let hole3 = new Hole(canvas, 400, 107);
-    level[0].push(hole3);
-    let hole4 = new Hole(canvas, (canvas.width + 50), 107);
-    level[0].push(hole4);
-}
+}  
 function addPlatforms(level, canvas) {
     let platform = new Platform(50,300,100);
     level[1].push(platform);
-    
-
+    let platform2 = new Platform(canvas.width + 150,300,300);
+    level[1].push(platform2);
 }
 function addMonsters(level, canvas) {
     let monster = new Monster(800,375);
     level[2].push(monster);
+    
 }
 function addCoins(level) {
     let coin = new Coin(600,300);
     level[3].push(coin);
-
+    let coin2 = new Coin(900+150,275);
+    level[3].push(coin2);
+    let coin3 = new Coin(900+200,275);
+    level[3].push(coin3);
+    let coin4 = new Coin(900+250,275);
+    level[3].push(coin4);
+    let coin5 = new Coin(900+300,275);
+    level[3].push(coin5);
 }
+
