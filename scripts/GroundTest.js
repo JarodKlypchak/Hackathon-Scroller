@@ -52,6 +52,11 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, ) {
             delete arrayCoins[i];
             arrayCoins.splice(i, 1);
             person.score += 50;
+            if (person.score % 550 == 0) {
+                person.lives++;
+            } else if (person.score % 500 == 0) {
+                person.lives++;
+            }
         }
     }
 
@@ -62,6 +67,11 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, ) {
             jump(10);
             arrayMonsters.splice(i, 1);
             person.score += 100;
+            if (person.score % 550 == 0) {
+                person.lives++;
+            } else if (person.score % 500 == 0) {
+                person.lives++;
+            }
         }
     }
     if (person.shouldDie(arrayMonsters)) {
@@ -70,10 +80,26 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, ) {
     }
     if (person.x >= canvas.width) {
         person.x = 10;
+<<<<<<< HEAD
+        person.screen++;
+        if (person.screen < 5) {
+            updateArray(arrayCoins, 900);
+            updateArray(arrayMonsters, 900);
+            updateArray(arrayHoles, 900);
+            updateArray(arrayPlatforms, 900);
+        } else {
+            clearInterval(reset);
+            levelNum++;
+            displayLoadingScreen(canvas, levelNum);
+            person.screen = 0;
+            main(person.lives);
+        }
+=======
         updateArray(arrayCoins, 900);
         updateArray(arrayMonsters, 900);
         updateArray(arrayHoles, 900);
         updateArray(arrayPlatforms, 900);
+>>>>>>> f1fc9195df205a0e0a0d2ca3ea8838b8870fbbcc
     } else if (person.x + charWidth <= 0) {
         person.x = canvas.width - 10;
         updateArray(arrayCoins, -900);
@@ -117,6 +143,10 @@ function displayGround(canvas, arrayHoles, arrayPlatforms) {
     }
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bf64990d5009e2e557c1dec985461312f2a1cdeb
 /*
  * shows lives to user
  */
@@ -166,4 +196,21 @@ function updateArray(array, distance) {
     for (let i = 0; i < array.length; i++) {
         array[i].x -= distance;
     }
+<<<<<<< HEAD
+
+}
+
+function displayLoadingScreen(canvas, level) {
+    canvas.width = 900;
+    canvas.height = 500;
+    canvas.style.backgroundColor = "black";
+    canvas.style.border = "1px solid black";
+    var context = canvas.getContext("2d");
+    context.font = "25px serif";
+    context.fillStyle = "white";
+    context.fillText("Moving to Level " + level, 300, 250);
+
+    let timer = setInterval(wait, 1000, 5);
+=======
+>>>>>>> f1fc9195df205a0e0a0d2ca3ea8838b8870fbbcc
 }
