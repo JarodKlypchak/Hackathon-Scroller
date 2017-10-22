@@ -20,5 +20,8 @@ document.getElementById("play").addEventListener("click", function() {
     document.getElementById("c").style.display = "block";
     document.getElementById("play").style.display = "none";
     document.getElementById("movingToLevel").innerHTML = "";
+<<<<<<< HEAD
 
+=======
+>>>>>>> 864174ba97e3de7640089bd171511086af4005a7
 });
