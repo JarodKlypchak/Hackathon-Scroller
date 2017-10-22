@@ -1,5 +1,9 @@
 class Person {
 
+    /**
+     * 
+     * Constructor
+     */
     constructor(xPos, yPos, lives, score) {
         this.x = xPos;
         this.y = yPos;
@@ -11,7 +15,10 @@ class Person {
         this.screen = 0;
     }
 
-
+    /**
+     * 
+     * Moves in the X direction for Distance, if there isn't a platform in the way
+     */
     moveX(distance, platforms) {
 
         if (this.canMoveLeft(platforms) && this.movingLeft) {
@@ -22,6 +29,9 @@ class Person {
         }
     }
 
+    /**
+     * Moves in the Y direction for Distance
+     */
     moveY(distance) {
         if (this.y > 0 && distance < 0) {
             this.y += distance;
@@ -30,7 +40,10 @@ class Person {
         }
     }
 
-
+    /**
+     * 
+     * If time of jump is below the jump duration, moves up. otherwise down.
+     */
     jump(time) {
 
         if (time <= jumpDuration) {
@@ -42,18 +55,20 @@ class Person {
         }
     }
 
+    /**
+     * 
+     * Displays this.
+     */
     display(canvas) {
         let ctx = canvas.getContext("2d");
         ctx.fillStyle = "#FF0000";
         ctx.fillRect(this.x, this.y, charWidth, charWidth);
     }
 
-    remove(canvas) {
-        let ctx = canvas.getContext("2d");
-        ctx.fillStyle = "lightgray";
-        ctx.fillRect(0, 0, 1000, 500);
-    }
-
+    /**
+     * 
+     * Returns true if this is at the set height.
+     */
     onObject(height) {
         let result = false;
         if (this.y < height + 10 && this.y > height - 10) {
@@ -62,6 +77,10 @@ class Person {
         return result;
     }
 
+    /**
+     * 
+     * Returns true if this is directly under the set height.
+     */
     belowObject(height) {
 
         let result = false;
@@ -70,7 +89,15 @@ class Person {
         }
         return result;
     }
+
+    /**
+     * 
+     * Jumps
+     */
     handleJump(arrayPlatforms) {
+        /**
+         * Keeps track of if a platform is underneath this, checking each platform
+         */
         let changed = false;
         for (let i = 0; i < arrayPlatforms.length; i++) {
             if (this.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && this.x + 32 >= arrayPlatforms[i].x && this.y < arrayPlatforms[i].y) {
@@ -78,7 +105,13 @@ class Person {
                 changed = true;
             }
         }
+        /**
+         * If you are jumping
+         */
         if (this.jumping) {
+            /**
+             *Checks if a platform is above person,and stops going up if so.
+             */
             for (let i = 0; i < arrayPlatforms.length; i++) {
                 if (this.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && this.x + 32 >= arrayPlatforms[i].x && this.y > arrayPlatforms[i].y) {
                     if (this.belowObject(arrayPlatforms[i].y)) {
@@ -87,25 +120,41 @@ class Person {
                     }
                 }
             }
+            /**
+             * Calls Jump to move this.
+             */
             time += 5;
             this.jump(time);
 
+            /**
+             * Checks if this is above the desired height, stopping the movement.
+             */
             if (this.onObject(h)) {
                 time = 0;
                 this.jumping = false;
                 this.y = h;
             }
         }
+        /**
+         * rests h to ground level if not above a platform
+         */
         if (!changed) {
             h = baseHeight;
         }
 
-        //Handles Falling when not jumping
+        /**
+         * Handles Falling when not jumping
+         * 
+         */
         if (this.y < h && !this.jumping) {
             this.jumping = true;
             time = 150;
         }
     }
+
+    /**
+     * Checks whether or not this should be falling through a gap.
+     */
     handleGaps(arrayHoles, arrayPlatforms) {
         if (!this.jumping && !this.platformUnder(arrayPlatforms)) {
             for (let i = 0; i < arrayHoles.length; i++) {
@@ -122,6 +171,11 @@ class Person {
         }
 
     }
+
+    /**
+     * 
+     * Checks if a platform is under this
+     */
     platformUnder(arrayPlatforms) {
         for (let i = 0; i < arrayPlatforms.length; i++) {
             if (this.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && this.x + 32 >= arrayPlatforms[i].x && this.y < arrayPlatforms[i].y) {
@@ -130,6 +184,10 @@ class Person {
         }
     }
 
+    /**
+     * 
+     * Checks if this collided with monster, or fell through the bottom of the screen. 
+     */
     shouldDie(arrayMonsters) {
         if (this.y > 500) {
             this.jumping = false;
@@ -145,6 +203,10 @@ class Person {
         }
     }
 
+    /**
+     * 
+     * Checks this can move  to the right, without hitting a platform.
+     */
     canMoveRight(platforms) {
         for (let i = 0; i < platforms.length; i++) {
             if (this.y + charWidth >= platforms[i].y + platforms[i].height + 1 && this.y < platforms[i].y) {
@@ -157,6 +219,11 @@ class Person {
         }
         return true;
     }
+
+    /**
+     * 
+     * Checks this can move  to the left, without hitting a platform.
+     */
     canMoveLeft(platforms) {
         for (let i = 0; i < platforms.length; i++) {
             if (this.y + charWidth >= platforms[i].y + platforms[i].height + 1 && this.y < platforms[i].y) {
