@@ -11,6 +11,7 @@ const jumpDuration = 75;
 let jumpDistance = 8;
 main(person.lives, person.score);
 
+
 function main(lives) {
 
     if (person.lives > 0) {
