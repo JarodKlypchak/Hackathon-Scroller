@@ -55,7 +55,6 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, ) {
         let killed = arrayMonsters[i].stomped(person);
         if (killed) {
             delete arrayMonsters[i];
-            jump(10);
             arrayMonsters.splice(i, 1);
             person.score += 100;
         }
