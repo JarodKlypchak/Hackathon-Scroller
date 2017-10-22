@@ -31,7 +31,7 @@ body{
     top: 26%;
     left: 10px;
     transform: translateY(-50%);
-
+    color: #171c23;
 }
 
 /*
@@ -59,7 +59,7 @@ body{
     transform: translateX(-50%);
     width: 30px;
     height: 4px;
-    background-color: black;
+    background-color: #171c23;
     margin: 5px 0;
     transition: 0.3s;
     border-radius: 30px;
