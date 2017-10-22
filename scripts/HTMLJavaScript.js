@@ -17,7 +17,6 @@ function animate() {
  * event listener for play button
  */
 document.getElementById("play").addEventListener("click", function() {
-    console.log("display");
     document.getElementById("c").style.display = "block";
     document.getElementById("play").style.display = "none";
     document.getElementById("movingToLevel").innerHTML = "";

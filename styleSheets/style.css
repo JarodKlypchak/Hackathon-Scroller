@@ -233,7 +233,6 @@
                     /*
  * don't display canvas
  */
-<<<<<<< HEAD
                     
                     .canvas canvas {
                         display: none;
@@ -313,25 +312,23 @@
 /*
  * button "Play"
  */
-
-.canvas button {
-    padding: 15px 25px;
-    font-size: 24px;
-    cursor: pointer;
-    text-decoration: none;
-    outline: none;
-    color: white;
-    background-color: #C62828;
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 9px #999;
-    position: relative;
-    top: 80%;
-    transform: translateY(-80%);
-}
-
-
-/*
+                    
+                    .canvas button {
+                        padding: 15px 25px;
+                        font-size: 24px;
+                        cursor: pointer;
+                        text-decoration: none;
+                        outline: none;
+                        color: white;
+                        background-color: #C62828;
+                        border: none;
+                        border-radius: 15px;
+                        box-shadow: 0 9px #999;
+                        position: relative;
+                        top: 80%;
+                        transform: translateY(-80%);
+                    }
+                    /*
 >>>>>>> parent of be78874... Revert "FIxed button"
  * Hover button chagnes color
  */
