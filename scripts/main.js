@@ -7,11 +7,9 @@ let person = new Person(5, baseHeight, 5, score);
 const moveDistance = 5;
 let levelNum = 1;
 let time = 0;
-<<<<<<< HEAD
-const jumpDuration = 150;
-=======
+
 const jumpDuration = 75;
->>>>>>> d70f1919d2cec8d328b5f395b214ebe451d8313c
+
 let jumpDistance = 8;
 main(person.lives, person.score);
 
