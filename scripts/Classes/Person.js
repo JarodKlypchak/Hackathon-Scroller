@@ -10,7 +10,7 @@ class Person {
         this.movingLeft = false;
         this.movingRight = false;
         this.jumping = false;
-
+        this.height = 32;
         this.lives = lives;
         this.score = score;
         this.screen = 0;

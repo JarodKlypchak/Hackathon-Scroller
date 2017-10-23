@@ -7,7 +7,11 @@ let person = new Person(5, baseHeight, 5, score);
 const moveDistance = 5;
 let levelNum = 1;
 let time = 0;
+<<<<<<< HEAD
 const jumpDuration = 150;
+=======
+const jumpDuration = 75;
+>>>>>>> d70f1919d2cec8d328b5f395b214ebe451d8313c
 let jumpDistance = 8;
 main(person.lives, person.score);
 
@@ -67,17 +71,10 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
      * Checks if Coins are collected.
      */
     for (let i = 0; i < arrayCoins.length; i++) {
-        let collected = arrayCoins[i].coinCollected(person);
-        if (collected) {
-
+        if (person.hits(arrayCoins[i])) {
             delete arrayCoins[i];
             arrayCoins.splice(i, 1);
-            person.score += 50;
-            person.calcScore += 50;
-            if (person.calcScore >= 500) {
-                person.lives++;
-                person.calcScore -= 500;
-            }
+            person.updateScore(50);
             i--;
         }
     }
@@ -85,25 +82,25 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
     /**
      * Checks if a each monster has been killed.
      */
+
     for (let i = 0; i < arrayMonsters.length; i++) {
+
         let killed = arrayMonsters[i].stomped(person);
         if (killed) {
 
             delete arrayMonsters[i];
             person.jump(10);
             arrayMonsters.splice(i, 1);
-            person.score += 100;
-            person.calcScore += 100;
-            if (person.calcScore >= 500) {
-                person.lives++;
-                person.calcScore -= 500;
-            }
+            person.updateScore(100);
             i--;
         }
+
     }
+
     /**
      * Checks if the Character is above the screen, or intersecting a monster.
      */
+
     if (person.shouldDie(arrayMonsters)) {
         clearInterval(reset);
         main(person.lives, person.score);

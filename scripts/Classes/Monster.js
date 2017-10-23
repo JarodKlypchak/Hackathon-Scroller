@@ -12,6 +12,8 @@ class Monster {
     constructor(x, y) {
         this.x = x;
         this.y = y;
+        this.height = 25;
+        this.width = 25;
         this.changeX = .8;
     }
 
