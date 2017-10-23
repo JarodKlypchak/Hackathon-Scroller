@@ -10,7 +10,8 @@ class Person {
         this.movingLeft = false;
         this.movingRight = false;
         this.jumping = false;
-
+        this.height = 32;
+        this.width = 32;
         this.lives = lives;
         this.score = score;
         this.screen = 0;
@@ -240,5 +241,27 @@ class Person {
             }
         }
         return true;
+    }
+    hits(obj) {
+        let result = false;
+        if (this.x >= obj.x && this.x <= obj.x + obj.width || (this.x + charWidth >= obj.x && this.x + charWidth <= obj.x + obj.width)) {
+            if (this.y >= obj.y && this.y <= obj.y + obj.height || (this.y + charWidth >= obj.y && this.y + charWidth <= obj.y + obj.height)) {
+                result = true;
+            }
+        }
+        if (this.obj >= this.x && obj.x <= this.x + this.width || (obj.x + obj.width >= this.x && obj.x + obj.width <= this.x + this.width)) {
+            if (obj.y >= this.y && obj.y <= this.y + this.height || (obj.y + obj.height >= this.y && obj.y + obj.height <= this.y + this.height)) {
+                result = true;
+            }
+        }
+        return result;
+    }
+    updateScore(score) {
+        this.score += score;
+        this.calcScore += score;
+        if (person.calcScore >= 500) {
+            person.lives++;
+            person.calcScore -= 500;
+        }
     }
 }
