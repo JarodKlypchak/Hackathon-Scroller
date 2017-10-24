@@ -287,23 +287,15 @@ class Person {
         }
 
 
-        if (this.velocity != 0) {
 
-            this.moveY(-this.velocity);
-        }
+        this.moveY(-this.velocity);
+
         this.velocity += this.force;
-        if (this.y + this.height >= fallHeight && this.velocity <= 0) {
-
+        if (this.y + this.height >= fallHeight && this.velocity < 0) {
             this.y = fallHeight - this.height;
             this.velocity = 0;
             this.jumping = false;
 
-        } else {
-            for (let i = 0; i < arrayHoles.length; i++) {
-                if (person.hits(arrayHoles[i])) {
-
-                }
-            }
         }
 
 
@@ -333,15 +325,17 @@ class Person {
             }
         }
 
+
         for (let i = 0; i < arrayPlatforms.length; i++) {
             if (this.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && this.x + 32 >= arrayPlatforms[i].x && this.y <= arrayPlatforms[i].y) {
 
-                if (arrayPlatforms[i].y <= y) {
+                if (arrayPlatforms[i].y == 400) {
+                    if (arrayPlatforms[i].y + arrayPlatforms[i].height <= y) {
 
-                    y = arrayPlatforms[i].y;
+                        y = arrayPlatforms[i].y + arrayPlatforms[i].height;
+                    }
+                } else if (arrayPlatforms[i].y <= y) {
 
-                }
-                if (arrayPlatforms[i].y >= y) {
                     y = arrayPlatforms[i].y;
                 }
             }
