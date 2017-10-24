@@ -16,6 +16,10 @@ class Person {
         this.score = score;
         this.screen = 0;
         this.calcScore = this.score % 500;
+
+        //NEW JUMP STUFF
+        this.velocity = 0;
+        this.force = -1;
     }
 
     /**
@@ -264,4 +268,17 @@ class Person {
             person.calcScore -= 500;
         }
     }
+    newJump() {
+        this.velocity = 10;
+    }
+
+    update(platforms, monsters, coins, holes) {
+        if (this.velocity != 0) {
+            this.moveY(-velocity);
+            this.velocity += force;
+        }
+
+
+    }
+
 }
