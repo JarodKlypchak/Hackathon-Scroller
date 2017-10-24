@@ -32,14 +32,11 @@ class Person {
      *
      * Moves in the X direction for Distance, if there isn't a platform in the way
      */
-    moveX(distance, platforms) {
     moveX(distance, platforms, holes) {
 
-        if (this.canMoveLeft(platforms) && this.movingLeft) {
         if (this.canMoveLeft(platforms, holes) && this.movingLeft) {
             this.x += (-distance);
         }
-        if (this.canMoveRight(platforms) && this.movingRight) {
         if (this.canMoveRight(platforms, holes) && this.movingRight) {
             this.x += (distance);
         }
@@ -78,7 +75,6 @@ class Person {
     display(canvas) {
         let ctx = canvas.getContext("2d");
         let img = document.createElement("IMG");
-        img.src = "images/portalCube.png";
         img.src = "images/portalCube64.png";
         ctx.drawImage(img, this.x, this.y, charWidth, charWidth);
         //ctx.fillStyle = "#FF0000";
@@ -112,34 +108,6 @@ class Person {
 
 
 
-         * Handles Falling when not jumping
-         *
-         */
-        if (this.y < h && !this.jumping) {
-            this.jumping = true;
-            time = 150;
-        }
-    }
-
-    /**
-     * Checks whether or not this should be falling through a gap.
-     */
-    handleGaps(arrayHoles, arrayPlatforms) {
-        if (!this.jumping && !this.platformUnder(arrayPlatforms)) {
-            for (let i = 0; i < arrayHoles.length; i++) {
-                if (this.x >= arrayHoles[i].x && this.x + 32 <= arrayHoles[i].x + arrayHoles[i].width && this.y <= baseHeight) {
-                    this.jumping = true;
-                    time = 1000;
-                    this.jump(time);
-
-                }
-            }
-        }
-        if (this.y >= baseHeight + 30) {
-            jumpDistance = 25;
-        }
-
-    }
 
     /**
      *
