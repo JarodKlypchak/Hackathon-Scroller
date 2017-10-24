@@ -4,11 +4,11 @@ let h = baseHeight;
 let jumping = false;
 let score = 0;
 let person = new Person(5, baseHeight, 5, score);
-const moveDistance = 5;
+const moveDistance = 1.5;
 let levelNum = 1;
 let time = 0;
 const jumpDuration = 150;
-let jumpDistance = 8;
+let jumpDistance = 1;
 main(person.lives, person.score);
 
 
@@ -39,7 +39,7 @@ function main(lives) {
         }
 
         setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
-        reset = setInterval(game, 50, arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, levelNum);
+        reset = setInterval(game, 10, arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, levelNum);
     }
 }
 
@@ -206,7 +206,7 @@ document.addEventListener("keydown", function(event) {
         person.movingLeft = true;
     } else if ((event.keyCode == "87" && !person.jumping) || (event.keyCode == "38" && !person.jumping) || (event.keyCode == "32" && !person.jumping)) {
         //person.jump(time);
-        person.velocity = 10;
+        person.velocity = person.jumpVelocity;
         person.jumping = true;
 
     }
