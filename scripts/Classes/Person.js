@@ -42,7 +42,7 @@ class Person {
         this.jumping = false;
         this.velocity = 0;
         this.force = -.1;
-        this.jumpVelocity = 4;
+        this.jumpVelocity = 5;
     }
 
 
