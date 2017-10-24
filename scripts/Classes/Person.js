@@ -68,7 +68,7 @@ class Person {
     display(canvas) {
         let ctx = canvas.getContext("2d");
         let img = document.createElement("IMG");
-        img.src = "images/portalCube.png";
+        img.src = "images/portalCube64.png";
         ctx.drawImage(img, this.x, this.y, charWidth, charWidth);
         //ctx.fillStyle = "#FF0000";
         //ctx.fillRect(this.x, this.y, charWidth, charWidth);

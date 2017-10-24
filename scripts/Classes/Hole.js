@@ -15,7 +15,7 @@
       */
      display(){
         let hole = c.getContext("2d");
-        this.holeColor = "lightgray";
+        this.holeColor = "#7EC0EE";
         hole.fillStyle = this.holeColor;
         hole.fillRect(this.x, this.canvas.height-100, this.width, 100);
     }
