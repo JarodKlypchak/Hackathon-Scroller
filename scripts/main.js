@@ -4,11 +4,11 @@ let h = baseHeight;
 let jumping = false;
 let score = 0;
 let person = new Person(5, baseHeight, 5, score);
-const moveDistance = 1.5;
+const moveDistance = 3;
 let levelNum = 1;
 let time = 0;
 const jumpDuration = 150;
-let jumpDistance = 1;
+let jumpDistance = .5;
 main(person.lives, person.score);
 
 
@@ -18,7 +18,7 @@ function main(lives) {
         let level;
         person = new Person(5, baseHeight, lives, person.score);
         jumpDistance = 5;
-        person.jump(0.5);
+
         let canvas = document.getElementById("c");
         canvas.width = 900;
         if (levelNum == 1) {
@@ -57,7 +57,7 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
         arrayMonsters[i].offScreen(person, canvas);
     }
 
-    person.update(arrayPlatforms, arrayHoles, arrayCoins);
+
 
     /**
      * Checks if a each monster has been killed.
@@ -235,4 +235,8 @@ function youWin(canvas, score) {
     canvas.style.display = "none";
     let displayScore = document.getElementById("movingToLevel");
     movingToLevel.innerHTML = "Score: " + score;
+}
+
+function checkOffScreen() {
+
 }
