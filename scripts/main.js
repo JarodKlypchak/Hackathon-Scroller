@@ -91,7 +91,8 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
         if (killed) {
 
             delete arrayMonsters[i];
-            person.jump(10);
+
+            person.velocity = 5;
             arrayMonsters.splice(i, 1);
             person.updateScore(100);
             i--;

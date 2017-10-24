@@ -100,87 +100,8 @@ class Person {
         return result;
     }
 
-    /**
-     *
-     * Jumps
-     */
-    handleJump(arrayPlatforms) {
-        /**
-         * Keeps track of if a platform is underneath this, checking each platform
-         */
-        let changed = false;
-        for (let i = 0; i < arrayPlatforms.length; i++) {
-            if (this.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && this.x + 32 >= arrayPlatforms[i].x && this.y < arrayPlatforms[i].y) {
-                h = arrayPlatforms[i].y - charWidth + arrayPlatforms[i].height;
-                changed = true;
-            }
-        }
-        /**
-         * If you are jumping
-         */
-        if (this.jumping) {
-            /**
-             *Checks if a platform is above person,and stops going up if so.
-             */
-            for (let i = 0; i < arrayPlatforms.length; i++) {
-                if (this.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && this.x + 32 >= arrayPlatforms[i].x && this.y > arrayPlatforms[i].y) {
-                    if (this.belowObject(arrayPlatforms[i].y)) {
-                        time = jumpDuration;
 
-                    }
-                }
-            }
-            /**
-             * Calls Jump to move this.
-             */
-            time += 5;
-            this.jump(time);
 
-            /**
-             * Checks if this is above the desired height, stopping the movement.
-             */
-            if (this.onObject(h)) {
-                time = 0;
-                this.jumping = false;
-                this.y = h;
-            }
-        }
-        /**
-         * rests h to ground level if not above a platform
-         */
-        if (!changed) {
-            h = baseHeight;
-        }
-
-        /**
-         * Handles Falling when not jumping
-         *
-         */
-        if (this.y < h && !this.jumping) {
-            this.jumping = true;
-            time = 150;
-        }
-    }
-
-    /**
-     * Checks whether or not this should be falling through a gap.
-     */
-    handleGaps(arrayHoles, arrayPlatforms) {
-        if (!this.jumping && !this.platformUnder(arrayPlatforms)) {
-            for (let i = 0; i < arrayHoles.length; i++) {
-                if (this.x >= arrayHoles[i].x && this.x + 32 <= arrayHoles[i].x + arrayHoles[i].width && this.y <= baseHeight) {
-                    this.jumping = true;
-                    time = 1000;
-                    this.jump(time);
-
-                }
-            }
-        }
-        if (this.y >= baseHeight + 30) {
-            jumpDistance = 25;
-        }
-
-    }
 
     /**
      *
