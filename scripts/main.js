@@ -5,7 +5,7 @@ let jumping = false;
 let score = 0;
 let person = new Person(5, baseHeight, 5, score);
 const moveDistance = 5;
-let levelNum = 3;
+let levelNum = 1;
 let time = 0;
 const jumpDuration = 150;
 let jumpDistance = 8;
@@ -199,7 +199,7 @@ function displayStats(lives, canvas) {
 /*
  * detect user input in the event of the spacebar, left arrow, and right arrow are pressed down.
  */
-document.addEventListener("keydown", function(event){
+document.addEventListener("keydown", function(event) {
     if (event.keyCode == "68" || event.keyCode == "39") {
         person.movingRight = true;
     } else if (event.keyCode == "65" || event.keyCode == "37") {
@@ -208,7 +208,7 @@ document.addEventListener("keydown", function(event){
         //person.jump(time);
         person.velocity = 10;
         person.jumping = true;
-        console.log(person.velocity);
+
     }
 });
 
@@ -221,7 +221,7 @@ document.body.onkeyup = function(e) {
     } else if (e.keyCode == "65" || e.keyCode == "37") {
         person.movingLeft = false;
     }
-    console.log("hi");
+
 }
 
 /*
