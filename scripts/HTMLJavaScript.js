@@ -26,30 +26,31 @@ document.getElementById("play").addEventListener("click", function() {
 });
 
 /*
- * event listener for left button
+ * event listener for left button pressed down
  */
-document.getElementById("left").addEventListener("click", function(event){
-    if(person.movingLeft){
-        person.movingLeft = false;
-        person.movingRight = false;
-    } else {
-        person.movingLeft = true;
-        person.movingRight = false;
-    }
+document.getElementById("left").addEventListener("mousedown", function(event){
+    person.movingLeft = true;
 });
 
+/*
+ * event listener for left button not down
+ */
+document.getElementById("left").addEventListener("mouseup", function(event){
+    person.movingLeft = false;
+});
 
 /*
- * event listener for right button
+ * event listener for right button pressed down
  */
-document.getElementById("right").addEventListener("click", function(event){
-    if(person.movingRight){
-        person.movingRight = false;
-        person.movingLeft = false;
-    } else {
-        person.movingRight = true;
-        person.movingLeft = false;
-    }
+document.getElementById("right").addEventListener("mousedown", function(event){
+    person.movingRight = true;
+});
+
+/*
+ * event listener for right button not pressed
+ */
+document.getElementById("right").addEventListener("mouseup", function(event){
+    person.movingRight = false;
 });
 
 /*
