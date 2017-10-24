@@ -1,3 +1,6 @@
+/**
+ * This Class Represents the Players Character.
+ */
 class Person {
 
     /**
@@ -5,28 +8,43 @@ class Person {
      * Constructor
      */
     constructor(xPos, yPos, lives, score) {
+        /**
+         * Basic Location Instance Variables
+         */
         this.x = xPos;
         this.y = yPos;
-        this.movingLeft = false;
-        this.movingRight = false;
-        this.jumping = false;
         this.height = 32;
         this.width = 32;
+
+        /**
+         * Keeps track of if this is moving left or right.
+         */
+        this.movingLeft = false;
+        this.movingRight = false;
+
+
+        /**
+         * Number of lives, and the score the user has.
+         */
         this.lives = lives;
         this.score = score;
-        this.screen = 0;
         this.calcScore = this.score % 500;
 
-<<<<<<< HEAD
-        //NEW JUMP STUFF
-        this.velocity = 0;
-        this.force = -1;
-=======
+        /**
+         * Keeps Track of which screen of the level the user is on.
+         */
+        this.screen = 0;
+
+
+        /**
+         * Instance Variables for Jumping
+         */
+        this.jumping = false;
         this.velocity = 0;
         this.force = -.1;
         this.jumpVelocity = 5;
->>>>>>> f29fcd6c72e109c67a3693dafe6d0bb3a37ad705
     }
+
 
     /**
      *
@@ -55,21 +73,6 @@ class Person {
 
     /**
      *
-     * If time of jump is below the jump duration, moves up. otherwise down.
-     */
-    jump(time) {
-
-        if (time <= jumpDuration) {
-            person.moveY(-jumpDistance);
-        } else {
-
-            person.moveY(jumpDistance);
-
-        }
-    }
-
-    /**
-     *
      * Displays this.
      */
     display(canvas) {
@@ -77,8 +80,7 @@ class Person {
         let img = document.createElement("IMG");
         img.src = "images/portalCube64.png";
         ctx.drawImage(img, this.x, this.y, charWidth, charWidth);
-        //ctx.fillStyle = "#FF0000";
-        //ctx.fillRect(this.x, this.y, charWidth, charWidth);
+
     }
 
     /**
@@ -179,6 +181,11 @@ class Person {
 
         return true;
     }
+
+    /**
+     * 
+     * Reports if this colides with obj.
+     */
     hits(obj) {
         let result = false;
         if (this.x >= obj.x && this.x <= obj.x + obj.width || (this.x + charWidth >= obj.x && this.x + charWidth <= obj.x + obj.width)) {
@@ -193,6 +200,11 @@ class Person {
         }
         return result;
     }
+
+    /**
+     * 
+     * Addes score to this.score, and checks if an extra live should be awarded.
+     */
     updateScore(score) {
         this.score += score;
         this.calcScore += score;
@@ -201,26 +213,18 @@ class Person {
             person.calcScore -= 500;
         }
     }
-<<<<<<< HEAD
-    newJump() {
-        this.velocity = 10;
-    }
 
-    update(platforms, monsters, coins, holes) {
-        if (this.velocity != 0) {
-            this.moveY(-velocity);
-            this.velocity += force;
-        }
-
-
-    }
-
-=======
-
+    /**
+     * 
+     * Main Update that handles all movement of this.
+     */
     update(arrayPlatforms, arrayHoles, arrayCoins) {
         this.moveX(moveDistance, arrayPlatforms, arrayHoles);
         let fallHeight = this.highestObjectBeneath(arrayPlatforms, arrayHoles);
 
+        /**
+         * Checks if this would hit a platform above it
+         */
         for (let i = 0; i < arrayPlatforms.length; i++) {
             if (this.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && this.x + 32 >= arrayPlatforms[i].x && this.y > arrayPlatforms[i].y) {
                 if (this.belowObject(arrayPlatforms[i].y)) {
@@ -231,10 +235,15 @@ class Person {
         }
 
 
-
+        /**
+         * Moves this vertically, changes gravity to account for acceleration
+         */
         this.moveY(-this.velocity);
-
         this.velocity += this.force;
+
+        /**
+         * Checks if this should stop falling
+         */
         if (this.y + this.height >= fallHeight && this.velocity < 0) {
             this.y = fallHeight - this.height;
             this.velocity = 0;
@@ -243,10 +252,16 @@ class Person {
         }
 
 
-
+        /**
+         * Stops the User from Jumping if they are falling
+         */
         if (this.velocity < 0) {
             this.jumping = true;
         }
+
+        /**
+         * Checks if a Coin is hit
+         */
         for (let i = 0; i < arrayCoins.length; i++) {
             if (person.hits(arrayCoins[i])) {
                 delete arrayCoins[i];
@@ -258,6 +273,10 @@ class Person {
 
     }
 
+    /**
+     * 
+     * Reports the height of the highest object that is beneath the object.
+     */
     highestObjectBeneath(arrayPlatforms, arrayHoles) {
         let y = baseHeight + 32;
         if (this.y + this.height - 1 > baseHeight + 32) {
@@ -286,5 +305,4 @@ class Person {
         }
         return y;
     }
->>>>>>> f29fcd6c72e109c67a3693dafe6d0bb3a37ad705
 }
