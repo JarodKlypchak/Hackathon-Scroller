@@ -24,7 +24,7 @@ class Monster {
             if (this.y != 375) {
                 this.closest = this.x - arrayPlatforms[0].x;
                 for (let i = 0; i < arrayPlatforms.length; i++) {
-                    if (Math.abs(this.x - arrayPlatforms[i].x) <= this.closest && this.y - 5 < arrayPlatforms[i].y) {
+                    if (Math.abs(this.x - arrayPlatforms[i].x) <= this.closest && this.y + 25 == arrayPlatforms[i].y) {
                         this.closestPlat = arrayPlatforms[i];
                         this.closest = this.x - this.closestPlat.x;
                     }
