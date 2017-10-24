@@ -338,7 +338,11 @@ class Person {
 
                 if (arrayPlatforms[i].y <= y) {
 
-                    y = arrayPlatforms[i].y;
+                    if (y = baseHeight + 32) {
+                        y = arrayPlatforms[i].y;
+
+
+                    }
 
                 }
                 if (arrayPlatforms[i].y >= y) {
