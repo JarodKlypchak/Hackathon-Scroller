@@ -25,12 +25,12 @@ class Person {
      *
      * Moves in the X direction for Distance, if there isn't a platform in the way
      */
-    moveX(distance, platforms) {
+    moveX(distance, platforms, holes) {
 
-        if (this.canMoveLeft(platforms) && this.movingLeft) {
+        if (this.canMoveLeft(platforms, holes) && this.movingLeft) {
             this.x += (-distance);
         }
-        if (this.canMoveRight(platforms) && this.movingRight) {
+        if (this.canMoveRight(platforms, holes) && this.movingRight) {
             this.x += (distance);
         }
     }
@@ -216,7 +216,7 @@ class Person {
      *
      * Checks this can move  to the right, without hitting a platform.
      */
-    canMoveRight(platforms) {
+    canMoveRight(platforms, holes) {
         for (let i = 0; i < platforms.length; i++) {
             if (this.y + charWidth >= platforms[i].y + platforms[i].height + 1 && this.y < platforms[i].y) {
 
@@ -226,6 +226,8 @@ class Person {
                 }
             }
         }
+
+
         return true;
     }
 
@@ -233,7 +235,7 @@ class Person {
      * 
      * Checks this can move  to the left, without hitting a platform.
      */
-    canMoveLeft(platforms) {
+    canMoveLeft(platforms, holes) {
         for (let i = 0; i < platforms.length; i++) {
             if (this.y + charWidth >= platforms[i].y + platforms[i].height + 1 && this.y < platforms[i].y) {
 
@@ -243,6 +245,8 @@ class Person {
                 }
             }
         }
+
+
         return true;
     }
     hits(obj) {
@@ -269,21 +273,21 @@ class Person {
     }
 
     update(arrayPlatforms, arrayHoles, arrayCoins) {
-        this.moveX(moveDistance, arrayPlatforms);
+        this.moveX(moveDistance, arrayPlatforms, arrayHoles);
         let fallHeight = this.highestObjectBeneath(arrayPlatforms, arrayHoles);
 
-        this.velocity += this.force / 2;
+        this.velocity += this.force;
         if (this.velocity != 0) {
             this.moveY(-this.velocity);
         }
 
         if (this.y + this.height >= fallHeight && this.velocity <= 0) {
-            if (this.y + this.height < fallHeight + 5) {
-                this.y = fallHeight - this.height;
-            }
-
+            this.y = fallHeight - this.height;
             this.velocity = 0;
             this.jumping = false;
+        }
+        if (this.y + this.width > baseHeight) {
+            this.velocity = -10;
         }
         if (this.velocity < 0) {
             this.jumping = true;
