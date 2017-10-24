@@ -18,7 +18,8 @@ class Person {
         this.calcScore = this.score % 500;
 
         this.velocity = 0;
-        this.force = -.5;
+        this.force = -.1;
+        this.jumpVelocity = 5;
     }
 
     /**
