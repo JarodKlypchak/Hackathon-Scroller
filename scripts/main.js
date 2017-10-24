@@ -57,7 +57,7 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
         arrayMonsters[i].offScreen(person, canvas);
     }
 
-
+    person.update(arrayPlatforms, arrayHoles, arrayCoins);
     /**
      * Handles User Movement
      */
@@ -159,7 +159,7 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
 function setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
     canvas.width = 900;
     canvas.height = 500;
-    canvas.style.backgroundColor = "lightgray";
+    canvas.style.backgroundColor = "#7EC0EE";
     canvas.style.border = "1px solid black";
     displayGround(canvas, arrayHoles, arrayPlatforms);
     for (let i = 0; i < arrayMonsters.length; i++) {
@@ -208,6 +208,7 @@ document.body.onkeydown = function(e) {
         //person.jump(time);
         person.velocity = 10;
         person.jumping = true;
+        console.log(person.velocity);
     }
 }
 
@@ -220,6 +221,7 @@ document.body.onkeyup = function(e) {
     } else if (e.keyCode == "65" || e.keyCode == "37") {
         person.movingLeft = false;
     }
+    console.log("hi");
 }
 
 /*

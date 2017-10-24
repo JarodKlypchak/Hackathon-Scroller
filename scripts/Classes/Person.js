@@ -276,21 +276,32 @@ class Person {
         this.moveX(moveDistance, arrayPlatforms, arrayHoles);
         let fallHeight = this.highestObjectBeneath(arrayPlatforms, arrayHoles);
 
-        this.velocity += this.force;
+
+        for (let i = 0; i < arrayPlatforms.length; i++) {
+            if (this.hits(arrayPlatforms[i])) {
+                this.velocity = -1;
+            }
+        }
         if (this.velocity != 0) {
+
             this.moveY(-this.velocity);
         }
-
+        this.velocity += this.force;
         if (this.y + this.height >= fallHeight && this.velocity <= 0) {
             this.y = fallHeight - this.height;
             this.velocity = 0;
             this.jumping = false;
         }
+        for (let i = 0; i < arrayPlatforms.length; i++) {
+            if (this.hits(arrayPlatforms[i])) {
+                this.velocity = -1;
+            }
+        }
         if (this.y + this.width > baseHeight) {
-            this.velocity = -10;
+            //this.velocity = -10;
         }
         if (this.velocity < 0) {
-            this.jumping = true;
+            //this.jumping = true;
         }
         for (let i = 0; i < arrayCoins.length; i++) {
             if (person.hits(arrayCoins[i])) {
