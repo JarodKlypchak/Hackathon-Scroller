@@ -49,6 +49,9 @@ function addPlatforms3(level, canvas) {
     level[1].push(platform2);
     let platform3 = new Platform(canvas.width + 650, 400, 100, -200);
     level[1].push(platform3);
+    platform3 = new Platform(canvas.width + 650, 100, 100);
+    level[1].push(platform3);
+
 }
 
 function addMonsters3(level, canvas) {

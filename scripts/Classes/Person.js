@@ -17,9 +17,15 @@ class Person {
         this.screen = 0;
         this.calcScore = this.score % 500;
 
+<<<<<<< HEAD
         //NEW JUMP STUFF
         this.velocity = 0;
         this.force = -1;
+=======
+        this.velocity = 0;
+        this.force = -.1;
+        this.jumpVelocity = 5;
+>>>>>>> f29fcd6c72e109c67a3693dafe6d0bb3a37ad705
     }
 
     /**
@@ -27,11 +33,14 @@ class Person {
      * Moves in the X direction for Distance, if there isn't a platform in the way
      */
     moveX(distance, platforms) {
+    moveX(distance, platforms, holes) {
 
         if (this.canMoveLeft(platforms) && this.movingLeft) {
+        if (this.canMoveLeft(platforms, holes) && this.movingLeft) {
             this.x += (-distance);
         }
         if (this.canMoveRight(platforms) && this.movingRight) {
+        if (this.canMoveRight(platforms, holes) && this.movingRight) {
             this.x += (distance);
         }
     }
@@ -70,6 +79,7 @@ class Person {
         let ctx = canvas.getContext("2d");
         let img = document.createElement("IMG");
         img.src = "images/portalCube.png";
+        img.src = "images/portalCube64.png";
         ctx.drawImage(img, this.x, this.y, charWidth, charWidth);
         //ctx.fillStyle = "#FF0000";
         //ctx.fillRect(this.x, this.y, charWidth, charWidth);
@@ -100,59 +110,8 @@ class Person {
         return result;
     }
 
-    /**
-     *
-     * Jumps
-     */
-    handleJump(arrayPlatforms) {
-        /**
-         * Keeps track of if a platform is underneath this, checking each platform
-         */
-        let changed = false;
-        for (let i = 0; i < arrayPlatforms.length; i++) {
-            if (this.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && this.x + 32 >= arrayPlatforms[i].x && this.y < arrayPlatforms[i].y) {
-                h = arrayPlatforms[i].y - charWidth + arrayPlatforms[i].height;
-                changed = true;
-            }
-        }
-        /**
-         * If you are jumping
-         */
-        if (this.jumping) {
-            /**
-             *Checks if a platform is above person,and stops going up if so.
-             */
-            for (let i = 0; i < arrayPlatforms.length; i++) {
-                if (this.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && this.x + 32 >= arrayPlatforms[i].x && this.y > arrayPlatforms[i].y) {
-                    if (this.belowObject(arrayPlatforms[i].y)) {
-                        time = jumpDuration;
 
-                    }
-                }
-            }
-            /**
-             * Calls Jump to move this.
-             */
-            time += 2;
-            this.jump(time);
 
-            /**
-             * Checks if this is above the desired height, stopping the movement.
-             */
-            if (this.onObject(h)) {
-                time = 0;
-                this.jumping = false;
-                this.y = h;
-            }
-        }
-        /**
-         * rests h to ground level if not above a platform
-         */
-        if (!changed) {
-            h = baseHeight;
-        }
-
-        /**
          * Handles Falling when not jumping
          *
          */
@@ -217,7 +176,7 @@ class Person {
      *
      * Checks this can move  to the right, without hitting a platform.
      */
-    canMoveRight(platforms) {
+    canMoveRight(platforms, holes) {
         for (let i = 0; i < platforms.length; i++) {
             if (this.y + charWidth >= platforms[i].y + platforms[i].height + 1 && this.y < platforms[i].y) {
 
@@ -227,6 +186,8 @@ class Person {
                 }
             }
         }
+
+
         return true;
     }
 
@@ -234,7 +195,7 @@ class Person {
      * 
      * Checks this can move  to the left, without hitting a platform.
      */
-    canMoveLeft(platforms) {
+    canMoveLeft(platforms, holes) {
         for (let i = 0; i < platforms.length; i++) {
             if (this.y + charWidth >= platforms[i].y + platforms[i].height + 1 && this.y < platforms[i].y) {
 
@@ -244,6 +205,8 @@ class Person {
                 }
             }
         }
+
+
         return true;
     }
     hits(obj) {
@@ -268,6 +231,7 @@ class Person {
             person.calcScore -= 500;
         }
     }
+<<<<<<< HEAD
     newJump() {
         this.velocity = 10;
     }
@@ -281,4 +245,76 @@ class Person {
 
     }
 
+=======
+
+    update(arrayPlatforms, arrayHoles, arrayCoins) {
+        this.moveX(moveDistance, arrayPlatforms, arrayHoles);
+        let fallHeight = this.highestObjectBeneath(arrayPlatforms, arrayHoles);
+
+        for (let i = 0; i < arrayPlatforms.length; i++) {
+            if (this.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && this.x + 32 >= arrayPlatforms[i].x && this.y > arrayPlatforms[i].y) {
+                if (this.belowObject(arrayPlatforms[i].y)) {
+                    this.velocity = -1;
+
+                }
+            }
+        }
+
+
+
+        this.moveY(-this.velocity);
+
+        this.velocity += this.force;
+        if (this.y + this.height >= fallHeight && this.velocity < 0) {
+            this.y = fallHeight - this.height;
+            this.velocity = 0;
+            this.jumping = false;
+
+        }
+
+
+
+        if (this.velocity < 0) {
+            this.jumping = true;
+        }
+        for (let i = 0; i < arrayCoins.length; i++) {
+            if (person.hits(arrayCoins[i])) {
+                delete arrayCoins[i];
+                arrayCoins.splice(i, 1);
+                person.updateScore(50);
+                i--;
+            }
+        }
+
+    }
+
+    highestObjectBeneath(arrayPlatforms, arrayHoles) {
+        let y = baseHeight + 32;
+        if (this.y + this.height - 1 > baseHeight + 32) {
+            y = 1000;
+        }
+        for (let i = 0; i < arrayHoles.length; i++) {
+            if (this.x >= arrayHoles[i].x && this.x + this.width <= arrayHoles[i].x + arrayHoles[i].width) {
+                y = 1000;
+            }
+        }
+
+
+        for (let i = 0; i < arrayPlatforms.length; i++) {
+            if (this.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && this.x + 32 >= arrayPlatforms[i].x && this.y <= arrayPlatforms[i].y) {
+
+                if (arrayPlatforms[i].y == 400) {
+                    if (arrayPlatforms[i].y + arrayPlatforms[i].height <= y) {
+
+                        y = arrayPlatforms[i].y + arrayPlatforms[i].height;
+                    }
+                } else if (arrayPlatforms[i].y <= y) {
+
+                    y = arrayPlatforms[i].y;
+                }
+            }
+        }
+        return y;
+    }
+>>>>>>> f29fcd6c72e109c67a3693dafe6d0bb3a37ad705
 }
