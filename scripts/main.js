@@ -92,7 +92,7 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
 
             delete arrayMonsters[i];
 
-            person.velocity = 5;
+            person.velocity = 4;
             arrayMonsters.splice(i, 1);
             person.updateScore(100);
             i--;
