@@ -199,18 +199,18 @@ function displayStats(lives, canvas) {
 /*
  * detect user input in the event of the spacebar, left arrow, and right arrow are pressed down.
  */
-document.body.onkeydown = function(e) {
-    if (e.keyCode == "68" || e.keyCode == "39") {
+document.addEventListener("keydown", function(event){
+    if (event.keyCode == "68" || event.keyCode == "39") {
         person.movingRight = true;
-    } else if (e.keyCode == "65" || e.keyCode == "37") {
+    } else if (event.keyCode == "65" || event.keyCode == "37") {
         person.movingLeft = true;
-    } else if ((e.keyCode == "87" && !person.jumping) || (e.keyCode == "38" && !person.jumping) || (e.keyCode == "32" && !person.jumping)) {
+    } else if ((event.keyCode == "87" && !person.jumping) || (event.keyCode == "38" && !person.jumping) || (event.keyCode == "32" && !person.jumping)) {
         //person.jump(time);
         person.velocity = 10;
         person.jumping = true;
         console.log(person.velocity);
     }
-}
+});
 
 /**
  * Detects when keys for finishing moving left and right.
