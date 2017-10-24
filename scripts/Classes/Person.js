@@ -276,32 +276,39 @@ class Person {
         this.moveX(moveDistance, arrayPlatforms, arrayHoles);
         let fallHeight = this.highestObjectBeneath(arrayPlatforms, arrayHoles);
 
-
         for (let i = 0; i < arrayPlatforms.length; i++) {
-            if (this.hits(arrayPlatforms[i])) {
-                this.velocity = -1;
+            if (this.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && this.x + 32 >= arrayPlatforms[i].x && this.y > arrayPlatforms[i].y) {
+                if (this.belowObject(arrayPlatforms[i].y)) {
+                    this.velocity = -1;
+
+                }
             }
         }
+
+
         if (this.velocity != 0) {
 
             this.moveY(-this.velocity);
         }
         this.velocity += this.force;
         if (this.y + this.height >= fallHeight && this.velocity <= 0) {
+
             this.y = fallHeight - this.height;
             this.velocity = 0;
             this.jumping = false;
-        }
-        for (let i = 0; i < arrayPlatforms.length; i++) {
-            if (this.hits(arrayPlatforms[i])) {
-                this.velocity = -1;
+
+        } else {
+            for (let i = 0; i < arrayHoles.length; i++) {
+                if (person.hits(arrayHoles[i])) {
+
+                }
             }
         }
-        if (this.y + this.width > baseHeight) {
-            //this.velocity = -10;
-        }
+
+
+
         if (this.velocity < 0) {
-            //this.jumping = true;
+            this.jumping = true;
         }
         for (let i = 0; i < arrayCoins.length; i++) {
             if (person.hits(arrayCoins[i])) {
@@ -316,6 +323,9 @@ class Person {
 
     highestObjectBeneath(arrayPlatforms, arrayHoles) {
         let y = baseHeight + 32;
+        if (this.y + this.height - 1 > baseHeight + 32) {
+            y = 1000;
+        }
         for (let i = 0; i < arrayHoles.length; i++) {
             if (this.x >= arrayHoles[i].x && this.x + this.width <= arrayHoles[i].x + arrayHoles[i].width) {
                 y = 1000;
