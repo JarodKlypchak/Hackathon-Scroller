@@ -120,6 +120,7 @@ class Person {
      * Checks if this collided with monster, or fell through the bottom of the screen.
      */
     shouldDie(arrayMonsters) {
+
         if (this.y > 500) {
             this.jumping = false;
             this.lives--;
@@ -139,18 +140,19 @@ class Person {
      * Checks this can move  to the right, without hitting a platform.
      */
     canMoveRight(platforms, holes) {
+        let result = true;
         for (let i = 0; i < platforms.length; i++) {
             if (this.y + charWidth >= platforms[i].y + platforms[i].height + 1 && this.y < platforms[i].y) {
 
-                if (this.x + charWidth < platforms[i].x && this.x + charWidth > platforms[i].x - 5) {
+                if (this.x + charWidth < platforms[i].x && this.x + charWidth > platforms[i].x - 2) {
 
-                    return false;
+                    result = false;
                 }
             }
         }
 
 
-        return true;
+        return result;
     }
 
     /**
@@ -161,7 +163,7 @@ class Person {
         for (let i = 0; i < platforms.length; i++) {
             if (this.y + charWidth >= platforms[i].y + platforms[i].height + 1 && this.y < platforms[i].y) {
 
-                if (this.x > platforms[i].x + platforms[i].width && this.x < platforms[i].x + platforms[i].width + 8) {
+                if (this.x > platforms[i].x + platforms[i].width && this.x < platforms[i].x + platforms[i].width + 2) {
 
                     return false;
                 }

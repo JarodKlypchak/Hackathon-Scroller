@@ -58,29 +58,7 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
     }
 
     person.update(arrayPlatforms, arrayHoles, arrayCoins);
-    /**
-     * Handles User Movement
-     */
 
-    /*
-    person.handleJump(arrayPlatforms);
-    person.handleGaps(arrayHoles, arrayPlatforms);
-    person.moveX(moveDistance, arrayPlatforms);
-    console.log(person.highestObjectBeneath(arrayPlatforms, arrayHoles));
-    */
-    /**
-     * Checks if Coins are collected.
-     */
-    /*
-    for (let i = 0; i < arrayCoins.length; i++) {
-        if (person.hits(arrayCoins[i])) {
-            delete arrayCoins[i];
-            arrayCoins.splice(i, 1);
-            person.updateScore(50);
-            i--;
-        }
-    }
-    */
     /**
      * Checks if a each monster has been killed.
      */
