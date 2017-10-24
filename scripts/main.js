@@ -5,11 +5,9 @@ let jumping = false;
 let score = 0;
 let person = new Person(5, baseHeight, 5, score);
 const moveDistance = 5;
-let levelNum = 1;
+let levelNum = 3;
 let time = 0;
-
-const jumpDuration = 75;
-
+const jumpDuration = 150;
 let jumpDistance = 8;
 main(person.lives, person.score);
 
@@ -58,16 +56,22 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
         arrayMonsters[i].update(arrayHoles, arrayPlatforms, canvas);
         arrayMonsters[i].offScreen(person, canvas);
     }
+
+
     /**
      * Handles User Movement
      */
+
+    /*
     person.handleJump(arrayPlatforms);
     person.handleGaps(arrayHoles, arrayPlatforms);
     person.moveX(moveDistance, arrayPlatforms);
-
+    console.log(person.highestObjectBeneath(arrayPlatforms, arrayHoles));
+    */
     /**
      * Checks if Coins are collected.
      */
+    /*
     for (let i = 0; i < arrayCoins.length; i++) {
         if (person.hits(arrayCoins[i])) {
             delete arrayCoins[i];
@@ -76,7 +80,7 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
             i--;
         }
     }
-
+    */
     /**
      * Checks if a each monster has been killed.
      */
@@ -144,6 +148,7 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
     }
 
     //Update Canvas
+    person.update(arrayPlatforms, arrayHoles, arrayCoins);
     setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
     displayStats(person.lives, canvas);
 }
@@ -200,7 +205,8 @@ document.body.onkeydown = function(e) {
     } else if (e.keyCode == "65" || e.keyCode == "37") {
         person.movingLeft = true;
     } else if ((e.keyCode == "87" && !person.jumping) || (e.keyCode == "38" && !person.jumping) || (e.keyCode == "32" && !person.jumping)) {
-        person.jump(time);
+        //person.jump(time);
+        person.velocity = 10;
         person.jumping = true;
     }
 }

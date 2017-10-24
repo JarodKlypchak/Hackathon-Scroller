@@ -16,6 +16,9 @@ class Person {
         this.score = score;
         this.screen = 0;
         this.calcScore = this.score % 500;
+
+        this.velocity = 0;
+        this.force = -.5;
     }
 
     /**
@@ -263,5 +266,60 @@ class Person {
             person.lives++;
             person.calcScore -= 500;
         }
+    }
+
+    update(arrayPlatforms, arrayHoles, arrayCoins) {
+        this.moveX(moveDistance, arrayPlatforms);
+        let fallHeight = this.highestObjectBeneath(arrayPlatforms, arrayHoles);
+
+        this.velocity += this.force / 2;
+        if (this.velocity != 0) {
+            this.moveY(-this.velocity);
+        }
+
+        if (this.y + this.height >= fallHeight && this.velocity <= 0) {
+            if (this.y + this.height < fallHeight + 5) {
+                this.y = fallHeight - this.height;
+            }
+
+            this.velocity = 0;
+            this.jumping = false;
+        }
+        if (this.velocity < 0) {
+            this.jumping = true;
+        }
+        for (let i = 0; i < arrayCoins.length; i++) {
+            if (person.hits(arrayCoins[i])) {
+                delete arrayCoins[i];
+                arrayCoins.splice(i, 1);
+                person.updateScore(50);
+                i--;
+            }
+        }
+
+    }
+
+    highestObjectBeneath(arrayPlatforms, arrayHoles) {
+        let y = baseHeight + 32;
+        for (let i = 0; i < arrayHoles.length; i++) {
+            if (this.x >= arrayHoles[i].x && this.x + this.width <= arrayHoles[i].x + arrayHoles[i].width) {
+                y = 1000;
+            }
+        }
+
+        for (let i = 0; i < arrayPlatforms.length; i++) {
+            if (this.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && this.x + 32 >= arrayPlatforms[i].x && this.y <= arrayPlatforms[i].y) {
+
+                if (arrayPlatforms[i].y <= y) {
+
+                    y = arrayPlatforms[i].y;
+
+                }
+                if (arrayPlatforms[i].y >= y) {
+                    y = arrayPlatforms[i].y;
+                }
+            }
+        }
+        return y;
     }
 }
