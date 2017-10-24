@@ -57,8 +57,8 @@ function addPlatforms1(level, canvas) {
     level[1].push(new Platform(canvas.width * 2 + 200, 350, 200));
     level[1].push(new Platform(canvas.width * 2 + 500, 350, 200));
     level[1].push(new Platform(canvas.width * 2 + 425, 250, 50));
-    level[1].push(new Platform(canvas.width * 2 + 425, 150, 50));
-    level[1].push(new Platform(canvas.width * 2 + 425, 50, 50));
+    level[1].push(new Platform(canvas.width * 2 + 425, 150, 75));
+    level[1].push(new Platform(canvas.width * 2 + 425, 50, 100));
 
     //section 4
     level[1].push(new Platform(canvas.width * 3 + 425, 400, 10, -50));
