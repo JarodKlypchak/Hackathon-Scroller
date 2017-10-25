@@ -14,25 +14,27 @@ class Monster {
         this.x = x;
         this.y = y;
         this.changeX = .8;
+        this.closestPlat;
     }
 
     /*
      * registers which platform is closest to the monster if they're not on the ground
      */
     closestPlatform(arrayPlatforms) {
-            if (this.y != 375) {
-                this.closest = this.x - arrayPlatforms[0].x;
-                for (let i = 0; i < arrayPlatforms.length; i++) {
-                    if (Math.abs(this.x - arrayPlatforms[i].x) <= this.closest && this.y + this.length == arrayPlatforms[i].y) {
-                        this.closestPlat = arrayPlatforms[i];
-                        this.closest = this.x - this.closestPlat.x;
-                    }
+        if (this.y != 375) {
+            this.closest = this.x - arrayPlatforms[0].x;
+            for (let i = 0; i < arrayPlatforms.length; i++) {
+                if (Math.abs(this.x - arrayPlatforms[i].x) <= this.closest && this.y + this.length == arrayPlatforms[i].y) {
+                    this.closestPlat = arrayPlatforms[i];
+                    this.closest = this.x - this.closestPlat.x;
                 }
             }
         }
-        /*
-         * displays monster given canvas
-         */
+    }
+
+    /*
+     * displays monster given canvas
+     */
     display() {
         let monster = c.getContext("2d");
         var img = document.createElement("IMG");
@@ -53,7 +55,7 @@ class Monster {
     /*
      * checks holes and sees if it's on it so it doesn't fall off
      */
-    checkHoles(arrayHoles){
+    checkHoles(arrayHoles) {
         if (this.y == 375) {
             for (let i = 0; i < arrayHoles.length; i++) {
                 if (this.x <= (arrayHoles[i].getX() + arrayHoles[i].getWidth()) && this.x >= (arrayHoles[i].getX() - this.length)) {
@@ -63,14 +65,14 @@ class Monster {
         }
     }
 
-    platformStuff(arrayPlatforms){
+    platformStuff(arrayPlatforms) {
         for (let i = 0; i < arrayPlatforms.length; i++) {
             if (arrayPlatforms[i].height != 0) {
                 if (this.y <= arrayPlatforms[i].y && this.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && this.x >= arrayPlatforms[i].x - this.length) {
                     this.changeX *= -1;
                 }
             } else {
-                if (this.x >= (this.closestPlat.getX() + this.closestPlat.getWidth() - this.length -1) || this.x <= this.closestPlat.getX()) {
+                if (this.x >= (this.closestPlat.getX() + this.closestPlat.getWidth() - this.length - 1) || this.x <= this.closestPlat.getX()) {
                     this.changeX *= -1;
                 }
             }
@@ -80,7 +82,7 @@ class Monster {
     /*
      * check to see if they're about to leave the canvas
      */
-    checkOffCanvas(canvas){
+    checkOffCanvas(canvas) {
         if (this.x >= canvas.width - this.length || this.x <= this.length) {
             this.changeX *= -1;
         }
