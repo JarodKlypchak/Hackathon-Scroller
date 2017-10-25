@@ -5,7 +5,7 @@ let jumping = false;
 let score = 0;
 let person = new Person(5, baseHeight, 5, score);
 const moveDistance = .25;
-let levelNum = 1;
+let levelNum = 3;
 let jumpDistance = .5;
 main(person.lives, person.score);
 
@@ -37,9 +37,10 @@ function main(lives) {
             arrayMonsters[i].closestPlatform(arrayPlatforms);
         }
 
-
-        setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
-        reset = setInterval(game, 10, arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, levelNum);
+        let arrayBullets = new Array();
+        arrayBullets.push(new FireBall(850, 300));
+        setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, arrayBullets);
+        reset = setInterval(game, 10, arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, levelNum, arrayBullets);
     }
 }
 
@@ -47,7 +48,7 @@ function main(lives) {
  * game function loop that is called in main displays monster and calls everything else
  */
 
-function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, level) {
+function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, level, arrayBullets) {
 
     /*
      *Updates monsters
@@ -57,7 +58,22 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
         arrayMonsters[i].offScreen(person, canvas);
     }
 
-
+    for (let i = 0; i < arrayBullets.length; i++) {
+        arrayBullets[i].update();
+        if (person.hits(arrayBullets[i])) {
+            person.lives--;
+            clearInterval(reset);
+            main(person.lives, person.score);
+        }
+        for (let j = 0; j < arrayPlatforms.length; j++) {
+            if (arrayBullets[i].hits(arrayPlatforms[j])) {
+                delete arrayBullets[i];
+                arrayBullets.splice(i, 1);
+                i--;
+                break;
+            }
+        }
+    }
 
     /**
      * Checks if a each monster has been killed.
@@ -163,14 +179,16 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
 
     //Update Canvas
     person.update(arrayPlatforms, arrayHoles, arrayCoins);
-    setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
+
+    setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, arrayBullets);
+
     displayStats(person.lives, canvas);
 }
 
 /*
  * setup canvas
  */
-function setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms) {
+function setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, arrayBullets) {
     canvas.width = 900;
     canvas.height = 500;
     canvas.style.backgroundColor = "#7EC0EE";
@@ -181,6 +199,9 @@ function setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatfor
     }
     for (let i = 0; i < arrayCoins.length; i++) {
         arrayCoins[i].display();
+    }
+    for (let i = 0; i < arrayBullets.length; i++) {
+        arrayBullets[i].display();
     }
     person.display(canvas);
 }
