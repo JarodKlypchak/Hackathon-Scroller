@@ -52,24 +52,19 @@ class Monster {
         } else {
             this.stayOnPlatform();
         }
-        this.keepOnCanvas(canvas);
+        this.checkOffCanvas(canvas);
     }
 
     /*
      * don't fall down a hole or hit a pillar
      */
-<<<<<<< HEAD
     onGroundDontHitPillarsOrFallOff(arrayHoles, arrayPlatforms){
-=======
-    checkHoles(arrayHoles) {
         if (this.y == 375) {
->>>>>>> e6fb68e98256476dee44f5170f9a651a2aeeb20f
             for (let i = 0; i < arrayHoles.length; i++) {
                 if (this.x <= (arrayHoles[i].getX() + arrayHoles[i].getWidth()) && this.x >= (arrayHoles[i].getX() - this.length)) {
                     this.changeX *= -1;
                 }
             }
-<<<<<<< HEAD
             /*
              * check to see if monsters run into pillars
              */
@@ -78,22 +73,9 @@ class Monster {
                     if (this.y <= arrayPlatforms[i].y && this.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && this.x >= arrayPlatforms[i].x - this.length) {
                         this.changeX *= -1;
                     }
-=======
-        }
-    }
-
-    platformStuff(arrayPlatforms) {
-        for (let i = 0; i < arrayPlatforms.length; i++) {
-            if (arrayPlatforms[i].height != 0) {
-                if (this.y <= arrayPlatforms[i].y && this.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && this.x >= arrayPlatforms[i].x - this.length) {
-                    this.changeX *= -1;
-                }
-            } else {
-                if (this.x >= (this.closestPlat.getX() + this.closestPlat.getWidth() - this.length - 1) || this.x <= this.closestPlat.getX()) {
-                    this.changeX *= -1;
->>>>>>> e6fb68e98256476dee44f5170f9a651a2aeeb20f
                 }
             }
+        }
     }
 
     /*
@@ -108,11 +90,7 @@ class Monster {
     /*
      * check to see if they're about to leave the canvas
      */
-<<<<<<< HEAD
-    keepOnCanvas(canvas){
-=======
     checkOffCanvas(canvas) {
->>>>>>> e6fb68e98256476dee44f5170f9a651a2aeeb20f
         if (this.x >= canvas.width - this.length || this.x <= this.length) {
             this.changeX *= -1;
         }
