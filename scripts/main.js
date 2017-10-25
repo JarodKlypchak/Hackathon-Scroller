@@ -27,6 +27,7 @@ function main(lives) {
         } else if (levelNum == 3) {
             level = createLevel3(canvas);
         }
+        writeToJson(level);
         let arrayHoles = level[0];
         let arrayPlatforms = level[1];
         let arrayMonsters = level[2];
@@ -279,4 +280,13 @@ function youWin(canvas, score) {
 
 function checkOffScreen() {
 
+}
+
+function writeToJson(level) {
+
+
+    loadJSON(function(response) {
+        // Parse JSON string into object
+        var actual_JSON = JSON.parse(response);
+    });
 }
