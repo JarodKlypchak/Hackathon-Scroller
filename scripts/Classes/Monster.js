@@ -43,7 +43,7 @@ class Monster {
     display() {
         let monster = c.getContext("2d");
         var img = document.createElement("IMG");
-        img.src = "images/Slime.png";
+        img.src = "images/Slime20Remake.png";
         monster.drawImage(img, this.x, this.y, this.length, this.length);
     }
 
