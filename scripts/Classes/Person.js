@@ -17,15 +17,10 @@ class Person {
         this.screen = 0;
         this.calcScore = this.score % 500;
 
-<<<<<<< HEAD
-        //NEW JUMP STUFF
-        this.velocity = 0;
-        this.force = -1;
-=======
         this.velocity = 0;
         this.force = -.1;
         this.jumpVelocity = 5;
->>>>>>> f29fcd6c72e109c67a3693dafe6d0bb3a37ad705
+
     }
 
     /**
@@ -199,21 +194,6 @@ class Person {
             person.calcScore -= 500;
         }
     }
-<<<<<<< HEAD
-    newJump() {
-        this.velocity = 10;
-    }
-
-    update(platforms, monsters, coins, holes) {
-        if (this.velocity != 0) {
-            this.moveY(-velocity);
-            this.velocity += force;
-        }
-
-
-    }
-
-=======
 
     update(arrayPlatforms, arrayHoles, arrayCoins) {
         this.moveX(moveDistance, arrayPlatforms, arrayHoles);
@@ -284,5 +264,5 @@ class Person {
         }
         return y;
     }
->>>>>>> f29fcd6c72e109c67a3693dafe6d0bb3a37ad705
+
 }
