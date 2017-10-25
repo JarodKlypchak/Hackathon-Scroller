@@ -73,4 +73,14 @@ class JumpMonster extends Monster {
         }
         return y;
     }
+    belowObject(height) {
+
+        let result = false;
+        if (this.y < height + 10 && this.y > height) {
+            result = true;
+        }
+        return result;
+    }
+
+
 }

@@ -1,8 +1,8 @@
-function createLevel1(canvas){
-    let level=new Array();
+function createLevel1(canvas) {
+    let level = new Array();
 
-    for(let i=0;i<4;i++){
-        level[i]=new Array();
+    for (let i = 0; i < 4; i++) {
+        level[i] = new Array();
     }
     //Holes
     addHoles1(level, canvas);
@@ -14,7 +14,7 @@ function createLevel1(canvas){
     addMonsters1(level, canvas);
 
     //Coins
-    addCoins1(level,canvas);
+    addCoins1(level, canvas);
 
     //Return level
     return level;
@@ -37,7 +37,7 @@ function addHoles1(level, canvas) {
     level[0].push(new Hole(canvas, canvas.width + 650, 50));
 
     //section 3
-    level[0].push(new Hole(canvas, canvas.width*2 + 150, 600));
+    level[0].push(new Hole(canvas, canvas.width * 2 + 150, 600));
 }
 
 /*
@@ -72,7 +72,7 @@ function addMonsters1(level, canvas) {
     level[2].push(new JumpMonster(600, 375));
 
     //section 2
-    level[2].push(new Monster(canvas.width + 800, 375));
+    level[2].push(new JumpMonster(canvas.width + 800, 375));
     level[2].push(new Monster(canvas.width + 750, 375));
     level[2].push(new Monster(canvas.width + 55, 275));
     level[2].push(new Monster(canvas.width + 250, 275));
