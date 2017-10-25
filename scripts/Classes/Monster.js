@@ -45,42 +45,48 @@ class Monster {
      */
     update(arrayHoles, arrayPlatforms, canvas) {
         this.x -= this.changeX;
-        this.checkHoles(arrayHoles);
-        this.platformStuff(arrayPlatforms);
-        this.checkOffCanvas(canvas);
+        if (this.y == 375) {
+            this.onGroundDontHitPillarsOrFallOff(arrayHoles, arrayPlatforms);
+        } else {
+            this.stayOnPlatform();
+        }
+        this.keepOnCanvas(canvas);
     }
 
     /*
-     * checks holes and sees if it's on it so it doesn't fall off
+     * don't fall down a hole or hit a pillar
      */
-    checkHoles(arrayHoles){
-        if (this.y == 375) {
+    onGroundDontHitPillarsOrFallOff(arrayHoles, arrayPlatforms){
             for (let i = 0; i < arrayHoles.length; i++) {
                 if (this.x <= (arrayHoles[i].getX() + arrayHoles[i].getWidth()) && this.x >= (arrayHoles[i].getX() - this.length)) {
                     this.changeX *= -1;
                 }
             }
-        }
-    }
-
-    platformStuff(arrayPlatforms){
-        for (let i = 0; i < arrayPlatforms.length; i++) {
-            if (arrayPlatforms[i].height != 0) {
-                if (this.y <= arrayPlatforms[i].y && this.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && this.x >= arrayPlatforms[i].x - this.length) {
-                    this.changeX *= -1;
-                }
-            } else {
-                if (this.x >= (this.closestPlat.getX() + this.closestPlat.getWidth() - this.length -1) || this.x <= this.closestPlat.getX()) {
-                    this.changeX *= -1;
+            /*
+             * check to see if monsters run into pillars
+             */
+            for (let i = 0; i < arrayPlatforms.length; i++) {
+                if (arrayPlatforms[i].height != 0) {
+                    if (this.y <= arrayPlatforms[i].y && this.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && this.x >= arrayPlatforms[i].x - this.length) {
+                        this.changeX *= -1;
+                    }
                 }
             }
+    }
+
+    /*
+     * don't fall off platform
+     */
+    stayOnPlatform(){
+        if (this.x >= (this.closestPlat.getX() + this.closestPlat.getWidth() - this.length -1) || this.x <= this.closestPlat.getX()) {
+            this.changeX *= -1;
         }
     }
 
     /*
      * check to see if they're about to leave the canvas
      */
-    checkOffCanvas(canvas){
+    keepOnCanvas(canvas){
         if (this.x >= canvas.width - this.length || this.x <= this.length) {
             this.changeX *= -1;
         }
