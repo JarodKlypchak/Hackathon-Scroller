@@ -155,7 +155,7 @@ class Person {
             return true;
         }
         for (let i = 0; i < arrayMonsters.length; i++) {
-            if (this.x + charWidth >= arrayMonsters[i].getX() && this.x <= arrayMonsters[i].getX() + 20 && this.y <= arrayMonsters[i].getY() + 25 && this.y + charWidth >= arrayMonsters[i].getY()) {
+            if (this.x + charWidth >= arrayMonsters[i].getX() && this.x <= arrayMonsters[i].getX() + 20 && this.y <= arrayMonsters[i].getY() && this.y + charWidth >= arrayMonsters[i].getY()) {
                 this.jumping = false;
                 this.lives--;
                 return true;
@@ -232,7 +232,6 @@ class Person {
             person.lives++;
             person.calcScore -= 2000;
         }
-        console.log()
     }
 
     /**

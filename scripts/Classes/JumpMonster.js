@@ -1,50 +1,78 @@
+/*
+ * class JumpMonster extends Monster
+ */
 class JumpMonster extends Monster {
 
+    /*
+     * constructor calls Monster constructor and adds changeY and velocityY
+     */
     constructor(x, y) {
         super(x, y);
         this.changeY = .1;
         this.velocityY = -4;
     }
 
+    /*
+     * register if this is below an object
+     */
+    belowObject(height){
+        let result = false;
+        if(this.y < height + 10 && this.y > height){
+            result = true;
+        }
+        return result;
+    }
+
+    /*
+     * update function calls Monseter functions along with handling gravity and jump physics
+     */
     update(arrayHoles, arrayPlatforms, canvas) {
-            Monster.prototype.update(arrayHoles, arrayPlatforms, canvas);
+        if(this.onGround){
+            super.onGroundDontHitPillarsOrFallOff(arrayHoles, arrayPlatforms);
+        } else{
+            super.stayOnPlatform();
+        }
+        super.checkOffCanvas(canvas);
 
-
-            let fallHeight = this.highestObjectBeneath(arrayPlatforms, arrayHoles);
-
-            /**
-             * Checks if this would hit a platform above it
-             */
-            for (let i = 0; i < arrayPlatforms.length; i++) {
-                if (this.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && this.x + 32 >= arrayPlatforms[i].x && this.y > arrayPlatforms[i].y) {
-                    if (this.belowObject(arrayPlatforms[i].y)) {
-                        this.velocityY = -1;
-
-                    }
+        let fallHeight = this.highestObjectBeneath(arrayPlatforms, arrayHoles);
+        /**
+         * Checks if this would hit a platform above it
+         */
+        for (let i = 0; i < arrayPlatforms.length; i++) {
+            if (this.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && this.x + 32 >= arrayPlatforms[i].x && this.y > arrayPlatforms[i].y) {
+                if (this.belowObject(arrayPlatforms[i].y)) {
+                    this.velocityY = -1;
                 }
             }
-
-
-            /**
-             * Moves this vertically, changes gravity to account for acceleration
-             */
-            this.y += this.velocityY;
-            this.velocityY += this.changeY;
-            this.x -= this.changeX;
-            console.log(fallHeight);
-            /**
-             * Checks if this should stop falling
-             */
-            if (this.y + this.length >= fallHeight) {
-
-                this.y = fallHeight - this.length;
-                this.velocityY = -4;
-            }
         }
+
         /**
-         * 
-         * Reports the height of the highest object that is beneath the object.
+         * Moves this vertically, changes gravity to account for acceleration
          */
+         this.y += this.velocityY;
+         this.velocityY += this.changeY;
+         this.x -= this.changeX;
+
+        /**
+         * Checks if this should stop falling
+         */
+        if (this.y + this.length >= fallHeight) {
+            this.y = fallHeight - this.length;
+            this.velocityY = -4;
+        }
+        /*
+         * checks to see if Monster is about to leave canvas and stops it by making it fall really fast...
+         */
+        if(this.y < 0){
+            this.changeY = 1;
+        } else {
+            this.changeY = .1;
+        }
+    }
+
+    /*
+     * Reports the height of the highest object that is beneath the object.
+     */
     highestObjectBeneath(arrayPlatforms, arrayHoles) {
         let y = baseHeight + 32;
         if (this.y + this.length - 1 > y) {

@@ -35,10 +35,6 @@ function main(lives) {
 
         for (let i = 0; i < arrayMonsters.length; i++) {
             arrayMonsters[i].closestPlatform(arrayPlatforms);
-            if (arrayMonsters[i].velocityY != null) {
-                arrayMonsters[i].velocityY = 4;
-                arrayMonsters[i].changeY = .1;
-            }
         }
 
 
@@ -89,13 +85,6 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
     if (person.shouldDie(arrayMonsters)) {
         clearInterval(reset);
         main(person.lives, person.score);
-    }
-
-    /*
-     * checks closest platform in proximinity to each monster
-     */
-    for (let i = 0; i < arrayMonsters.length; i++) {
-        arrayMonsters[i].closestPlatform(arrayPlatforms);
     }
 
     /**
