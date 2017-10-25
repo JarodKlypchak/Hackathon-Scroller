@@ -4,11 +4,9 @@ let h = baseHeight;
 let jumping = false;
 let score = 0;
 let person = new Person(5, baseHeight, 5, score);
-const moveDistance = 1.5;
+const moveDistance = .25;
 let levelNum = 1;
-let time = 0;
-const jumpDuration = 150;
-let jumpDistance = 1;
+let jumpDistance = .5;
 main(person.lives, person.score);
 
 
@@ -18,7 +16,7 @@ function main(lives) {
         let level;
         person = new Person(5, baseHeight, lives, person.score);
         jumpDistance = 5;
-        person.jump(0.5);
+
         let canvas = document.getElementById("c");
         canvas.width = 900;
         if (levelNum == 1) {
@@ -29,6 +27,7 @@ function main(lives) {
         } else if (levelNum == 3) {
             level = createLevel3(canvas);
         }
+        writeToJson(level);
         let arrayHoles = level[0];
         let arrayPlatforms = level[1];
         let arrayMonsters = level[2];
@@ -37,6 +36,7 @@ function main(lives) {
         for (let i = 0; i < arrayMonsters.length; i++) {
             arrayMonsters[i].closestPlatform(arrayPlatforms);
         }
+
 
         setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
         reset = setInterval(game, 10, arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, levelNum);
@@ -57,30 +57,8 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
         arrayMonsters[i].offScreen(person, canvas);
     }
 
-    person.update(arrayPlatforms, arrayHoles, arrayCoins);
-    /**
-     * Handles User Movement
-     */
 
-    /*
-    person.handleJump(arrayPlatforms);
-    person.handleGaps(arrayHoles, arrayPlatforms);
-    person.moveX(moveDistance, arrayPlatforms);
-    console.log(person.highestObjectBeneath(arrayPlatforms, arrayHoles));
-    */
-    /**
-     * Checks if Coins are collected.
-     */
-    /*
-    for (let i = 0; i < arrayCoins.length; i++) {
-        if (person.hits(arrayCoins[i])) {
-            delete arrayCoins[i];
-            arrayCoins.splice(i, 1);
-            person.updateScore(50);
-            i--;
-        }
-    }
-    */
+
     /**
      * Checks if a each monster has been killed.
      */
@@ -92,7 +70,7 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
 
             delete arrayMonsters[i];
 
-            person.velocity = 4;
+            person.velocity = person.jumpVelocity / 2;
             arrayMonsters.splice(i, 1);
             person.updateScore(100);
             i--;
@@ -109,16 +87,42 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
         main(person.lives, person.score);
     }
 
-    /*
-     * checks closest platform in proximinity to each monster
-     */
-    for (let i = 0; i < arrayMonsters.length; i++) {
-        arrayMonsters[i].closestPlatform(arrayPlatforms);
-    }
-
     /**
      * Handles when user goes off the right of the screen
      */
+    /*
+    if (person.x >= 60) {
+        person.x = 59;
+        //person.screen++;
+        if (person.screen < 4) {
+            updateArray(arrayCoins, 1);
+            updateArray(arrayMonsters, 1);
+            updateArray(arrayHoles, 1);
+            updateArray(arrayPlatforms, 1);
+        } else if (person.screen == 4 && level == 3) {
+            youWin(canvas, person.score);
+        } else {
+            clearInterval(reset);
+            levelNum++;
+            displayLoadingScreen(canvas, levelNum);
+            person.screen = 0;
+
+            main(person.lives);
+        }
+        */
+    /**
+     * Handles when user goes off the left of the screen
+     */
+    /*
+    } else if (person.x + charWidth <= 0) {
+        person.x = person.x + charWidth - 10;
+        updateArray(arrayCoins, -10);
+        updateArray(arrayMonsters, -10);
+        updateArray(arrayHoles, -10)
+        updateArray(arrayPlatforms, -10);
+    }
+    */
+
     if (person.x >= canvas.width) {
         person.x = 5;
         person.screen++;
@@ -137,16 +141,25 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
 
             main(person.lives);
         }
-        /**
-         * Handles when user goes off the left of the screen
-         */
-    } else if (person.x + charWidth <= 0) {
-        person.x = canvas.width - 10;
-        updateArray(arrayCoins, -900);
-        updateArray(arrayMonsters, -900);
-        updateArray(arrayHoles, -900)
-        updateArray(arrayPlatforms, -900);
     }
+
+    /**
+     * Handles when user goes off the left of the screen
+     */
+    else if (person.x + charWidth <= 0) {
+        if (person.screen != 0) {
+            person.screen--;
+            person.x = canvas.width - 10;
+            updateArray(arrayCoins, -900);
+            updateArray(arrayMonsters, -900);
+            updateArray(arrayHoles, -900)
+            updateArray(arrayPlatforms, -900);
+        } else {
+            person.x = 0;
+        }
+    }
+
+
 
     //Update Canvas
     person.update(arrayPlatforms, arrayHoles, arrayCoins);
@@ -257,4 +270,14 @@ function youWin(canvas, score) {
     canvas.style.display = "none";
     let displayScore = document.getElementById("movingToLevel");
     movingToLevel.innerHTML = "Score: " + score;
+}
+
+function checkOffScreen() {
+
+}
+
+function writeToJson(level) {
+
+
+
 }

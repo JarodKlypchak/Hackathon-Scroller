@@ -1,8 +1,8 @@
-function createLevel1(canvas){
-    let level=new Array();
+function createLevel1(canvas) {
+    let level = new Array();
 
-    for(let i=0;i<4;i++){
-        level[i]=new Array();
+    for (let i = 0; i < 4; i++) {
+        level[i] = new Array();
     }
     //Holes
     addHoles1(level, canvas);
@@ -14,7 +14,7 @@ function createLevel1(canvas){
     addMonsters1(level, canvas);
 
     //Coins
-    addCoins1(level,canvas);
+    addCoins1(level, canvas);
 
     //Return level
     return level;
@@ -27,7 +27,7 @@ function addHoles1(level, canvas) {
     //section 1
     level[0].push(new Hole(canvas, 100, 50));
     level[0].push(new Hole(canvas, 250, 50));
-    level[0].push(new Hole(canvas, 350, 50));
+    level[0].push(new Hole(canvas, 300, 50));
     level[0].push(new Hole(canvas, 650, 50));
 
     //section 2
@@ -37,7 +37,7 @@ function addHoles1(level, canvas) {
     level[0].push(new Hole(canvas, canvas.width + 650, 50));
 
     //section 3
-    level[0].push(new Hole(canvas, canvas.width*2 + 150, 600));
+    level[0].push(new Hole(canvas, canvas.width * 2 + 150, 600));
 }
 
 /*
@@ -45,7 +45,6 @@ function addHoles1(level, canvas) {
  */
 function addPlatforms1(level, canvas) {
     //section 1
-    level[1].push(new Platform(450, 400, 10, -50));
 
     //section 2
     level[1].push(new Platform(canvas.width + 50, 300, 100));
@@ -69,10 +68,10 @@ function addPlatforms1(level, canvas) {
  */
 function addMonsters1(level, canvas) {
     //section 1
-    level[2].push(new Monster(600, 375));
+    level[2].push(new JumpMonster(600, 375));
 
     //section 2
-    level[2].push(new Monster(canvas.width + 800, 375));
+    level[2].push(new JumpMonster(canvas.width + 800, 375));
     level[2].push(new Monster(canvas.width + 750, 375));
     level[2].push(new Monster(canvas.width + 55, 275));
     level[2].push(new Monster(canvas.width + 250, 275));
@@ -83,22 +82,22 @@ function addMonsters1(level, canvas) {
     level[2].push(new Monster(canvas.width * 2 + 222, 325));
     level[2].push(new Monster(canvas.width * 2 + 255, 325));
     level[2].push(new Monster(canvas.width * 2 + 505, 325));
-    level[2].push(new Monster(canvas.width * 2 + 560, 325));
+    level[2].push(new JumpMonster(canvas.width * 2 + 560, 325));
     level[2].push(new Monster(canvas.width * 2 + 600, 325));
 
-    level[2].push(new Monster(canvas.width * 2 + 430, 25));
+    level[2].push(new JumpMonster(canvas.width * 2 + 430, 25));
 
     //section 4
     level[2].push(new Monster(canvas.width * 3 + 90, 375));
     level[2].push(new Monster(canvas.width * 3 + 110, 375));
     level[2].push(new Monster(canvas.width * 3 + 120, 375));
     level[2].push(new Monster(canvas.width * 3 + 170, 375));
-    level[2].push(new Monster(canvas.width * 3 + 360, 375));
+    level[2].push(new JumpMonster(canvas.width * 3 + 360, 375));
     level[2].push(new Monster(canvas.width * 3 + 490, 375));
     level[2].push(new Monster(canvas.width * 3 + 510, 375));
     level[2].push(new Monster(canvas.width * 3 + 520, 375));
     level[2].push(new Monster(canvas.width * 3 + 570, 375));
-    level[2].push(new Monster(canvas.width * 3 + 660, 375));
+    level[2].push(new JumpMonster(canvas.width * 3 + 660, 375));
 }
 
 /*
