@@ -87,13 +87,6 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
         main(person.lives, person.score);
     }
 
-    /*
-     * checks closest platform in proximinity to each monster
-     */
-    for (let i = 0; i < arrayMonsters.length; i++) {
-        arrayMonsters[i].closestPlatform(arrayPlatforms);
-    }
-
     /**
      * Handles when user goes off the right of the screen
      */

@@ -15,13 +15,18 @@ class Monster {
         this.y = y;
         this.changeX = .8;
         this.closestPlat;
+        if(this.y == 375){
+            this.onGround = true;
+        } else {
+            this.onGround = false;
+        }
     }
 
     /*
      * registers which platform is closest to the monster if they're not on the ground
      */
     closestPlatform(arrayPlatforms) {
-        if (this.y != 375) {
+        if (!this.onGround) {
             this.closest = this.x - arrayPlatforms[0].x;
             for (let i = 0; i < arrayPlatforms.length; i++) {
                 if (Math.abs(this.x - arrayPlatforms[i].x) <= this.closest && this.y + this.length == arrayPlatforms[i].y) {
@@ -47,11 +52,11 @@ class Monster {
      */
     update(arrayHoles, arrayPlatforms, canvas) {
         this.x -= this.changeX;
-        //if (this.y == 375) {
+        if (this.onGround) {
             this.onGroundDontHitPillarsOrFallOff(arrayHoles, arrayPlatforms);
-        //} else {
-        //this.stayOnPlatform();
-        //}
+        } else {
+            this.stayOnPlatform();
+        }
         this.checkOffCanvas(canvas);
     }
 
@@ -59,7 +64,7 @@ class Monster {
      * don't fall down a hole or hit a pillar
      */
     onGroundDontHitPillarsOrFallOff(arrayHoles, arrayPlatforms){
-        if (this.y == 375) {
+        if (this.onGround) {
             for (let i = 0; i < arrayHoles.length; i++) {
                 if (this.x <= (arrayHoles[i].getX() + arrayHoles[i].getWidth()) && this.x >= (arrayHoles[i].getX() - this.length)) {
                     this.changeX *= -1;
@@ -70,7 +75,7 @@ class Monster {
              */
             for (let i = 0; i < arrayPlatforms.length; i++) {
                 if (arrayPlatforms[i].height != 0) {
-                    if (this.y <= arrayPlatforms[i].y && this.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && this.x >= arrayPlatforms[i].x - this.length) {
+                    if (this.y <= arrayPlatforms[i].y && !(this.y <= arrayPlatforms[i].y + arrayPlatforms[i].height) && this.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && this.x >= arrayPlatforms[i].x - this.length) {
                         this.changeX *= -1;
                     }
                 }
@@ -100,7 +105,7 @@ class Monster {
      * if person stomps monster return true
      */
     stomped(person) {
-        if (person.x >= this.x - this.length && person.x <= this.x + this.length && person.y + charWidth + 2 >= this.y && person.y <= this.y + this.length) {
+        if (person.x >= this.x - this.length && person.x <= this.x + this.length && person.y + charWidth + 2 <= this.y && person.y <= this.y && !(person.y <= this.y - charWidth - 10)) {
             return true;
         }
     }
