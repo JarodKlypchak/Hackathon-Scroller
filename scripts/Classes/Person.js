@@ -53,7 +53,7 @@ class Person {
     moveX(distance, platforms, holes) {
 
         if (this.y + this.height > 401) {
-            console.log("step1");
+
             for (let i = 0; i < holes.length; i++) {
                 if (this.x <= holes[i].x + holes[i].width && this.x + 32 >= holes[i].x) {
                     if (this.x < holes[i].x) {
@@ -66,11 +66,13 @@ class Person {
         }
 
 
-        if (this.canMoveLeft(platforms, holes) && this.movingLeft) {
-            this.x += (-distance);
-        }
-        if (this.canMoveRight(platforms, holes) && this.movingRight) {
-            this.x += (distance);
+        for (let i = 0; i < 8; i++) {
+            if (this.canMoveLeft(platforms, holes) && this.movingLeft) {
+                this.x += (-distance);
+            }
+            if (this.canMoveRight(platforms, holes) && this.movingRight) {
+                this.x += (distance);
+            }
         }
 
     }
@@ -167,7 +169,7 @@ class Person {
         for (let i = 0; i < platforms.length; i++) {
             if (this.y + charWidth >= platforms[i].y + platforms[i].height + 1 && this.y < platforms[i].y) {
 
-                if (this.x + charWidth < platforms[i].x && this.x + charWidth > platforms[i].x - 1.5) {
+                if (this.x + charWidth < platforms[i].x && this.x + charWidth > platforms[i].x - .5) {
 
                     result = false;
                 }
@@ -186,7 +188,7 @@ class Person {
         for (let i = 0; i < platforms.length; i++) {
             if (this.y + charWidth >= platforms[i].y + platforms[i].height + 1 && this.y < platforms[i].y) {
 
-                if (this.x > platforms[i].x + platforms[i].width && this.x < platforms[i].x + platforms[i].width + 1.5) {
+                if (this.x > platforms[i].x + platforms[i].width && this.x < platforms[i].x + platforms[i].width + .5) {
 
                     return false;
                 }
@@ -223,9 +225,9 @@ class Person {
     updateScore(score) {
         this.score += score;
         this.calcScore += score;
-        if (person.calcScore >= 500) {
+        if (person.calcScore >= 2000) {
             person.lives++;
-            person.calcScore -= 500;
+            person.calcScore -= 2000;
         }
     }
 
