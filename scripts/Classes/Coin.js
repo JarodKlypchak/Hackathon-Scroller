@@ -20,7 +20,7 @@ class Coin {
     display() {
         let coin = c.getContext("2d");
         var img = document.createElement("IMG");
-        img.src = "images/coinNickVersion.jpg";
+        img.src = "images/Coin64.png";
         coin.drawImage(img, this.x, this.y, 20, 20);
     }
 
