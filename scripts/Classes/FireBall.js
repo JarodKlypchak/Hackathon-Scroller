@@ -13,6 +13,11 @@ class FireBall {
 
     }
 
+    leavesScreen(){
+        if(this.x <= 0)
+        return true;
+    }
+
     display() {
             let ctx = c.getContext("2d");
             ctx.fillStyle = "red";

@@ -7,6 +7,7 @@ let person = new Person(5, baseHeight, 5, score);
 const moveDistance = .25;
 let levelNum = 1;
 let jumpDistance = .5;
+let arrayBullets = new Array();
 main(person.lives, person.score);
 
 
@@ -37,8 +38,6 @@ function main(lives) {
             arrayMonsters[i].closestPlatform(arrayPlatforms);
         }
 
-        let arrayBullets = new Array();
-        arrayBullets.push(new FireBall(850, 300));
         setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, arrayBullets);
         reset = setInterval(game, 10, arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, levelNum, arrayBullets);
     }
@@ -60,8 +59,13 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
 
     for (let i = 0; i < arrayBullets.length; i++) {
         arrayBullets[i].update();
+        if(arrayBullets[i].leavesScreen()){
+            delete arrayBullets[i];
+            arrayBullets.splice(i, 1);
+        }
         if (person.hits(arrayBullets[i])) {
             person.lives--;
+            arrayBullets.splice(0, arrayBullets.length);
             clearInterval(reset);
             main(person.lives, person.score);
         }
@@ -69,8 +73,6 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
             if (arrayBullets[i].hits(arrayPlatforms[j])) {
                 delete arrayBullets[i];
                 arrayBullets.splice(i, 1);
-                i--;
-                break;
             }
         }
     }
