@@ -41,8 +41,8 @@ class Person {
          */
         this.jumping = false;
         this.velocity = 0;
-        this.force = -.1;
-        this.jumpVelocity = 5;
+        this.force = -.05;
+        this.jumpVelocity = 3.5;
     }
 
 
@@ -81,6 +81,9 @@ class Person {
      * Moves in the Y direction for Distance
      */
     moveY(distance) {
+        if (this.y < 0) {
+            this.velocty = -1;
+        }
         if (this.y > 0 && distance < 0) {
             this.y += distance;
         } else if (distance > 0) {
@@ -229,6 +232,7 @@ class Person {
             person.lives++;
             person.calcScore -= 2000;
         }
+        console.log()
     }
 
     /**

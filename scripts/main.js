@@ -6,8 +6,6 @@ let score = 0;
 let person = new Person(5, baseHeight, 5, score);
 const moveDistance = .25;
 let levelNum = 1;
-let time = 0;
-const jumpDuration = 150;
 let jumpDistance = .5;
 main(person.lives, person.score);
 
@@ -70,7 +68,7 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
 
             delete arrayMonsters[i];
 
-            person.velocity = 4;
+            person.velocity = person.jumpVelocity / 2;
             arrayMonsters.splice(i, 1);
             person.updateScore(100);
             i--;
