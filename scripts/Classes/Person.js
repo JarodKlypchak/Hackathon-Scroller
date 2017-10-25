@@ -52,12 +52,27 @@ class Person {
      */
     moveX(distance, platforms, holes) {
 
+        if (this.y + this.height > 401) {
+            console.log("step1");
+            for (let i = 0; i < holes.length; i++) {
+                if (this.x <= holes[i].x + holes[i].width && this.x + 32 >= holes[i].x) {
+                    if (this.x < holes[i].x) {
+                        this.movingLeft = false;
+                    } else if (this.x + this.width > holes[i].x + holes[i].width) {
+                        this.movingRight = false;
+                    }
+                }
+            }
+        }
+
+
         if (this.canMoveLeft(platforms, holes) && this.movingLeft) {
             this.x += (-distance);
         }
         if (this.canMoveRight(platforms, holes) && this.movingRight) {
             this.x += (distance);
         }
+
     }
 
     /**
@@ -152,7 +167,7 @@ class Person {
         for (let i = 0; i < platforms.length; i++) {
             if (this.y + charWidth >= platforms[i].y + platforms[i].height + 1 && this.y < platforms[i].y) {
 
-                if (this.x + charWidth < platforms[i].x && this.x + charWidth > platforms[i].x - 5) {
+                if (this.x + charWidth < platforms[i].x && this.x + charWidth > platforms[i].x - 1.5) {
 
                     result = false;
                 }
@@ -171,7 +186,7 @@ class Person {
         for (let i = 0; i < platforms.length; i++) {
             if (this.y + charWidth >= platforms[i].y + platforms[i].height + 1 && this.y < platforms[i].y) {
 
-                if (this.x > platforms[i].x + platforms[i].width && this.x < platforms[i].x + platforms[i].width + 5) {
+                if (this.x > platforms[i].x + platforms[i].width && this.x < platforms[i].x + platforms[i].width + 1.5) {
 
                     return false;
                 }
@@ -306,46 +321,6 @@ class Person {
         return y;
     }
 
-    /**
-     * 
-     */
-    checkOffScreen() {
-        /**
-         * Handles when user goes off the right of the screen
-         */
-        if (person.x >= canvas.width) {
-            person.x = 5;
-            person.screen++;
-            if (person.screen < 4) {
-                updateArray(arrayCoins, 900);
-                updateArray(arrayMonsters, 900);
-                updateArray(arrayHoles, 900);
-                updateArray(arrayPlatforms, 900);
-            } else if (person.screen == 4 && level == 3) {
-                youWin(canvas, person.score);
-            } else {
-                clearInterval(reset);
-                levelNum++;
-                displayLoadingScreen(canvas, levelNum);
-                person.screen = 0;
 
-                main(person.lives);
-            }
-            /**
-             * Handles when user goes off the left of the screen
-             */
-        } else if (person.x + charWidth <= 0) {
-            person.x = canvas.width - 10;
-            updateArray(arrayCoins, -900);
-            updateArray(arrayMonsters, -900);
-            updateArray(arrayHoles, -900)
-            updateArray(arrayPlatforms, -900);
-        }
-
-        //Update Canvas
-        person.update(arrayPlatforms, arrayHoles, arrayCoins);
-        setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
-        displayStats(person.lives, canvas);
-    }
 
 }

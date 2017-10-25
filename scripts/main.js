@@ -97,6 +97,39 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
     /**
      * Handles when user goes off the right of the screen
      */
+    /*
+    if (person.x >= 60) {
+        person.x = 59;
+        //person.screen++;
+        if (person.screen < 4) {
+            updateArray(arrayCoins, 1);
+            updateArray(arrayMonsters, 1);
+            updateArray(arrayHoles, 1);
+            updateArray(arrayPlatforms, 1);
+        } else if (person.screen == 4 && level == 3) {
+            youWin(canvas, person.score);
+        } else {
+            clearInterval(reset);
+            levelNum++;
+            displayLoadingScreen(canvas, levelNum);
+            person.screen = 0;
+
+            main(person.lives);
+        }
+        */
+    /**
+     * Handles when user goes off the left of the screen
+     */
+    /*
+    } else if (person.x + charWidth <= 0) {
+        person.x = person.x + charWidth - 10;
+        updateArray(arrayCoins, -10);
+        updateArray(arrayMonsters, -10);
+        updateArray(arrayHoles, -10)
+        updateArray(arrayPlatforms, -10);
+    }
+    */
+
     if (person.x >= canvas.width) {
         person.x = 5;
         person.screen++;
@@ -115,16 +148,25 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
 
             main(person.lives);
         }
-        /**
-         * Handles when user goes off the left of the screen
-         */
-    } else if (person.x + charWidth <= 0) {
-        person.x = canvas.width - 10;
-        updateArray(arrayCoins, -900);
-        updateArray(arrayMonsters, -900);
-        updateArray(arrayHoles, -900)
-        updateArray(arrayPlatforms, -900);
     }
+
+    /**
+     * Handles when user goes off the left of the screen
+     */
+    else if (person.x + charWidth <= 0) {
+        if (person.screen != 0) {
+            person.screen--;
+            person.x = canvas.width - 10;
+            updateArray(arrayCoins, -900);
+            updateArray(arrayMonsters, -900);
+            updateArray(arrayHoles, -900)
+            updateArray(arrayPlatforms, -900);
+        } else {
+            person.x = 0;
+        }
+    }
+
+
 
     //Update Canvas
     person.update(arrayPlatforms, arrayHoles, arrayCoins);
