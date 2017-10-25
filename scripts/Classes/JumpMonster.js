@@ -24,6 +24,16 @@ class JumpMonster extends Monster {
     }
 
     /*
+     * displays JumpMonster
+     */
+    display(){
+        let picture = c.getContext("2d");
+        let img = document.createElement("IMG");
+        img.src = "images/JumpMonster.png";
+        picture.drawImage(img, this.x, this.y, this.length, this.length);
+    }
+
+    /*
      * update function calls Monseter functions along with handling gravity and jump physics
      */
     update(arrayHoles, arrayPlatforms, canvas) {
