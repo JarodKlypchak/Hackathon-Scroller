@@ -69,7 +69,7 @@ function addPlatforms1(level, canvas) {
  */
 function addMonsters1(level, canvas) {
     //section 1
-    level[2].push(new Monster(600, 375));
+    level[2].push(new JumpMonster(600, 375));
 
     //section 2
     level[2].push(new Monster(canvas.width + 800, 375));

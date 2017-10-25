@@ -47,11 +47,11 @@ class Monster {
      */
     update(arrayHoles, arrayPlatforms, canvas) {
         this.x -= this.changeX;
-        if (this.y == 375) {
+        //if (this.y == 375) {
             this.onGroundDontHitPillarsOrFallOff(arrayHoles, arrayPlatforms);
-        } else {
-            this.stayOnPlatform();
-        }
+        //} else {
+        //this.stayOnPlatform();
+        //}
         this.checkOffCanvas(canvas);
     }
 
