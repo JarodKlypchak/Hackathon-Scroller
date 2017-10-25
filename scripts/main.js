@@ -5,7 +5,7 @@ let jumping = false;
 let score = 0;
 let person = new Person(5, baseHeight, 5, score);
 const moveDistance = .25;
-let levelNum = 3;
+let levelNum = 1;
 let jumpDistance = .5;
 main(person.lives, person.score);
 
