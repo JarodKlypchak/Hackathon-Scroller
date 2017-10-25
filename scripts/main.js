@@ -35,7 +35,12 @@ function main(lives) {
 
         for (let i = 0; i < arrayMonsters.length; i++) {
             arrayMonsters[i].closestPlatform(arrayPlatforms);
+            if (arrayMonsters[i].velocityY != null) {
+                arrayMonsters[i].velocityY = 4;
+                arrayMonsters[i].changeY = .1;
+            }
         }
+
 
         setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
         reset = setInterval(game, 10, arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, levelNum);
@@ -285,8 +290,5 @@ function checkOffScreen() {
 function writeToJson(level) {
 
 
-    loadJSON(function(response) {
-        // Parse JSON string into object
-        var actual_JSON = JSON.parse(response);
-    });
+
 }
