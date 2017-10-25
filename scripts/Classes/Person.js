@@ -1,3 +1,6 @@
+/**
+ * This Class Represents the Players Character.
+ */
 class Person {
 
     /**
@@ -5,22 +8,43 @@ class Person {
      * Constructor
      */
     constructor(xPos, yPos, lives, score) {
+        /**
+         * Basic Location Instance Variables
+         */
         this.x = xPos;
         this.y = yPos;
-        this.movingLeft = false;
-        this.movingRight = false;
-        this.jumping = false;
         this.height = 32;
         this.width = 32;
+
+        /**
+         * Keeps track of if this is moving left or right.
+         */
+        this.movingLeft = false;
+        this.movingRight = false;
+
+
+        /**
+         * Number of lives, and the score the user has.
+         */
         this.lives = lives;
         this.score = score;
-        this.screen = 0;
         this.calcScore = this.score % 500;
 
+        /**
+         * Keeps Track of which screen of the level the user is on.
+         */
+        this.screen = 0;
+
+
+        /**
+         * Instance Variables for Jumping
+         */
+        this.jumping = false;
         this.velocity = 0;
         this.force = -.1;
         this.jumpVelocity = 5;
     }
+
 
     /**
      *
@@ -49,21 +73,6 @@ class Person {
 
     /**
      *
-     * If time of jump is below the jump duration, moves up. otherwise down.
-     */
-    jump(time) {
-
-        if (time <= jumpDuration) {
-            person.moveY(-jumpDistance);
-        } else {
-
-            person.moveY(jumpDistance);
-
-        }
-    }
-
-    /**
-     *
      * Displays this.
      */
     display(canvas) {
@@ -71,8 +80,7 @@ class Person {
         let img = document.createElement("IMG");
         img.src = "images/portalCube64.png";
         ctx.drawImage(img, this.x, this.y, charWidth, charWidth);
-        //ctx.fillStyle = "#FF0000";
-        //ctx.fillRect(this.x, this.y, charWidth, charWidth);
+
     }
 
     /**
@@ -120,6 +128,7 @@ class Person {
      * Checks if this collided with monster, or fell through the bottom of the screen.
      */
     shouldDie(arrayMonsters) {
+
         if (this.y > 500) {
             this.jumping = false;
             this.lives--;
@@ -139,10 +148,30 @@ class Person {
      * Checks this can move  to the right, without hitting a platform.
      */
     canMoveRight(platforms, holes) {
+        let result = true;
         for (let i = 0; i < platforms.length; i++) {
             if (this.y + charWidth >= platforms[i].y + platforms[i].height + 1 && this.y < platforms[i].y) {
 
                 if (this.x + charWidth < platforms[i].x && this.x + charWidth > platforms[i].x - 5) {
+
+                    result = false;
+                }
+            }
+        }
+
+
+        return result;
+    }
+
+    /**
+     * 
+     * Checks this can move  to the left, without hitting a platform.
+     */
+    canMoveLeft(platforms, holes) {
+        for (let i = 0; i < platforms.length; i++) {
+            if (this.y + charWidth >= platforms[i].y + platforms[i].height + 1 && this.y < platforms[i].y) {
+
+                if (this.x > platforms[i].x + platforms[i].width && this.x < platforms[i].x + platforms[i].width + 5) {
 
                     return false;
                 }
@@ -155,22 +184,8 @@ class Person {
 
     /**
      * 
-     * Checks this can move  to the left, without hitting a platform.
+     * Reports if this colides with obj.
      */
-    canMoveLeft(platforms, holes) {
-        for (let i = 0; i < platforms.length; i++) {
-            if (this.y + charWidth >= platforms[i].y + platforms[i].height + 1 && this.y < platforms[i].y) {
-
-                if (this.x > platforms[i].x + platforms[i].width && this.x < platforms[i].x + platforms[i].width + 8) {
-
-                    return false;
-                }
-            }
-        }
-
-
-        return true;
-    }
     hits(obj) {
         let result = false;
         if (this.x >= obj.x && this.x <= obj.x + obj.width || (this.x + charWidth >= obj.x && this.x + charWidth <= obj.x + obj.width)) {
@@ -185,6 +200,11 @@ class Person {
         }
         return result;
     }
+
+    /**
+     * 
+     * Addes score to this.score, and checks if an extra live should be awarded.
+     */
     updateScore(score) {
         this.score += score;
         this.calcScore += score;
@@ -194,10 +214,17 @@ class Person {
         }
     }
 
+    /**
+     * 
+     * Main Update that handles all movement of this.
+     */
     update(arrayPlatforms, arrayHoles, arrayCoins) {
         this.moveX(moveDistance, arrayPlatforms, arrayHoles);
         let fallHeight = this.highestObjectBeneath(arrayPlatforms, arrayHoles);
 
+        /**
+         * Checks if this would hit a platform above it
+         */
         for (let i = 0; i < arrayPlatforms.length; i++) {
             if (this.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && this.x + 32 >= arrayPlatforms[i].x && this.y > arrayPlatforms[i].y) {
                 if (this.belowObject(arrayPlatforms[i].y)) {
@@ -208,10 +235,15 @@ class Person {
         }
 
 
-
+        /**
+         * Moves this vertically, changes gravity to account for acceleration
+         */
         this.moveY(-this.velocity);
-
         this.velocity += this.force;
+
+        /**
+         * Checks if this should stop falling
+         */
         if (this.y + this.height >= fallHeight && this.velocity < 0) {
             this.y = fallHeight - this.height;
             this.velocity = 0;
@@ -220,10 +252,16 @@ class Person {
         }
 
 
-
+        /**
+         * Stops the User from Jumping if they are falling
+         */
         if (this.velocity < 0) {
             this.jumping = true;
         }
+
+        /**
+         * Checks if a Coin is hit
+         */
         for (let i = 0; i < arrayCoins.length; i++) {
             if (person.hits(arrayCoins[i])) {
                 delete arrayCoins[i];
@@ -235,6 +273,10 @@ class Person {
 
     }
 
+    /**
+     * 
+     * Reports the height of the highest object that is beneath the object.
+     */
     highestObjectBeneath(arrayPlatforms, arrayHoles) {
         let y = baseHeight + 32;
         if (this.y + this.height - 1 > baseHeight + 32) {
@@ -263,4 +305,47 @@ class Person {
         }
         return y;
     }
+
+    /**
+     * 
+     */
+    checkOffScreen() {
+        /**
+         * Handles when user goes off the right of the screen
+         */
+        if (person.x >= canvas.width) {
+            person.x = 5;
+            person.screen++;
+            if (person.screen < 4) {
+                updateArray(arrayCoins, 900);
+                updateArray(arrayMonsters, 900);
+                updateArray(arrayHoles, 900);
+                updateArray(arrayPlatforms, 900);
+            } else if (person.screen == 4 && level == 3) {
+                youWin(canvas, person.score);
+            } else {
+                clearInterval(reset);
+                levelNum++;
+                displayLoadingScreen(canvas, levelNum);
+                person.screen = 0;
+
+                main(person.lives);
+            }
+            /**
+             * Handles when user goes off the left of the screen
+             */
+        } else if (person.x + charWidth <= 0) {
+            person.x = canvas.width - 10;
+            updateArray(arrayCoins, -900);
+            updateArray(arrayMonsters, -900);
+            updateArray(arrayHoles, -900)
+            updateArray(arrayPlatforms, -900);
+        }
+
+        //Update Canvas
+        person.update(arrayPlatforms, arrayHoles, arrayCoins);
+        setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms);
+        displayStats(person.lives, canvas);
+    }
+
 }
