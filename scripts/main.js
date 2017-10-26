@@ -54,7 +54,7 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
      */
     for (let i = 0; i < arrayMonsters.length; i++) {
         arrayMonsters[i].update(arrayHoles, arrayPlatforms, canvas);
-        arrayMonsters[i].offScreen(person, canvas);
+        arrayMonsters[i].offScreen(person.screen);
     }
 
     for (let i = 0; i < arrayBullets.length; i++) {
@@ -85,9 +85,7 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
 
         let killed = arrayMonsters[i].stomped(person);
         if (killed) {
-
             delete arrayMonsters[i];
-
             person.velocity = person.jumpVelocity / 2;
             arrayMonsters.splice(i, 1);
             person.updateScore(100);
@@ -101,6 +99,7 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
      */
 
     if (person.shouldDie(arrayMonsters)) {
+        arrayBullets.splice(0, arrayBullets.length);
         clearInterval(reset);
         main(person.lives, person.score);
     }
