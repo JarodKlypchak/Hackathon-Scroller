@@ -13,9 +13,9 @@ class FireBall {
 
     }
 
-    leavesScreen(){
-        if(this.x <= 0)
-        return true;
+    leavesScreen() {
+        if (this.x <= 0)
+            return true;
     }
 
     display() {
@@ -29,6 +29,12 @@ class FireBall {
          */
     hits(obj) {
         let result = false;
+        let swapped = false;
+        if (obj.height < 0) {
+            obj.y += obj.height;
+            obj.height *= -1;
+            swapped = true;
+        }
         if (this.x >= obj.x && this.x <= obj.x + obj.width || (this.x + charWidth >= obj.x && this.x + charWidth <= obj.x + obj.width)) {
             if (this.y >= obj.y && this.y <= obj.y + obj.height || (this.y + charWidth >= obj.y && this.y + charWidth <= obj.y + obj.height)) {
                 result = true;
@@ -38,6 +44,10 @@ class FireBall {
             if (obj.y >= this.y && obj.y <= this.y + this.height || (obj.y + obj.height >= this.y && obj.y + obj.height <= this.y + this.height)) {
                 result = true;
             }
+        }
+        if (swapped) {
+            obj.y += obj.height;
+            obj.height *= -1;
         }
         return result;
     }

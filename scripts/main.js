@@ -59,7 +59,7 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
 
     for (let i = 0; i < arrayBullets.length; i++) {
         arrayBullets[i].update();
-        if(arrayBullets[i].leavesScreen()){
+        if (arrayBullets[i].leavesScreen()) {
             delete arrayBullets[i];
             arrayBullets.splice(i, 1);
         }
@@ -152,6 +152,7 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
         } else if (person.screen == 4 && level == 3) {
             youWin(canvas, person.score);
         } else {
+            //arrayBullets = new Array();
             clearInterval(reset);
             levelNum++;
             displayLoadingScreen(canvas, levelNum);
@@ -166,6 +167,7 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
      */
     else if (person.x + charWidth <= 0) {
         if (person.screen != 0) {
+            //arrayBullets = new Array();
             person.screen--;
             person.x = canvas.width - 10;
             updateArray(arrayCoins, -900);
