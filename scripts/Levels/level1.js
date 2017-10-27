@@ -68,13 +68,13 @@ function addPlatforms1(level, canvas) {
  */
 function addMonsters1(level, canvas) {
     //section 1
-    level[2].push(new ShootingMonster(600, 375));
+    level[2].push(new ShootingMonster(800, 375));
 
     //section 2
     level[2].push(new JumpMonster(canvas.width + 800, 375));
-    level[2].push(new ShootingMonster(canvas.width + 750, 375));
+    level[2].push(new Monster(canvas.width + 750, 375));
     level[2].push(new Monster(canvas.width + 55, 275));
-    level[2].push(new Monster(canvas.width + 250, 275));
+    level[2].push(new ShootingMonster(canvas.width + 250, 275));
     level[2].push(new ShootingMonster(canvas.width + 315, 375));
 
     //section 3
@@ -96,7 +96,7 @@ function addMonsters1(level, canvas) {
     level[2].push(new Monster(canvas.width * 3 + 490, 375));
     level[2].push(new Monster(canvas.width * 3 + 510, 375));
     level[2].push(new Monster(canvas.width * 3 + 520, 375));
-    level[2].push(new Monster(canvas.width * 3 + 570, 375));
+    level[2].push(new ShootingMonster(canvas.width * 3 + 570, 375));
     level[2].push(new JumpMonster(canvas.width * 3 + 660, 375));
 }
 

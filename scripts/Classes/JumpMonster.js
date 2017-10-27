@@ -10,6 +10,7 @@ class JumpMonster extends Monster {
         super(x, y);
         this.changeY = .1;
         this.velocityY = -4;
+        this.canJump = false;
     }
 
     /*
@@ -59,9 +60,11 @@ class JumpMonster extends Monster {
         /**
          * Moves this vertically, changes gravity to account for acceleration
          */
-        this.y += this.velocityY;
-        this.velocityY += this.changeY;
-        this.x -= this.changeX;
+        if(this.canJump) {
+            this.y += this.velocityY;
+            this.velocityY += this.changeY;
+            this.x -= this.changeX;
+        }
 
         /**
          * Checks if this should stop falling
@@ -94,7 +97,6 @@ class JumpMonster extends Monster {
             }
         }
 
-
         for (let i = 0; i < arrayPlatforms.length; i++) {
             if (this.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && this.x + 32 >= arrayPlatforms[i].x && this.y <= arrayPlatforms[i].y) {
 
@@ -110,5 +112,14 @@ class JumpMonster extends Monster {
             }
         }
         return y;
+    }
+
+    offScreen(screen){
+        super.offScreen(screen);
+        if(0 <= this.x && this.x <= 900){
+            this.canJump = true;
+        } else{
+            this.canJump = false;
+        }
     }
 }

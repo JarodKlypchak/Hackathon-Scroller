@@ -10,6 +10,7 @@ class Hole {
         this.height = 100;
         this.width = width;
         this.canvas = canvas;
+        this.displayed = true;
     }
 
     /*
@@ -34,5 +35,16 @@ class Hole {
      */
     getWidth() {
         return this.width;
+    }
+
+    /*
+     * checks if on screen
+     */
+    onScreen(){
+        if(0 <= this.x && this.x <= 900){
+            this.displayed = true;
+        } else {
+            this.displayed = false;
+        }
     }
 }

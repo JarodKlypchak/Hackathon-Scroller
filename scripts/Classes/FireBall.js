@@ -19,10 +19,11 @@ class FireBall {
     }
 
     display() {
-            let ctx = c.getContext("2d");
-            ctx.fillStyle = "red";
-            ctx.fillRect(this.x, this.y, this.width, this.height);
-        }
+        let ctx = c.getContext("2d");
+        let img = document.createElement("IMG");
+        img.src = "images/FIREBALL.png";
+        ctx.drawImage(img, this.x, this.y, this.width, this.height);
+    }
         /**
          * 
          * Reports if this colides with obj.
