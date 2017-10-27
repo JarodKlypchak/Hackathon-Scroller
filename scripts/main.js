@@ -47,19 +47,25 @@ function main(lives) {
 
 function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, level, arrayBullets) {
     /*
-     *Updates monsters
+     *Updates monsters and bullets
      */
     for (let i = 0; i < arrayMonsters.length; i++) {
+        //check to see if monster is offScreen
+        //and updates them
         arrayMonsters[i].offScreen(person.screen);
         arrayMonsters[i].update(arrayHoles, arrayPlatforms, canvas);
+        //if a ShootingMonster loop through and update bullets
         if(arrayMonsters[i] instanceof ShootingMonster){
             for(let j = 0; j < arrayMonsters[i].bullets.length; j++){
                 arrayMonsters[i].bullets[j].update();
+                //if bullet leaves screen splice it
                 if(arrayMonsters[i].bullets[j].leavesScreen()){
                     arrayMonsters[i].bullets.splice(j, 1);
                 }
+                //if bullet hits person lives-- splice all arrays
                 if (person.hits(arrayMonsters[i].bullets[j])) {
                     person.lives--;
+                    //splice all arrays of bullets
                     for(let k = 0; k < arrayMonsters.length; k++){
                         if(arrayMonsters[k] instanceof ShootingMonster){
                             arrayMonsters[k].bullets.splice(0, arrayMonsters[k].bullets.length);
@@ -68,9 +74,11 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
                     clearInterval(reset);
                     main(person.lives, person.score);
                 }
+                //if the person leaves the screen in which a monster is firing splice all those bullets
                 if(!arrayMonsters[i].offScreen(person.screen)){
                     arrayMonsters[i].bullets.splice(0, arrayMonsters[i].bullets.length);
                 }
+                //platform interaction
                 for (let k = 0; k < arrayPlatforms.length; k++) {
                     if (arrayMonsters[i].bullets[j].hits(arrayPlatforms[k])) {
                         delete arrayMonsters[i].bullets[j];
