@@ -12,6 +12,7 @@ class Coin {
         this.y = y;
         this.height = 20;
         this.width = 20;
+        this.displayed = true;
     }
 
     /*
@@ -23,8 +24,6 @@ class Coin {
         img.src = "images/Coin20.png";
         coin.drawImage(img, this.x, this.y, this.width, this.width);
     }
-
-
 
     /*
      * returns X
@@ -38,5 +37,16 @@ class Coin {
      */
     getY() {
         return this.y;
+    }
+
+    /*
+     * checks if on screen
+     */
+    onScreen(){
+        if(0 <= this.x && this.x <= 900){
+            this.displayed = true;
+        } else {
+            this.displayed = false;
+        }
     }
 }

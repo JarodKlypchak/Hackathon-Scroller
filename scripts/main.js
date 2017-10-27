@@ -223,7 +223,8 @@ function setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatfor
         }
     }
     for (let i = 0; i < arrayCoins.length; i++) {
-        arrayCoins[i].display();
+        if(arrayCoins[i].displayed)
+            arrayCoins[i].display();
     }
     person.display(canvas);
 }
