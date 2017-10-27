@@ -3,6 +3,7 @@ class ShootingMonster extends Monster{
         super(x, y);
         this.changeX = 0;
         this.canFire = false;
+        this.bullets = [];
     }
 
     display(){
@@ -14,10 +15,10 @@ class ShootingMonster extends Monster{
 
     update(arrayHoles, arrayPlatforms, canvas){
         super.update(arrayHoles, arrayPlatforms, canvas);
-        if(this.canFire && arrayBullets.length == 0)
-            arrayBullets.push(new FireBall(this.x, this.y + 10));
-        if(this.canFire && arrayBullets[arrayBullets.length - 1].x < this.x - 300 && arrayBullets[arrayBullets.length - 1].x + 300 <= this.x + this.length && arrayBullets[arrayBullets.length - 2] != arrayBullets[arrayBullets.length - 1].y) {
-            arrayBullets.push(new FireBall(this.x, this.y + 10));
+        if(this.canFire && this.bullets.length == 0){
+            this.bullets.push(new FireBall(this.x, this.y + 10));
+        } else if(this.canFire && this.bullets[this.bullets.length - 1].x < this.x - 300) {
+            this.bullets.push(new FireBall(this.x, this.y + 10));
         }
     }
 
@@ -29,5 +30,6 @@ class ShootingMonster extends Monster{
         } else {
             this.canFire = false;
         }
+        return this.canFire;
     }
 }
