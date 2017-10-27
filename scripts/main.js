@@ -93,7 +93,6 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
     /**
      * Checks if a each monster has been killed.
      */
-
     for (let i = 0; i < arrayMonsters.length; i++) {
 
         let killed = arrayMonsters[i].stomped(person);
@@ -112,7 +111,11 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
      */
 
     if (person.shouldDie(arrayMonsters)) {
-        arrayBullets.splice(0, arrayBullets.length);
+        for(let i = 0; i < arrayMonsters.length; i++){
+            if(arrayMonsters[i] instanceof ShootingMonster){
+                arrayMonsters[i].bullets.splice(0, arrayMonsters[i].bullets.length);
+            }
+        }
         clearInterval(reset);
         main(person.lives, person.score);
     }

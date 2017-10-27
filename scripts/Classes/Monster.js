@@ -15,6 +15,7 @@ class Monster {
         this.y = y;
         this.changeX = .8;
         this.closestPlat;
+        this.canMove = false;
         if(this.y == 375){
             this.onGround = true;
         } else {
@@ -51,13 +52,15 @@ class Monster {
      * update funtion for monster calls arrayHoles, arrayPlatforms, and canvas
      */
     update(arrayHoles, arrayPlatforms, canvas) {
-        this.x -= this.changeX;
-        if (this.onGround) {
-            this.onGroundDontHitPillarsOrFallOff(arrayHoles, arrayPlatforms);
-        } else {
-            this.stayOnPlatform();
+        if(this.canMove) {
+            this.x -= this.changeX;
+            if (this.onGround) {
+                this.onGroundDontHitPillarsOrFallOff(arrayHoles, arrayPlatforms);
+            } else {
+                this.stayOnPlatform();
+            }
+            this.checkOffCanvas(canvas);
         }
-        this.checkOffCanvas(canvas);
     }
 
     /*
@@ -128,10 +131,12 @@ class Monster {
      * monster off screen
      */
     offScreen(screen) {
-        if(!(screen == 0 && this.x >= 0 && this.x <= 900)){
-            this.changeX = 0;
-        } else if(!(screen > 0 && this.x >= (screen - 1) * 900 + 1 && this.x <= screen * 900)){
-            this.changeX = 0;
+        if(screen == 0 && this.x >= 0 && this.x <= 900){
+            this.canMove = true;
+        } else if(screen > 0 && this.x >= (screen - 1) * 900 + 1 && this.x <= screen * 900){
+            this.canMove = true;
+        } else{
+            this.canMove = false;
         }
     }
 }
