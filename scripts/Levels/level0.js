@@ -1,0 +1,118 @@
+function createLevel0(canvas) {
+    let level = new Array();
+
+    for (let i = 0; i < 4; i++) {
+        level[i] = new Array();
+    }
+    //Holes
+    addHoles0(level, canvas);
+
+    //Platform
+    addPlatforms0(level, canvas);
+
+    //Monster
+    addMonsters0(level, canvas);
+
+    //Coins
+    addCoins0(level, canvas);
+
+    //Return level
+    return level;
+}
+
+/*
+ * adds holes to sections of level 1
+ */
+function addHoles0(level, canvas) {
+    //section 1
+    level[0].push(new Hole(canvas, 400, 100));
+
+    //section 2
+
+
+    //section 3
+    level[0].push(new Hole(canvas, canvas.width * 2 + 150, 600));
+}
+
+/*
+ * adds platforms to sections of level 1
+ */
+function addPlatforms0(level, canvas) {
+    //section 1
+
+    //section 2
+    level[1].push(new Platform(canvas.width + 200, 300, 100));
+    level[1].push(new Platform(canvas.width + 600, 300, 100));
+    level[1].push(new Platform(canvas.width + 400, 400, 100));
+    level[1].push(new Platform(canvas.width + 400, 400, 50, -50));
+
+    //section 3
+    level[1].push(new Platform(canvas.width * 2 + 150, 350, 200));
+    level[1].push(new Platform(canvas.width * 2 + 500, 350, 200));
+    level[1].push(new Platform(canvas.width * 2 + 425, 250, 50));
+    level[1].push(new Platform(canvas.width * 2 + 412, 150, 75));
+    level[1].push(new Platform(canvas.width * 2 + 400, 50, 100));
+
+    //section 4
+    level[1].push(new Platform(canvas.width * 3 + 425, 400, 10, -50));
+}
+
+/*
+ * adds monsters to sections of level 1
+ */
+function addMonsters0(level, canvas) {
+    //section 1
+    level[2].push(new ShootingMonster(800, 375));
+
+    //section 2
+    level[2].push(new JumpMonster(canvas.width + 800, 375));
+    level[2].push(new Monster(canvas.width + 750, 375));
+    level[2].push(new Monster(canvas.width + 55, 275));
+    level[2].push(new ShootingMonster(canvas.width + 250, 275));
+    level[2].push(new ShootingMonster(canvas.width + 315, 375));
+
+    //section 3
+    level[2].push(new Monster(canvas.width * 2 + 200, 325));
+    level[2].push(new Monster(canvas.width * 2 + 222, 325));
+    level[2].push(new Monster(canvas.width * 2 + 255, 325));
+    level[2].push(new Monster(canvas.width * 2 + 505, 325));
+    level[2].push(new JumpMonster(canvas.width * 2 + 560, 325));
+    level[2].push(new Monster(canvas.width * 2 + 600, 325));
+
+    level[2].push(new JumpMonster(canvas.width * 2 + 430, 25));
+
+    //section 4
+    level[2].push(new Monster(canvas.width * 3 + 90, 375));
+    level[2].push(new Monster(canvas.width * 3 + 110, 375));
+    level[2].push(new Monster(canvas.width * 3 + 120, 375));
+    level[2].push(new Monster(canvas.width * 3 + 170, 375));
+    level[2].push(new JumpMonster(canvas.width * 3 + 360, 375));
+    level[2].push(new Monster(canvas.width * 3 + 490, 375));
+    level[2].push(new Monster(canvas.width * 3 + 510, 375));
+    level[2].push(new Monster(canvas.width * 3 + 520, 375));
+    level[2].push(new ShootingMonster(canvas.width * 3 + 570, 375));
+    level[2].push(new JumpMonster(canvas.width * 3 + 660, 375));
+}
+
+/*
+ * adds coins to sections of level 1
+ */
+function addCoins0(level, canvas) {
+    //section 1
+    level[3].push(new Coin(120, 325));
+    level[3].push(new Coin(260, 325));
+    level[3].push(new Coin(360, 325));
+    level[3].push(new Coin(666, 325));
+
+    //section 2
+    level[3].push(new Coin(canvas.width + 200, 200));
+    level[3].push(new Coin(canvas.width + 350, 240));
+
+    //section 3
+    level[3].push(new Coin(canvas.width * 2 + 435, 90));
+    level[3].push(new Coin(canvas.width * 2 + 435, 20));
+    level[3].push(new Coin(canvas.width * 2 + 270, 20));
+    level[3].push(new Coin(canvas.width * 2 + 600, 20));
+
+    //section 4
+}
