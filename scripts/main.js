@@ -53,41 +53,42 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
         //check to see if monster is offScreen
         //and updates them
         arrayMonsters[i].offScreen(person.screen);
-        arrayMonsters[i].update(arrayHoles, arrayPlatforms, canvas);
-        //if a ShootingMonster loop through and update bullets
-        if(arrayMonsters[i] instanceof ShootingMonster){
-            for(let j = 0; j < arrayMonsters[i].bullets.length; j++){
-                arrayMonsters[i].bullets[j].update();
-                //if bullet leaves screen splice it
-                if(arrayMonsters[i].bullets[j].leavesScreen()){
-                    arrayMonsters[i].bullets.splice(j, 1);
-                }
-                //if bullet hits person lives-- splice all arrays
-                if (person.hits(arrayMonsters[i].bullets[j])) {
-                    person.lives--;
-                    //splice all arrays of bullets
-                    for(let k = 0; k < arrayMonsters.length; k++){
-                        if(arrayMonsters[k] instanceof ShootingMonster){
-                            arrayMonsters[k].bullets.splice(0, arrayMonsters[k].bullets.length);
-                        }
-                    }
-                    clearInterval(reset);
-                    main(person.lives, person.score);
-                }
-                //if the person leaves the screen in which a monster is firing splice all those bullets
-                if(!arrayMonsters[i].offScreen(person.screen)){
-                    arrayMonsters[i].bullets.splice(0, arrayMonsters[i].bullets.length);
-                }
-                //platform interaction
-                for (let k = 0; k < arrayPlatforms.length; k++) {
-                    if (arrayMonsters[i].bullets[j].hits(arrayPlatforms[k])) {
-                        delete arrayMonsters[i].bullets[j];
+        if(arrayMonsters[i].canMove) {
+            arrayMonsters[i].update(arrayHoles, arrayPlatforms, canvas);
+            //if a ShootingMonster loop through and update bullets
+            if(arrayMonsters[i] instanceof ShootingMonster){
+                for(let j = 0; j < arrayMonsters[i].bullets.length; j++){
+                    arrayMonsters[i].bullets[j].update();
+                    //if bullet leaves screen splice it
+                    if(arrayMonsters[i].bullets[j].leavesScreen()){
                         arrayMonsters[i].bullets.splice(j, 1);
+                    }
+                    //if bullet hits person lives-- splice all arrays
+                    if (person.hits(arrayMonsters[i].bullets[j])) {
+                        person.lives--;
+                        //splice all arrays of bullets
+                        for(let k = 0; k < arrayMonsters.length; k++){
+                            if(arrayMonsters[k] instanceof ShootingMonster){
+                                arrayMonsters[k].bullets.splice(0, arrayMonsters[k].bullets.length);
+                            }
+                        }
+                        clearInterval(reset);
+                        main(person.lives, person.score);
+                    }
+                    //if the person leaves the screen in which a monster is firing splice all those bullets
+                    if(!arrayMonsters[i].canFire){
+                        arrayMonsters[i].bullets.splice(0, arrayMonsters[i].bullets.length);
+                    }
+                    //platform interaction
+                    for (let k = 0; k < arrayPlatforms.length; k++) {
+                        if (arrayMonsters[i].bullets[j].hits(arrayPlatforms[k])) {
+                            delete arrayMonsters[i].bullets[j];
+                            arrayMonsters[i].bullets.splice(j, 1);
+                        }
                     }
                 }
             }
         }
-
     }
 
     /**
@@ -212,8 +213,10 @@ function setUpCanvas(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatfor
     canvas.style.border = "1px solid black";
     displayGround(canvas, arrayHoles, arrayPlatforms);
     for (let i = 0; i < arrayMonsters.length; i++) {
-        arrayMonsters[i].display();
-        if(arrayMonsters[i] instanceof ShootingMonster) {
+        if(arrayMonsters[i].canMove){
+            arrayMonsters[i].display();
+        }
+        if(arrayMonsters[i].canMove && arrayMonsters[i] instanceof ShootingMonster) {
             for(let j = 0; j < arrayMonsters[i].bullets.length; j++) {
                 arrayMonsters[i].bullets[j].display();
             }
@@ -232,10 +235,12 @@ function displayGround(canvas, arrayHoles, arrayPlatforms) {
     let ground = new Ground();
     ground.display(canvas);
     for (let i = 0; i < arrayHoles.length; i++) {
-        arrayHoles[i].display();
+        if(arrayHoles[i].displayed)
+            arrayHoles[i].display();
     }
     for (let i = 0; i < arrayPlatforms.length; i++) {
-        arrayPlatforms[i].display();
+        if(arrayPlatforms[i].displayed)
+            arrayPlatforms[i].display();
     }
 }
 

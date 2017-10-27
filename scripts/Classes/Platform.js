@@ -7,6 +7,7 @@ class Platform{
         this.y = y;
         this.width = width;
         this.height = height;
+        this.displayed = true;
     }
 
     /*
@@ -45,5 +46,16 @@ class Platform{
      */
     getWidth(){
         return this.width;
+    }
+
+    /*
+     * checks if it's displayed
+     */
+    onScreen(){
+        if(0 <= this.x && this.x <= 900){
+            this.displayed = true;
+        } else{
+            this.displayed = false;
+        }
     }
 }

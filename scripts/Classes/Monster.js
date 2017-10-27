@@ -131,11 +131,9 @@ class Monster {
      * monster off screen
      */
     offScreen(screen) {
-        if(screen == 0 && this.x >= 0 && this.x <= 900){
+        if(0 <= this.x && this.x <= 900) {
             this.canMove = true;
-        } else if(screen > 0 && this.x >= (screen - 1) * 900 + 1 && this.x <= screen * 900){
-            this.canMove = true;
-        } else{
+        } else {
             this.canMove = false;
         }
     }

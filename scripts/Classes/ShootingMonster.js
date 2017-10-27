@@ -23,13 +23,11 @@ class ShootingMonster extends Monster{
     }
 
     offScreen(screen){
-        if(screen == 0 && this.x >= 0 && this.x <= 900) {
+        super.offScreen(screen);
+        if(0 <= this.x && this.x <= 900){
             this.canFire = true;
-        } else if(screen > 0 && this.x >= (screen - 1) * 900 + 1 && this.x <= screen * 900) {
-            this.canFire = true;
-        } else {
+        } else{
             this.canFire = false;
         }
-        return this.canFire;
     }
 }
