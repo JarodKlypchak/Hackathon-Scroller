@@ -5,7 +5,7 @@ let jumping = false;
 let score = 0;
 let person = new Person(5, baseHeight, 5, score);
 const moveDistance = .25;
-let levelNum = 1;
+let levelNum = 0;
 let jumpDistance = .5;
 main(person.lives, person.score);
 
@@ -19,7 +19,9 @@ function main(lives) {
 
         let canvas = document.getElementById("c");
         canvas.width = 900;
-        if (levelNum == 1) {
+        if (levelNum == 0) {
+            level = createLevel0(canvas);
+        } else if (levelNum == 1) {
             level = createLevel1(canvas);
         } else if (levelNum == 2) {
             lives += 2;
