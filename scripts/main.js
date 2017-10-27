@@ -52,7 +52,7 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
     for (let i = 0; i < arrayMonsters.length; i++) {
         //check to see if monster is offScreen
         //and updates them
-        arrayMonsters[i].offScreen(person.screen);
+        arrayMonsters[i].offScreen();
         if(arrayMonsters[i].canMove) {
             arrayMonsters[i].update(arrayHoles, arrayPlatforms, canvas);
             //if a ShootingMonster loop through and update bullets
