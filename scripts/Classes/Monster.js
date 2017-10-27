@@ -128,7 +128,9 @@ class Monster {
      * monster off screen
      */
     offScreen(screen) {
-        if (person.x - canvas.width > this.x) {
+        if(!(screen == 0 && this.x >= 0 && this.x <= 900)){
+            this.changeX = 0;
+        } else if(!(screen > 0 && this.x >= (screen - 1) * 900 + 1 && this.x <= screen * 900)){
             this.changeX = 0;
         }
     }
