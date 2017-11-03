@@ -64,6 +64,7 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
                     //if bullet leaves screen splice it
                     if (arrayMonsters[i].bullets[j].leavesScreen()) {
                         arrayMonsters[i].bullets.splice(j, 1);
+                        j--;
                     }
                     //if bullet hits person lives-- splice all arrays
                     if (person.hits(arrayMonsters[i].bullets[j])) {
@@ -127,9 +128,10 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
      * Handles when user goes off the right of the screen
      */
 
-    if (person.x > 250 && person.abPosition < canvas.width * 3) {
-        person.x = 250;
+    if (person.x > (person.abPosition / (canvas.width * 4)) * canvas.width / 2) {
+        person.x = (person.abPosition / (canvas.width * 4)) * canvas.width / 2 - 1;
         //person.screen++;
+        console.log(person.abPosition);
         if (person.screen < 4) {
             person.abPosition += person.movingDistance;
             for (let i = 0; i < arrayMonsters.length; i++) {
@@ -157,8 +159,8 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
          * Handles when user goes off the left of the screen
          */
 
-    } else if (person.x < 200) {
-        person.x = 200;
+    } else if (person.x < (person.abPosition / (canvas.width * 4)) * canvas.width / 2 - 50) {
+        person.x = (person.abPosition / (canvas.width * 4)) * canvas.width / 2 - 50;
         person.abPosition -= person.movingDistance;
         for (let i = 0; i < arrayMonsters.length; i++) {
             if (arrayMonsters[i] instanceof ShootingMonster) {
@@ -170,7 +172,7 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
         updateArray(arrayMonsters, -person.movingDistance);
         updateArray(arrayHoles, -person.movingDistance)
         updateArray(arrayPlatforms, -person.movingDistance);
-    } else if (person.x > canvas.width) {
+    } else if (person.abPosition > 3200) {
         clearInterval(reset);
         levelNum++;
         displayLoadingScreen(canvas, levelNum);
