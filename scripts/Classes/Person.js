@@ -173,7 +173,7 @@ class Person {
         for (let i = 0; i < platforms.length; i++) {
             if (this.y + charWidth >= platforms[i].y + platforms[i].height + 1 && this.y < platforms[i].y) {
 
-                if (this.x + charWidth < platforms[i].x && this.x + charWidth > platforms[i].x - .5) {
+                if (this.x + charWidth < platforms[i].x && this.x + charWidth > platforms[i].x - 2) {
 
                     result = false;
                 }
@@ -192,7 +192,7 @@ class Person {
         for (let i = 0; i < platforms.length; i++) {
             if (this.y + charWidth >= platforms[i].y + platforms[i].height + 1 && this.y < platforms[i].y) {
 
-                if (this.x > platforms[i].x + platforms[i].width && this.x < platforms[i].x + platforms[i].width + .5) {
+                if (this.x > platforms[i].x + platforms[i].width && this.x < platforms[i].x + platforms[i].width + 2) {
 
                     return false;
                 }

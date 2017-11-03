@@ -8,13 +8,9 @@ class FireBall {
     }
 
     update(person, arrayPlatforms, arrayMonsters) {
-        if (person.movingLeft) {
-            this.x += this.speed + person.movingDistance;
-        } else if (person.movingRight) {
-            this.x += this.speed - person.movingDistance;
-        } else {
-            this.x += this.speed;
-        }
+
+        this.x += this.speed;
+
 
 
     }

@@ -127,11 +127,17 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
      * Handles when user goes off the right of the screen
      */
 
-    if (person.x > 250) {
+    if (person.x > 250 && person.abPosition < canvas.width * 3) {
         person.x = 250;
         //person.screen++;
         if (person.screen < 4) {
             person.abPosition += person.movingDistance;
+            for (let i = 0; i < arrayMonsters.length; i++) {
+                if (arrayMonsters[i] instanceof ShootingMonster) {
+                    updateArray(arrayMonsters[i].bullets, person.movingDistance);
+                }
+
+            }
             updateArray(arrayCoins, person.movingDistance);
             updateArray(arrayMonsters, person.movingDistance);
             updateArray(arrayHoles, person.movingDistance);
@@ -154,10 +160,23 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
     } else if (person.x < 200) {
         person.x = 200;
         person.abPosition -= person.movingDistance;
+        for (let i = 0; i < arrayMonsters.length; i++) {
+            if (arrayMonsters[i] instanceof ShootingMonster) {
+                updateArray(arrayMonsters[i].bullets, -person.movingDistance);
+            }
+
+        }
         updateArray(arrayCoins, -person.movingDistance);
         updateArray(arrayMonsters, -person.movingDistance);
         updateArray(arrayHoles, -person.movingDistance)
         updateArray(arrayPlatforms, -person.movingDistance);
+    } else if (person.x > canvas.width) {
+        clearInterval(reset);
+        levelNum++;
+        displayLoadingScreen(canvas, levelNum);
+        person.screen = 0;
+
+        main(person.lives);
     }
 
 
