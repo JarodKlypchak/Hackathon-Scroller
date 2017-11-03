@@ -11,6 +11,7 @@ class Person {
         /**
          * Basic Location Instance Variables
          */
+        this.abPosition = xPos;
         this.x = xPos;
         this.y = yPos;
         this.height = 32;
@@ -21,7 +22,7 @@ class Person {
          */
         this.movingLeft = false;
         this.movingRight = false;
-
+        this.movingDistance = 2;
 
         /**
          * Number of lives, and the score the user has.

@@ -8,8 +8,14 @@ class FireBall {
     }
 
     update(person, arrayPlatforms, arrayMonsters) {
+        if (person.movingLeft) {
+            this.x += this.speed + person.movingDistance;
+        } else if (person.movingRight) {
+            this.x += this.speed - person.movingDistance;
+        } else {
+            this.x += this.speed;
+        }
 
-        this.x += this.speed;
 
     }
 
@@ -19,11 +25,11 @@ class FireBall {
     }
 
     display() {
-        let ctx = c.getContext("2d");
-        let img = document.createElement("IMG");
-        img.src = "images/FIREBALL.png";
-        ctx.drawImage(img, this.x, this.y, this.width, this.height);
-    }
+            let ctx = c.getContext("2d");
+            let img = document.createElement("IMG");
+            img.src = "images/FIREBALL.png";
+            ctx.drawImage(img, this.x, this.y, this.width, this.height);
+        }
         /**
          * 
          * Reports if this colides with obj.
