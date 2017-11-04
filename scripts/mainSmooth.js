@@ -61,13 +61,8 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
             if (arrayMonsters[i] instanceof ShootingMonster) {
                 for (let j = 0; j < arrayMonsters[i].bullets.length; j++) {
                     arrayMonsters[i].bullets[j].update(person);
-                    //if bullet leaves screen splice it
-                    if (arrayMonsters[i].bullets[j].leavesScreen()) {
-                        arrayMonsters[i].bullets.splice(j, 1);
-                        j--;
-                    }
                     //if bullet hits person lives-- splice all arrays
-                    if (person.hits(arrayMonsters[i].bullets[j])) {
+                    if (!arrayMonsters[i].bullets[j].leavesScreen() && person.hits(arrayMonsters[i].bullets[j])) {
                         person.lives--;
                         //splice all arrays of bullets
                         for (let k = 0; k < arrayMonsters.length; k++) {
@@ -77,10 +72,6 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
                         }
                         clearInterval(reset);
                         main(person.lives, person.score);
-                    }
-                    //if the person leaves the screen in which a monster is firing splice all those bullets
-                    if (!arrayMonsters[i].canFire) {
-                        arrayMonsters[i].bullets.splice(0, arrayMonsters[i].bullets.length);
                     }
                     //platform interaction
                     for (let k = 0; k < arrayPlatforms.length; k++) {
@@ -131,7 +122,6 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
     if (person.x > (person.abPosition / (canvas.width * 4)) * canvas.width / 2) {
         person.x = (person.abPosition / (canvas.width * 4)) * canvas.width / 2 - 1;
         //person.screen++;
-        console.log(person.abPosition);
         if (person.screen < 4) {
             person.abPosition += person.movingDistance;
             for (let i = 0; i < arrayMonsters.length; i++) {

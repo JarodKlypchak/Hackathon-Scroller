@@ -22,6 +22,11 @@ class ShootingMonster extends Monster {
         } else if(!this.canFire) {
             this.bullets.splice(0, this.bullets.length);
         }
+        for(let i = 0; i < this.bullets.length; i++){
+            if(this.bullets[i].leavesScreen()){
+                this.bullets.splice(i, 1);
+            }
+        }
     }
 
     offScreen(person, screen) {

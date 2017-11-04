@@ -8,11 +8,7 @@ class FireBall {
     }
 
     update(person, arrayPlatforms, arrayMonsters) {
-
         this.x += this.speed;
-
-
-
     }
 
     leavesScreen() {
