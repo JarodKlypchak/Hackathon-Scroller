@@ -119,7 +119,7 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
      * Handles when user goes off the right of the screen
      */
 
-    if (person.x > (person.abPosition / (canvas.width * 4)) * canvas.width / 2) {
+    if (person.x > (person.abPosition / (canvas.width * 4)) * canvas.width / 2 && person.abPosition < canvas.width * 3) {
         person.x = (person.abPosition / (canvas.width * 4)) * canvas.width / 2 - 1;
         //person.screen++;
         if (person.screen < 4) {
@@ -162,7 +162,7 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
         updateArray(arrayMonsters, -person.movingDistance);
         updateArray(arrayHoles, -person.movingDistance)
         updateArray(arrayPlatforms, -person.movingDistance);
-    } else if (person.abPosition > 3200) {
+    } else if (person.x > canvas.width) {
         clearInterval(reset);
         levelNum++;
         displayLoadingScreen(canvas, levelNum);
