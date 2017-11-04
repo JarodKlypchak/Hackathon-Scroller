@@ -43,7 +43,6 @@ class JumpMonster extends Monster {
         } else {
             super.stayOnPlatform();
         }
-        super.checkOffCanvas(canvas);
 
         let fallHeight = this.highestObjectBeneath(arrayPlatforms, arrayHoles);
         /**
@@ -114,9 +113,9 @@ class JumpMonster extends Monster {
         return y;
     }
 
-    offScreen(screen){
-        super.offScreen(screen);
-        if(0 <= this.x && this.x <= 900){
+    offScreen(person, screen){
+        super.offScreen(person, screen);
+        if(this.x <= person.x + screen.width && this.x >= person.x - screen.width){
             this.canJump = true;
         } else{
             this.canJump = false;

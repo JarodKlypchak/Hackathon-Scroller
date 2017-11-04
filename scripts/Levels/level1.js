@@ -74,7 +74,6 @@ function addMonsters1(level, canvas) {
     level[2].push(new JumpMonster(canvas.width + 800, 375));
     level[2].push(new Monster(canvas.width + 750, 375));
     level[2].push(new Monster(canvas.width + 55, 275));
-    level[2].push(new ShootingMonster(canvas.width + 250, 275));
     level[2].push(new ShootingMonster(canvas.width + 315, 375));
 
     //section 3

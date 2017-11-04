@@ -19,15 +19,18 @@ class ShootingMonster extends Monster {
             this.bullets.push(new FireBall(this.x, this.y + 10));
         } else if (this.canFire && this.bullets[this.bullets.length - 1].x < this.x - 300) {
             this.bullets.push(new FireBall(this.x, this.y + 10));
+        } else if(!this.canFire) {
+            this.bullets.splice(0, this.bullets.length);
         }
     }
 
-    offScreen(screen) {
-        super.offScreen(screen);
-        if (0 <= this.x && this.x <= 900) {
+    offScreen(person, screen) {
+        super.offScreen(person, screen);
+        if (this.x >= person.x - screen.width && this.x <= person.x + screen.width) {
             this.canFire = true;
         } else {
             this.canFire = false;
+            this.bullets.splice(0, this.bullets.length);
         }
     }
 }

@@ -59,7 +59,6 @@ class Monster {
             } else {
                 this.stayOnPlatform();
             }
-            this.checkOffCanvas(canvas);
         }
     }
 
@@ -96,15 +95,6 @@ class Monster {
     }
 
     /*
-     * check to see if they're about to leave the canvas
-     */
-    checkOffCanvas(canvas) {
-        if (this.x >= canvas.width - this.length || this.x <= this.length) {
-            this.changeX *= -1;
-        }
-    }
-
-    /*
      * if person stomps monster return true
      */
     stomped(person) {
@@ -130,8 +120,8 @@ class Monster {
     /*
      * monster off screen
      */
-    offScreen(screen) {
-        if(0 <= this.x && this.x <= 900) {
+    offScreen(person, screen) {
+        if(this.x >= person.x - screen.width && this.x <= person.x + screen.width) {
             this.canMove = true;
         } else {
             this.canMove = false;
