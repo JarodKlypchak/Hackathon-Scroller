@@ -20,7 +20,7 @@ function main(lives) {
         let canvas = document.getElementById("c");
         canvas.width = 900;
         if (levelNum == 0) {
-            level = createLevel0(canvas);
+            level = generateLevel(canvas, 1);
         } else if (levelNum == 1) {
             level = createLevel1(canvas);
         } else if (levelNum == 2) {
@@ -29,7 +29,6 @@ function main(lives) {
         } else if (levelNum == 3) {
             level = createLevel3(canvas);
         }
-        writeToJson(level);
         let arrayHoles = level[0];
         let arrayPlatforms = level[1];
         let arrayMonsters = level[2];
