@@ -1,8 +1,8 @@
-class Platform{
+class Platform {
     /*
      * constructor
      */
-    constructor(x, y, width, height = 0){
+    constructor(x, y, width, height = 0) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -13,13 +13,13 @@ class Platform{
     /*
      * displays platforms
      */
-    display(){
-        if(this.height == 0){
+    display() {
+        if (this.height == 0) {
             let platform = c.getContext("2d");
             this.platformColor = "#edcc10";
             platform.fillStyle = this.platformColor;
-            platform.fillRect(this.x, this.y, this.width, 10);
-        }else{
+            platform.fillRect(this.x, this.y, this.width, this.height);
+        } else {
             let platform = c.getContext("2d");
             this.platformColor = "#edcc10";
             platform.fillStyle = this.platformColor;
@@ -30,31 +30,31 @@ class Platform{
     /*
      * returns X value
      */
-    getX(){
+    getX() {
         return this.x;
     }
 
     /*
      * returns y value
      */
-    getY(){
+    getY() {
         return this.y;
     }
 
     /*
      * returns width
      */
-    getWidth(){
+    getWidth() {
         return this.width;
     }
 
     /*
      * checks if it's displayed
      */
-    onScreen(){
-        if(0 <= this.x && this.x <= 900){
+    onScreen() {
+        if (0 <= this.x && this.x <= 900) {
             this.displayed = true;
-        } else{
+        } else {
             this.displayed = false;
         }
     }
