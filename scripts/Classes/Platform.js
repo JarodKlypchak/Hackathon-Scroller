@@ -18,7 +18,7 @@ class Platform {
             let platform = c.getContext("2d");
             this.platformColor = "#edcc10";
             platform.fillStyle = this.platformColor;
-            platform.fillRect(this.x, this.y, this.width, this.height);
+            platform.fillRect(this.x, this.y, this.width, this.height + 10);
         } else {
             let platform = c.getContext("2d");
             this.platformColor = "#edcc10";
