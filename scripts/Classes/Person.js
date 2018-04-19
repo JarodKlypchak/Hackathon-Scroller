@@ -55,6 +55,9 @@ class Person {
 
         if (this.y + this.height > 401) {
 
+            /**
+             * Checks if in a hole, stops moving.
+             */
             for (let i = 0; i < holes.length; i++) {
                 if (this.x <= holes[i].x + holes[i].width && this.x + 32 >= holes[i].x) {
                     if (this.x < holes[i].x) {
@@ -65,6 +68,7 @@ class Person {
                 }
             }
         }
+
 
 
         for (let i = 0; i < 8; i++) {
