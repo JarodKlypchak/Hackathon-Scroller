@@ -334,4 +334,4 @@ class Person {
         }
         return y;
     }
-}
+};
