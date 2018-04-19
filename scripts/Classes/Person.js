@@ -317,6 +317,9 @@ class Person {
             }
         }
 
+        /**
+         * Testing....
+         */
 
         for (let i = 0; i < arrayPlatforms.length; i++) {
             if (this.x <= arrayPlatforms[i].x + arrayPlatforms[i].width && this.x + 32 >= arrayPlatforms[i].x && this.y <= arrayPlatforms[i].y) {
