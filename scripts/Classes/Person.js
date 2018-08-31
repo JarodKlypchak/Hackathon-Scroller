@@ -233,9 +233,9 @@ class Person {
     updateScore(score) {
         this.score += score;
         this.calcScore += score;
-        if (person.calcScore >= 2000) {
+        if (person.calcScore >= 500) {
             person.lives++;
-            person.calcScore -= 2000;
+            person.calcScore -= 500;
         }
     }
 

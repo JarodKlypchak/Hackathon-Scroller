@@ -17,13 +17,13 @@ class ShootingMonster extends Monster {
         super.update(arrayHoles, arrayPlatforms, canvas);
         if (this.canFire && this.bullets.length == 0) {
             this.bullets.push(new FireBall(this.x, this.y + 10));
-        } else if (this.canFire && this.bullets[this.bullets.length - 1].x < this.x - 300) {
+        } else if (this.canFire && this.bullets[this.bullets.length - 1].x < this.x - 400) {
             this.bullets.push(new FireBall(this.x, this.y + 10));
-        } else if(!this.canFire) {
+        } else if (!this.canFire) {
             this.bullets.splice(0, this.bullets.length);
         }
-        for(let i = 0; i < this.bullets.length; i++){
-            if(this.bullets[i].leavesScreen()){
+        for (let i = 0; i < this.bullets.length; i++) {
+            if (this.bullets[i].leavesScreen()) {
                 this.bullets.splice(i, 1);
             }
         }

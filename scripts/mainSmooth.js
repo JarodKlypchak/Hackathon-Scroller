@@ -29,6 +29,9 @@ function main(lives) {
             level = createLevel2(canvas);
         } else if (levelNum == 3) {
             level = createLevel3(canvas);
+        } else {
+            let difficulty = Math.floor(Math.random() * 3) + 1;
+            level = generateLevel(difficulty);
         }
         let arrayHoles = level[0];
         let arrayPlatforms = level[1];
@@ -75,9 +78,11 @@ function game(arrayCoins, arrayMonsters, canvas, arrayHoles, arrayPlatforms, lev
                     }
                     //platform interaction
                     for (let k = 0; k < arrayPlatforms.length; k++) {
-                        if (arrayMonsters[i].bullets[j].hits(arrayPlatforms[k])) {
-                            delete arrayMonsters[i].bullets[j];
-                            arrayMonsters[i].bullets.splice(j, 1);
+                        if (arrayMonsters[i].bullets[j] instanceof FireBall) {
+                            if (arrayMonsters[i].bullets[j].hits(arrayPlatforms[k])) {
+                                delete arrayMonsters[i].bullets[j];
+                                arrayMonsters[i].bullets.splice(j, 1);
+                            }
                         }
                     }
                 }
